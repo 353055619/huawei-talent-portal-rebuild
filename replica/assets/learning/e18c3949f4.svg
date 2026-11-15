@@ -1,0 +1,47 @@
+<svg viewBox="0 0 49.0996 49.001" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="49.0996094" height="49.0009766" fill="none" customFrame="#000000">
+	<mask id="mask_1" width="48" height="39.5" x="0.5" y="4" maskUnits="userSpaceOnUse" mask-type="luminance">
+		<g id="mask-3">
+			<g id="use">
+				<path id="path-2" d="M39.5 4C40.3284 4 41 4.67157 41 5.5L41 10.5L42.5 10.5C45.8137 10.5 48.5 13.1863 48.5 16.5L48.5 37.5C48.5 40.8137 45.8137 43.5 42.5 43.5L6.5 43.5C3.18629 43.5 0.5 40.8137 0.5 37.5L0.5 16.5C0.5 13.1863 3.18629 10.5 6.5 10.5L38 10.5L38 5.5C38 4.67157 38.6716 4 39.5 4Z" fill="rgba(255,255,255,1)" fill-rule="nonzero" />
+			</g>
+		</g>
+	</mask>
+	<defs>
+		<linearGradient id="paint_linear_8" x1="0.500004768" x2="38.4418716" y1="10.3754578" y2="33.1220512" gradientUnits="userSpaceOnUse">
+			<stop stop-color="rgba(245,146,151,1)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgba(224,33,40,1)" offset="1" stop-opacity="1" />
+		</linearGradient>
+		<radialGradient id="paint_radial_8" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(15.9,0,0,13.9129,32.5,34.5005)">
+			<stop stop-color="rgba(167,7,16,1)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgba(224,34,41,1)" offset="1" stop-opacity="0" />
+		</radialGradient>
+		<radialGradient id="paint_radial_9" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(15.9075,0,0,15.9075,36.5,33.3295)">
+			<stop stop-color="rgba(239,119,124,1)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgba(255,192,194,1)" offset="1" stop-opacity="1" />
+		</radialGradient>
+		<linearGradient id="paint_linear_9" x1="31.8666992" x2="45.7810822" y1="33.0986557" y2="41.3554802" gradientUnits="userSpaceOnUse">
+			<stop stop-color="rgba(255,255,255,1)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgba(255,255,255,1)" offset="0.0323390178" stop-opacity="0.949019611" />
+			<stop stop-color="rgba(255,255,255,1)" offset="1" stop-opacity="0" />
+		</linearGradient>
+	</defs>
+	<g id="ic_ict_configure_the_countermeasure_mode_of_the_ap-关联设备_质感图标">
+		<rect id="矩形" width="48" height="48" x="0.5" y="0.5" fill="rgba(0,0,0,1)" fill-opacity="0" />
+		<rect id="矩形" width="48" height="48" x="0.5" y="0.5" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+		<g id="形状结合">
+			<path id="path-2" d="M39.5 4C40.3284 4 41 4.67157 41 5.5L41 10.5L42.5 10.5C45.8137 10.5 48.5 13.1863 48.5 16.5L48.5 37.5C48.5 40.8137 45.8137 43.5 42.5 43.5L6.5 43.5C3.18629 43.5 0.5 40.8137 0.5 37.5L0.5 16.5C0.5 13.1863 3.18629 10.5 6.5 10.5L38 10.5L38 5.5C38 4.67157 38.6716 4 39.5 4Z" fill="url(#paint_linear_8)" fill-rule="nonzero" />
+			<path id="path-2" d="M41 5.5L41 10.5L42.5 10.5C45.8137 10.5 48.5 13.1863 48.5 16.5L48.5 37.5C48.5 40.8137 45.8137 43.5 42.5 43.5L6.5 43.5C3.18629 43.5 0.5 40.8137 0.5 37.5L0.5 16.5C0.5 13.1863 3.18629 10.5 6.5 10.5L38 10.5L38 5.5C38 4.67157 38.6716 4 39.5 4C40.3284 4 41 4.67157 41 5.5Z" fill-rule="nonzero" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+		</g>
+		<g id="mask" mask="url(#mask_1)">
+			<path id="形状结合" d="M32.5 20.5C41.3366 20.5 48.5 27.6634 48.5 36.5C48.5 41.2793 46.4045 45.5692 43.0822 48.501L21.9178 48.501C18.5955 45.5692 16.5 41.2793 16.5 36.5C16.5 27.6634 23.6634 20.5 32.5 20.5Z" fill="url(#paint_radial_8)" fill-rule="nonzero" />
+			<path id="形状结合" d="M48.5 36.5C48.5 41.2793 46.4045 45.5692 43.0822 48.501L21.9178 48.501C18.5955 45.5692 16.5 41.2793 16.5 36.5C16.5 27.6634 23.6634 20.5 32.5 20.5C41.3366 20.5 48.5 27.6634 48.5 36.5Z" fill-rule="nonzero" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+		</g>
+		<circle id="椭圆形" cx="9" cy="19" r="2" fill="rgba(255,255,255,1)" fill-opacity="0.600000024" />
+		<circle id="椭圆形" cx="9" cy="19" r="2" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+		<circle id="椭圆形备份" cx="17" cy="19" r="2" fill="rgba(255,255,255,1)" fill-opacity="0.600000024" />
+		<circle id="椭圆形备份" cx="17" cy="19" r="2" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+		<path id="path" d="M36.5 22.5C29.8726 22.5 24.5 27.8726 24.5 34.5C24.5 41.1274 29.8726 46.5 36.5 46.5C43.1274 46.5 48.5 41.1274 48.5 34.5C48.5 27.8726 43.1274 22.5 36.5 22.5Z" fill="url(#paint_radial_9)" fill-rule="nonzero" />
+		<path id="path" d="M24.5 34.5C24.5 41.1274 29.8726 46.5 36.5 46.5C43.1274 46.5 48.5 41.1274 48.5 34.5C48.5 27.8726 43.1274 22.5 36.5 22.5C29.8726 22.5 24.5 27.8726 24.5 34.5Z" fill-rule="nonzero" stroke="url(#paint_linear_9)" stroke-width="1.20000005" />
+		<path id="path8" d="M4 4L10 4M9 0L10 0C12.2091 0 14 1.79086 14 4C14 6.20914 12.2091 8 10 8L9 8M5 8L4 8C1.79086 8 0 6.20914 0 4C0 1.79086 1.79086 0 4 0L5 0" stroke="rgba(255,255,255,1)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.99999988" transform="matrix(0.707107,-0.707107,0.707107,0.707107,28.7227,36.6211)" />
+	</g>
+</svg>

@@ -1,0 +1,72 @@
+<style>
+/* ============ ICT大赛频道页样式 ============ */
+.cst-banner img { width: 100%; display: block; }
+
+.cst-tabs { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+.tab-row { display: flex; gap: 56px; }
+.ctab { font-size: 16px; color: var(--text); padding: 16px 0 14px; border-bottom: 3px solid transparent; }
+.ctab.on { color: var(--hw-red); font-weight: 600; border-bottom-color: var(--hw-red); }
+
+.cst-sec-title { text-align: center; font-size: 28px; font-weight: 700; color: var(--ink); margin-bottom: 26px; }
+.cst-sec-title.left { text-align: left; margin-bottom: 0; }
+.sec-head-row { display: flex; align-items: baseline; justify-content: space-between; }
+.more-link { color: var(--hw-red); font-size: 14px; }
+
+/* 报名通道 */
+.enroll-section { background: var(--white); padding: 48px 0 56px; }
+.enroll-count { text-align: center; font-size: 15px; color: var(--text-2); margin-bottom: 22px; }
+.enroll-count strong { color: var(--hw-red); font-size: 26px; font-weight: 800; padding: 0 6px; font-variant-numeric: tabular-nums; }
+.track-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+.tk { font-size: 14px; color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 6px 20px; }
+.tk.on { background: var(--hw-red); border-color: var(--hw-red); color: #fff; }
+.zone-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.zone-card { border: 1px solid var(--line); border-radius: 8px; padding: 20px 20px 18px; background: var(--white); }
+.zone-card.cn { background: linear-gradient(135deg, #c7000b08, #c7000b14); border-color: #c7000b3d; }
+.zn-name { font-size: 16px; font-weight: 700; color: var(--ink); min-height: 44px; }
+.zn-deadline { font-size: 12.5px; color: var(--text-3); margin-top: 4px; }
+.zn-deadline span { color: var(--text); margin-left: 4px; }
+.zn-count { font-size: 26px; font-weight: 800; color: var(--hw-red); margin: 8px 0 12px; font-variant-numeric: tabular-nums; }
+.zn-btn { display: inline-block; font-size: 13px; color: var(--hw-red); border: 1px solid var(--hw-red); border-radius: 4px; padding: 5px 16px; }
+
+/* 大赛简介 */
+.intro-cst { background: var(--gray-bg); padding: 52px 0 54px; }
+.intro-sub { text-align: center; font-size: 19px; font-weight: 600; color: var(--ink); margin-bottom: 26px; }
+.intro-cols { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: start; }
+.ic-text p { font-size: 14.5px; color: var(--text-2); line-height: 1.95; text-align: justify; }
+.dl-row { display: flex; gap: 16px; margin-top: 20px; }
+.dl-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--blue-link, #2f4e8f); border: 1px solid #2f4e8f55; border-radius: 4px; padding: 8px 18px; background: var(--white); }
+.ic-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.ics { background: var(--white); border-radius: 8px; padding: 18px 8px 14px; text-align: center; }
+.ics .n { font-size: 24px; font-weight: 800; color: var(--hw-red); font-variant-numeric: tabular-nums; }
+.ics .l { font-size: 12.5px; color: var(--text-3); margin-top: 4px; }
+
+/* 赛道详情 */
+.tracks-section { background: var(--white); padding: 52px 0 20px; }
+.track-block { display: grid; grid-template-columns: 400px 1fr; gap: 36px; align-items: center; padding: 26px 0; border-bottom: 1px dashed var(--line); }
+.track-block.rev { grid-template-columns: 1fr 400px; }
+.track-block.rev .tb-cover { order: 2; }
+.tb-cover { height: 230px; border-radius: 8px; }
+.tc1 { background: linear-gradient(135deg, #3b2b63, #7c5cbf); }
+.tc2 { background: linear-gradient(135deg, #143a5e, #3f7fb5); }
+.tc3 { background: linear-gradient(135deg, #5e3a14, #b5823f); }
+.tc4 { background: linear-gradient(135deg, #143c4a, #3f9aa5); }
+.tc5 { background: linear-gradient(135deg, #4a143c, #a53f7a); }
+.tc6 { background: linear-gradient(135deg, #4d1414, #b54a3f); }
+.tc7 { background: linear-gradient(135deg, #143c2a, #3fa56a); }
+.tb-text h3 { font-size: 21px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.tb-text h3::before { content: ''; display: inline-block; width: 8px; height: 20px; background: var(--hw-red); margin-right: 12px; border-radius: 2px; vertical-align: -3px; }
+.tb-text p { font-size: 14px; color: var(--text-2); line-height: 1.9; text-align: justify; }
+.tb-link { display: inline-block; margin-top: 14px; font-size: 13.5px; color: var(--hw-red); border: 1px solid var(--hw-red); border-radius: 4px; padding: 6px 20px; }
+
+/* 往届回顾 */
+.history-section { background: var(--gray-bg); padding: 52px 0 64px; }
+.h-tabs { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px; }
+.ht { font-size: 13.5px; color: var(--text-2); border: 1px solid var(--line); border-radius: 4px; padding: 5px 14px; background: var(--white); }
+.ht.on { background: var(--hw-red); border-color: var(--hw-red); color: #fff; }
+.h-panel { background: var(--white); border-radius: 8px; padding: 30px 36px; }
+.h-panel h3 { font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 14px; }
+.h-list { margin: 0 0 6px 0; }
+.h-list li { position: relative; padding-left: 18px; font-size: 14px; color: var(--text-2); line-height: 2; }
+.h-list li::before { content: ''; position: absolute; left: 0; top: 13px; width: 7px; height: 7px; background: var(--hw-red); }
+.h-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 22px; }
+</style>

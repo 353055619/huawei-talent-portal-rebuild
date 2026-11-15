@@ -1,0 +1,79 @@
+<style>
+/* ============ 认证频道页样式 ============ */
+.cert-banner img { width: 100%; display: block; }
+
+.cert-tabs { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+.tab-row { display: flex; gap: 56px; }
+.ctab { font-size: 16px; color: var(--text); padding: 16px 0 14px; border-bottom: 3px solid transparent; }
+.ctab.on { color: var(--hw-red); font-weight: 600; border-bottom-color: var(--hw-red); }
+
+/* 全景图 */
+.panorama { background: var(--white); padding: 56px 0 60px; }
+.pan-live { width: 100%; display: block; margin-top: 26px; }
+.panorama h2 { text-align: center; font-size: 30px; font-weight: 700; color: var(--ink); }
+.pan-desc { text-align: center; font-size: 14px; color: var(--text-3); margin: 14px auto 34px; max-width: 860px; line-height: 1.8; }
+.pan-path { background: var(--gray-bg); border-radius: 8px; padding: 26px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+.pan-path-head { flex: 1; min-width: 520px; }
+.pan-path-head h3 { font-size: 19px; font-weight: 600; color: var(--ink); }
+.pan-path-head p { font-size: 13.5px; color: var(--text-2); margin-top: 8px; line-height: 1.7; }
+.path-link { color: var(--hw-red); font-size: 14px; }
+.lv-grid { display: flex; align-items: center; gap: 14px; margin-top: 20px; }
+.lv-card { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 14px 26px; text-align: center; }
+.lv-badge { font-size: 22px; font-weight: 800; letter-spacing: .04em; }
+.lv-badge.a { color: #f2a900; } .lv-badge.p { color: #e3722c; } .lv-badge.e { color: var(--hw-red); }
+.lv-name { font-size: 12.5px; color: var(--text-2); margin-top: 4px; }
+.lv-arrow { color: var(--faint); font-size: 18px; }
+
+.cat-tabs { display: flex; gap: 40px; margin: 34px 0 18px; border-bottom: 1px solid var(--line); }
+.cat { font-size: 15.5px; color: var(--text-2); padding: 10px 2px; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.cat.on { color: var(--hw-red); font-weight: 600; border-bottom-color: var(--hw-red); }
+
+.matrix { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.mx-row { display: grid; grid-template-columns: 200px repeat(5, 1fr); }
+.mx-row + .mx-row { border-top: 1px solid var(--line); }
+.mx-head { background: var(--gray-bg); }
+.mx-cell { padding: 14px 14px; font-size: 13.5px; color: var(--text); border-left: 1px solid var(--line); min-height: 52px; }
+.mx-row .mx-cell:first-child { border-left: none; }
+.mx-head .mx-cell { font-weight: 600; color: var(--ink); }
+.mx-lvl { background: #fafafa; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.lvl-tag { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; color: #fff; }
+.lt-a { background: #f2a900; } .lt-p { background: #e3722c; } .lt-e { background: var(--hw-red); }
+.cert-chip { display: inline-block; margin: 2px 4px 2px 0; padding: 3px 10px; border: 1px solid var(--line); border-radius: 3px; font-size: 12.5px; color: var(--text); }
+.cert-chip.dim { border: none; color: #d2d4d8; padding: 3px 0; }
+.infra-strip { margin-top: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.infra-label { font-size: 13px; font-weight: 600; color: var(--text-2); margin-right: 6px; }
+
+/* 参加考试 */
+.sec-title { text-align: center; font-size: 28px; font-weight: 700; color: var(--ink); margin-bottom: 30px; }
+.sec-title.left { text-align: left; margin-bottom: 0; }
+.exam-section { background: var(--gray-bg); padding: 56px 0 54px; }
+.exam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.exam-card { background: var(--white); border-radius: 8px; padding: 26px 26px 22px; position: relative; }
+.exam-card { border-top: 4px solid #2f6fb2; }
+.exam-card:nth-child(2) { border-top-color: #2f9b6b; }
+.exam-card:nth-child(3) { border-top-color: #d99a1f; }
+.exam-no { width: 30px; height: 30px; border-radius: 50%; background: var(--gray-bg); color: var(--ink); font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.exam-card h3 { font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+.exam-card p { font-size: 13px; color: var(--text-2); line-height: 1.8; min-height: 92px; }
+.exam-links { display: flex; flex-wrap: wrap; gap: 8px 18px; border-top: 1px dashed var(--line); padding-top: 12px; }
+.exam-links a { font-size: 13px; color: var(--blue-link, #2f4e8f); }
+.exam-links a:hover { text-decoration: underline; }
+
+/* 学习资源 */
+.res-section { background: var(--white); padding: 54px 0 50px; }
+.res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.res-card { border: 1px solid var(--line); border-radius: 8px; padding: 28px 26px; text-align: center; }
+.res-card h3 { font-size: 18px; font-weight: 600; color: var(--ink); }
+.res-card p { font-size: 13.5px; color: var(--text-2); margin: 10px 0 18px; }
+.more-red { color: var(--hw-red); font-size: 13.5px; }
+
+/* 认证资讯 */
+.cert-news { background: var(--white); padding: 10px 0 64px; }
+.sec-head-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
+.more-link { color: var(--hw-red); font-size: 14px; }
+.news-list li + li { border-top: 1px solid var(--gray-bg); }
+.news-item { display: flex; justify-content: space-between; gap: 24px; padding: 15px 4px; }
+.news-item .nt { font-size: 15px; color: var(--text); }
+.news-item:hover .nt { color: var(--hw-red); }
+.news-item .nd { font-size: 13px; color: var(--faint); flex: none; }
+</style>

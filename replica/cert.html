@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN" data-zcode-design>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>职业认证-华为人才在线（复刻）</title>
+<link rel="stylesheet" href="shell.css" />
+<style>
+
+/* ============ 认证频道页样式 ============ */
+.cert-banner img { width: 100%; display: block; }
+
+.cert-tabs { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+.tab-row { display: flex; gap: 56px; }
+.ctab { font-size: 16px; color: var(--text); padding: 16px 0 14px; border-bottom: 3px solid transparent; }
+.ctab.on { color: var(--hw-red); font-weight: 600; border-bottom-color: var(--hw-red); }
+
+/* 全景图 */
+.panorama { background: var(--white); padding: 56px 0 60px; }
+.pan-live { width: 100%; display: block; margin-top: 26px; }
+.panorama h2 { text-align: center; font-size: 30px; font-weight: 700; color: var(--ink); }
+.pan-desc { text-align: center; font-size: 14px; color: var(--text-3); margin: 14px auto 34px; max-width: 860px; line-height: 1.8; }
+.pan-path { background: var(--gray-bg); border-radius: 8px; padding: 26px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+.pan-path-head { flex: 1; min-width: 520px; }
+.pan-path-head h3 { font-size: 19px; font-weight: 600; color: var(--ink); }
+.pan-path-head p { font-size: 13.5px; color: var(--text-2); margin-top: 8px; line-height: 1.7; }
+.path-link { color: var(--hw-red); font-size: 14px; }
+.lv-grid { display: flex; align-items: center; gap: 14px; margin-top: 20px; }
+.lv-card { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 14px 26px; text-align: center; }
+.lv-badge { font-size: 22px; font-weight: 800; letter-spacing: .04em; }
+.lv-badge.a { color: #f2a900; } .lv-badge.p { color: #e3722c; } .lv-badge.e { color: var(--hw-red); }
+.lv-name { font-size: 12.5px; color: var(--text-2); margin-top: 4px; }
+.lv-arrow { color: var(--faint); font-size: 18px; }
+
+.cat-tabs { display: flex; gap: 40px; margin: 34px 0 18px; border-bottom: 1px solid var(--line); }
+.cat { font-size: 15.5px; color: var(--text-2); padding: 10px 2px; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.cat.on { color: var(--hw-red); font-weight: 600; border-bottom-color: var(--hw-red); }
+
+.matrix { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.mx-row { display: grid; grid-template-columns: 200px repeat(5, 1fr); }
+.mx-row + .mx-row { border-top: 1px solid var(--line); }
+.mx-head { background: var(--gray-bg); }
+.mx-cell { padding: 14px 14px; font-size: 13.5px; color: var(--text); border-left: 1px solid var(--line); min-height: 52px; }
+.mx-row .mx-cell:first-child { border-left: none; }
+.mx-head .mx-cell { font-weight: 600; color: var(--ink); }
+.mx-lvl { background: #fafafa; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.lvl-tag { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; color: #fff; }
+.lt-a { background: #f2a900; } .lt-p { background: #e3722c; } .lt-e { background: var(--hw-red); }
+.cert-chip { display: inline-block; margin: 2px 4px 2px 0; padding: 3px 10px; border: 1px solid var(--line); border-radius: 3px; font-size: 12.5px; color: var(--text); }
+.cert-chip.dim { border: none; color: #d2d4d8; padding: 3px 0; }
+.infra-strip { margin-top: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.infra-label { font-size: 13px; font-weight: 600; color: var(--text-2); margin-right: 6px; }
+
+/* 参加考试 */
+.sec-title { text-align: center; font-size: 28px; font-weight: 700; color: var(--ink); margin-bottom: 30px; }
+.sec-title.left { text-align: left; margin-bottom: 0; }
+.exam-section { background: var(--gray-bg); padding: 56px 0 54px; }
+.exam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.exam-card { background: var(--white); border-radius: 8px; padding: 26px 26px 22px; position: relative; }
+.exam-card { border-top: 4px solid #2f6fb2; }
+.exam-card:nth-child(2) { border-top-color: #2f9b6b; }
+.exam-card:nth-child(3) { border-top-color: #d99a1f; }
+.exam-no { width: 30px; height: 30px; border-radius: 50%; background: var(--gray-bg); color: var(--ink); font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.exam-card h3 { font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+.exam-card p { font-size: 13px; color: var(--text-2); line-height: 1.8; min-height: 92px; }
+.exam-links { display: flex; flex-wrap: wrap; gap: 8px 18px; border-top: 1px dashed var(--line); padding-top: 12px; }
+.exam-links a { font-size: 13px; color: var(--blue-link, #2f4e8f); }
+.exam-links a:hover { text-decoration: underline; }
+
+/* 学习资源 */
+.res-section { background: var(--white); padding: 54px 0 50px; }
+.res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.res-card { border: 1px solid var(--line); border-radius: 8px; padding: 28px 26px; text-align: center; }
+.res-card h3 { font-size: 18px; font-weight: 600; color: var(--ink); }
+.res-card p { font-size: 13.5px; color: var(--text-2); margin: 10px 0 18px; }
+.more-red { color: var(--hw-red); font-size: 13.5px; }
+
+/* 认证资讯 */
+.cert-news { background: var(--white); padding: 10px 0 64px; }
+.sec-head-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
+.more-link { color: var(--hw-red); font-size: 14px; }
+.news-list li + li { border-top: 1px solid var(--gray-bg); }
+.news-item { display: flex; justify-content: space-between; gap: 24px; padding: 15px 4px; }
+.news-item .nt { font-size: 15px; color: var(--text); }
+.news-item:hover .nt { color: var(--hw-red); }
+.news-item .nd { font-size: 13px; color: var(--faint); flex: none; }
+
+</style>
+</head>
+<body>
+
+<!-- Cookie 提示条 -->
+<div class="cookie-bar">
+  <div class="container">
+    本站点使用Cookies，继续浏览表示您同意我们使用Cookies。
+    <a class="red">Cookies和隐私政策</a>
+    <button class="cookie-close" aria-label="关闭Cookies提示">✕</button>
+  </div>
+</div>
+
+<!-- 黑色工具条 -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">华为人才在线</div>
+    <div class="topbar-right">
+      <span class="tool">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 3.5h12v7H8.5L5 13.5v-3H2v-7z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <span class="msg-badge">0</span>
+      </span>
+      <span class="tool lang-group">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.2" stroke="currentColor" stroke-width="1.2"/><path d="M2 8h12M8 1.8c-2.2 2.4-2.2 10 0 12.4M8 1.8c2.2 2.4 2.2 10 0 12.4" stroke="currentColor" stroke-width="1.1"/></svg>
+        <button class="cur">中</button>
+        <button>EN</button>
+      </span>
+      <span class="tool">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="5.4" r="2.6" stroke="currentColor" stroke-width="1.3"/><path d="M2.8 13.6c.8-2.6 2.8-4 5.2-4s4.4 1.4 5.2 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        登录/注册
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- 白色主导航 -->
+<header class="mainnav">
+  <div class="container">
+    <a class="hw-logo" aria-label="华为官网首页">
+      <span class="petal" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="word">HUAWEI</span>
+    </a>
+    <nav class="nav-list" aria-label="主导航">
+      <a class="nav-item">学习<span class="caret"></span></a>
+      <a class="nav-item" style="color:var(--hw-red)">认证<span class="caret"></span></a>
+      <a class="nav-item">华为ICT学院<span class="caret"></span></a>
+      <a class="nav-item">华为ICT大赛</a>
+      <a class="nav-item">培训伙伴<span class="caret"></span></a>
+      <a class="nav-item">企业培训</a>
+      <a class="nav-item">成功案例</a>
+      <a class="nav-item">商城</a>
+    </nav>
+    <div class="nav-search" role="search">
+      <input type="search" placeholder="搜索全部" aria-label="搜索全部" />
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="4.6" stroke="currentColor" stroke-width="1.5"/><path d="M10.6 10.6 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- 顶部轮播 Banner（现网原始营销图） -->
+
+<!-- ============ 频道 Banner（现网截取原图：DCN 迈向 AI Networking） ============ -->
+<section class="cert-banner"><img src="assets/cert/banner-live.jpg" alt="DCN迈向AI Networking——从技术演进到能力进阶" /></section>
+
+<!-- ============ 页内 Tab ============ -->
+<nav class="cert-tabs">
+  <div class="container tab-row">
+    <a class="ctab on">概述</a><a class="ctab">了解认证</a><a class="ctab">参加考试</a><a class="ctab">学习资源</a><a class="ctab">认证资讯</a>
+  </div>
+</nav>
+
+<!-- ============ 全景图 ============ -->
+<section class="panorama">
+  <div class="container">
+    <h2>华为职业认证全景图</h2>
+    <p class="pan-desc">华为职业认证覆盖ICT全领域，致力于提供领先的人才培养体系和认证标准，培养数字化时代的新型ICT人才，构建良性的ICT人才生态。</p>
+    <img class="pan-live" src="assets/cert/panorama-live.jpg" alt="华为推荐职业认证进阶路线与认证方向矩阵" />
+  </div>
+</section>
+
+<!-- ============ 参加考试（3 步） ============ -->
+<section class="exam-section">
+  <div class="container">
+    <h2 class="sec-title">参加考试</h2>
+    <div class="exam-grid">
+      <div class="exam-card">
+        <div class="exam-no">1</div>
+        <h3>预约与参加考试</h3>
+        <p>华为认证笔试考试由Pearson VUE考试服务公司代理。华为认证不同级别、不同方向的认证考试具有不同的考试要求与流程。</p>
+        <div class="exam-links"><a>考试流程与规则</a><a>考试预约</a><a class="ext">Pearson VUE考试预约</a><a>HCIE实验预约</a></div>
+      </div>
+      <div class="exam-card">
+        <div class="exam-no">2</div>
+        <h3>获取与验证证书</h3>
+        <p>华为仅提供电子证书（HCIE认证除外）。通过华为认证的考生，如需下载华为电子证书，可在完成相关考试的一个工作日后访问华为官网下载电子证书。</p>
+        <div class="exam-links"><a>获取与验证证书</a><a>获取证书</a><a>验证证书</a></div>
+      </div>
+      <div class="exam-card">
+        <div class="exam-no">3</div>
+        <h3>重认证</h3>
+        <p>华为认证的内容将不定期进行更新和优化，重认证可确保认证人员的专业能力实时匹配ICT领域的最新趋势，以保证认证的有效性。</p>
+        <div class="exam-links"><a>重认证规则</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 学习资源 ============ -->
+<section class="res-section">
+  <div class="container">
+    <h2 class="sec-title">学习资源</h2>
+    <div class="res-grid">
+      <div class="res-card">
+        <h3>查找培训</h3>
+        <p>授权培训机构查询</p>
+        <a class="more-red">了解更多&gt;&gt;</a>
+      </div>
+      <div class="res-card">
+        <h3>推荐自学</h3>
+        <p>在线学习</p>
+        <a class="more-red">了解更多&gt;&gt;</a>
+      </div>
+      <div class="res-card">
+        <h3>参考书籍</h3>
+        <p>《华为ICT认证系列丛书》</p>
+        <a class="more-red">了解更多&gt;&gt;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 认证资讯 ============ -->
+<section class="cert-news">
+  <div class="container">
+    <div class="sec-head-row"><h2 class="sec-title left">认证资讯</h2><a class="more-link">查看更多 &gt;&gt;</a></div>
+    <ul class="news-list">
+      <li><a class="news-item"><span class="nt">关于HCIE-Datacom(实验) -NCE版本升级的通知</span><span class="nd">2026-01-20</span></a></li>
+      <li><a class="news-item"><span class="nt">华为职业认证架构刷新和重认证规则调整公告</span><span class="nd">2022-09-06</span></a></li>
+      <li><a class="news-item"><span class="nt">十年 HCIE 荣誉权益申报正式启幕｜华为认证诚邀您共铸技术信仰丰碑！</span><span class="nd">2026-11-11</span></a></li>
+      <li><a class="news-item"><span class="nt">“第十一届华为ICT大赛中国赛认证成长专项计划3折特惠激励活动”第九批(10.29~11.04)折扣券发放名单公示</span><span class="nd">2026-11-10</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="com-footer-wrapper">
+  <div class="container">
+    <div class="com-footer-content">
+      <div class="com-footer-content-left">
+        <ul>
+          <li>关于我们</li>
+          <li>华为认证</li>
+          <li>华为ICT学院</li>
+          <li>华为培训合作伙伴</li>
+          <li>资讯中心</li>
+        </ul>
+        <ul>
+          <li>资源</li>
+          <li>资源中心</li>
+          <li>合作伙伴（HALP）下载专区</li>
+          <li>ICT学院下载专区</li>
+          <li>工具专区</li>
+          <li>成功案例</li>
+        </ul>
+        <ul>
+          <li>快速链接</li>
+          <li>集团网站</li>
+          <li>企业业务网站</li>
+          <li>华为人才发展中心</li>
+          <li>华为招聘</li>
+          <li>华为认证论坛</li>
+          <li>华为云</li>
+        </ul>
+        <ul>
+          <li>联系我们</li>
+          <li>智能客服</li>
+          <li>提交问题单</li>
+        </ul>
+      </div>
+      <div class="com-footer-content-right">
+        <div class="qr-box">
+          <div class="qr" aria-label="微信公众号二维码（示意）">
+            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
+            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
+            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i>
+            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
+            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
+            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i>
+            <i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i>
+          </div>
+          <p>官方微信</p>
+        </div>
+        <div class="social-col">
+          <a class="social-btn" aria-label="微信公众号">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4zM11.7 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4z" fill="currentColor"/><path d="M3 6.8C3 4.9 5.2 3.5 8 3.5h4c2.8 0 5 1.4 5 3.3v3.9c0 1.9-2.2 3.3-5 3.3-.4 0-.8 0-1.2-.1l-2.6 1.8v-2.4C5.2 12.8 3 11.4 3 9.5V6.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="social-btn" aria-label="微博">
+            <svg viewBox="0 0 20 20" fill="none"><circle cx="9.5" cy="11" r="4.4" stroke="currentColor" stroke-width="1.3"/><path d="M13.2 6.2c1 .2 1.9.9 2.3 1.9M13.5 3.9c1.6.4 2.9 1.5 3.5 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container" style="padding:0">
+        <span>版权所有 © 华为技术有限公司 1998-2026。保留一切权利。 <a class="red">粤A2-20044005号</a></span>
+        <span class="footer-links">
+          <a>联系我们</a><a>隐私保护</a><a>法律声明</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 右侧悬浮联系我们 -->
+<a class="float-contact">联系我们</a>
+
+
+<script>
+(function () {
+  var cc = document.querySelector('.cookie-close');
+  if (cc) cc.onclick = function () { document.querySelector('.cookie-bar').style.display = 'none'; };
+})();
+</script>
+</body>
+</html>

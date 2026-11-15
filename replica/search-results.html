@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>搜索-华为人才在线（复刻）</title>
+<link rel="stylesheet" href="shell.css">
+<style>
+/* ============ 全站搜索结果页（talent/search · productName=双选会）============ */
+/* 顶部灰底带：面包屑 + 结果类型 Tab + 排序行（现网 134px 高，#F7F8FA）*/
+.search-base { background: var(--page-bg); }
+.search-band { width: 1200px; max-width: 92vw; margin: 0 auto; padding: 15px 0 15px 12px; }
+.Breadcrumb-card a { font-size: 14px; color: #666; }
+.Breadcrumb-card .sep { color: #999; margin: 0 8px 0 8px; }
+.Breadcrumb-card .cur { color: #666; }
+
+/* Tab 栏（aui-tabs）*/
+.main-tabs { margin-top: 12px; display: flex; gap: 27px; }
+.main-tabs .tab { position: relative; font-size: 14px; color: #333; padding: 2px 0 12px; cursor: pointer; }
+.main-tabs .tab.on { color: var(--hw-red); }
+.main-tabs .tab.on::after { content: ''; position: absolute; left: 0; bottom: 0; width: 28px; height: 2px; background: var(--hw-red); }
+
+/* 排序行 */
+.other-filters { margin-top: 24px; font-size: 14px; color: #666; display: flex; align-items: center; }
+.other-filters .sort-label { color: #999; }
+.other-filters .sort-btn { color: #666; margin-left: 16px; cursor: pointer; }
+.other-filters .sort-btn:hover { color: var(--hw-red); }
+
+/* 结果列表 */
+.search-list { width: 1200px; max-width: 92vw; margin: 0 auto; padding: 6px 28px 74px; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+.row-card { border-bottom: 1px solid #e8e8e8; padding-top: 0; }
+.row-card:first-child { padding-top: 0; }
+.card-title-box { display: flex; align-items: center; gap: 7px; height: 22px; margin-top: 13px; }
+.aui-tag { flex: none; height: 22px; line-height: 22px; font-size: 12px; color: #fff; border-radius: 3px; padding: 0 9px; }
+.aui-tag--dark { background: #00cbcb; padding: 0 9px; }
+.aui-tag--primary { background: #d0313a; padding: 0 2px; }
+.card-title-text { font-size: 16px; font-weight: 600; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-title-text em { font-style: normal; color: #ff7b00; }
+.viewers { margin-left: auto; flex: none; font-size: 14px; color: #999; padding-right: 20px; }
+.description { margin-top: 49px; height: 17px; display: flex; align-items: center; }
+.row-card.has-tags { padding-bottom: 0; }
+.row-card.no-tags { padding-bottom: 58px; }
+.mark { display: inline-flex; align-items: center; }
+.mark img { width: 15px; height: 15px; margin-right: 8px; }
+.news-tag { font-size: 14px; color: #faad14; margin-right: 14px; cursor: pointer; }
+
+/* 分页器（aui-pager，右对齐）*/
+.aui-pager { display: flex; justify-content: flex-end; align-items: center; margin-top: 13px; font-size: 14px; }
+.aui-pager__total { color: #666; margin-right: 14px; }
+.pager-btn {
+  width: 30px; height: 30px; border: 1px solid #d9d9d9; border-radius: 3px; background: #fff;
+  display: inline-flex; align-items: center; justify-content: center; margin-left: 6px;
+  color: #666; font-size: 14px; cursor: pointer;
+}
+.pager-btn.disabled { color: #c0c4cc; cursor: default; }
+.pager-btn.num.on { border-color: #1890ff; color: #1890ff; }
+.pager-btn.next { color: #1890ff; }
+.pager-sizes {
+  margin-left: 6px; height: 30px; border: 1px solid #d9d9d9; border-radius: 3px; background: #fff;
+  display: inline-flex; align-items: center; padding: 0 10px; gap: 4px; color: #606266; font-size: 14px; cursor: pointer;
+}
+.pager-sizes .caret { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #1890ff; }
+
+/* 现网页脚底部为 #e6e6e6 灰条 */
+.footer-bottom { background: #e6e6e6; border-top: none; height: 40px; padding: 0; display: flex; align-items: center; }
+</style>
+</head>
+<body>
+
+<!-- Cookie 提示条 -->
+<div class="cookie-bar">
+  <div class="container">
+    本站点使用Cookies，继续浏览表示您同意我们使用Cookies。
+    <a class="red">Cookies和隐私政策</a>
+    <button class="cookie-close" aria-label="关闭Cookies提示">✕</button>
+  </div>
+</div>
+
+<!-- 黑色工具条 -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">华为人才在线</div>
+    <div class="topbar-right">
+      <span class="tool">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 3.5h12v7H8.5L5 13.5v-3H2v-7z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <span class="msg-badge">0</span>
+      </span>
+      <span class="tool lang-group">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.2" stroke="currentColor" stroke-width="1.2"/><path d="M2 8h12M8 1.8c-2.2 2.4-2.2 10 0 12.4M8 1.8c2.2 2.4 2.2 10 0 12.4" stroke="currentColor" stroke-width="1.1"/></svg>
+        <button class="cur">中</button>
+        <button>EN</button>
+      </span>
+      <span class="tool">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="5.4" r="2.6" stroke="currentColor" stroke-width="1.3"/><path d="M2.8 13.6c.8-2.6 2.8-4 5.2-4s4.4 1.4 5.2 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        登录/注册
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- 白色主导航（截图实测：本页导航第一项「学习」为红色）-->
+<header class="mainnav">
+  <div class="container">
+    <a class="hw-logo" aria-label="华为官网首页">
+      <span class="petal" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="word">HUAWEI</span>
+    </a>
+    <nav class="nav-list" aria-label="主导航">
+      <a class="nav-item" style="color:var(--hw-red)">学习<span class="caret"></span></a>
+      <a class="nav-item">认证<span class="caret"></span></a>
+      <a class="nav-item">华为ICT学院<span class="caret"></span></a>
+      <a class="nav-item">华为ICT大赛</a>
+      <a class="nav-item">培训伙伴<span class="caret"></span></a>
+      <a class="nav-item">企业培训</a>
+      <a class="nav-item">成功案例</a>
+      <a class="nav-item">商城</a>
+    </nav>
+    <div class="nav-search" role="search">
+      <input type="search" placeholder="搜索全部" aria-label="搜索全部" />
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="4.6" stroke="currentColor" stroke-width="1.5"/><path d="M10.6 10.6 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- 搜索子应用：面包屑 + Tab + 排序（灰底带）-->
+<div class="search-base">
+  <div class="search-band">
+    <div class="Breadcrumb-card">
+      <a>首页<span class="sep">&gt;</span></a><a class="cur">搜索<span class="sep">&gt;</span></a>
+    </div>
+    <div class="main-tabs" role="tablist">
+      <span class="tab on">全部</span>
+      <span class="tab">在线课程</span>
+      <span class="tab">HALP班级</span>
+      <span class="tab">考试认证</span>
+      <span class="tab">大赛</span>
+      <span class="tab">资讯</span>
+    </div>
+    <div class="other-filters">
+      <span class="sort-label">排序：&nbsp;</span>
+      <span class="sort-btn">最新</span>
+      <span class="sort-btn">最多浏览</span>
+    </div>
+  </div>
+</div>
+
+<!-- 结果列表（12 条/页，共 14 条）-->
+<div class="search-list">
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">资讯</span>
+      <span class="card-title-text">华为ICT学院人才<em>双选</em>邀您参与</span>
+      <span class="viewers">浏览&nbsp;226</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">ICT 学院</span><span class="news-tag">院校活动</span></span></div>
+  </div>
+  <div class="row-card no-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--primary">在线课程</span>
+      <span class="card-title-text">华为DATACOM认证发布<em>会</em></span>
+      <span class="viewers">浏览&nbsp;3098</span>
+    </div>
+  </div>
+  <div class="row-card no-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--primary">在线课程</span>
+      <span class="card-title-text">华为1+X证书教材发布<em>会</em></span>
+      <span class="viewers">浏览&nbsp;592</span>
+    </div>
+  </div>
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">资讯</span>
+      <span class="card-title-text">诚邀华为ICT学院师生参加华为开发者大<em>会</em>2020</span>
+      <span class="viewers">浏览&nbsp;89</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">ICT 学院</span><span class="news-tag">院校活动</span></span></div>
+  </div>
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">资讯</span>
+      <span class="card-title-text">邀请函丨2024华为认证发布<em>会</em>线上直播诚邀您观看！</span>
+      <span class="viewers">浏览&nbsp;107</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">华为认证</span><span class="news-tag">职业认证</span></span></div>
+  </div>
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">资讯</span>
+      <span class="card-title-text">看HCIE-StorageV3.0认证线上发布<em>会</em> 赢笔试考券等超多礼品</span>
+      <span class="viewers">浏览&nbsp;97</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">华为认证</span><span class="news-tag">职业认证</span></span></div>
+  </div>
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">成功案例</span>
+      <span class="card-title-text">华为ICT大赛教<em>会</em>我的那一课：不是有了结果才坚持</span>
+      <span class="viewers">浏览&nbsp;845</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">华为ICT大赛</span></span></div>
+  </div>
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">资讯</span>
+      <span class="card-title-text">华为举行“2020年第二批华为教育部产学合作协同育人项目”立项评审<em>会</em></span>
+      <span class="viewers">浏览&nbsp;42</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">ICT 学院</span><span class="news-tag">产学合作</span></span></div>
+  </div>
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">资讯</span>
+      <span class="card-title-text">今晚直播 | 看HCIE-openEuler认证发布<em>会</em> 赢HCIE笔试考券等超多好礼！</span>
+      <span class="viewers">浏览&nbsp;193</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">华为认证</span><span class="news-tag">职业认证</span></span></div>
+  </div>
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">资讯</span>
+      <span class="card-title-text">星聚鹏城 智创非凡——鹏城HCXE精英茶思<em>会</em>暨华为JDC HCIE精英荟圆满举行</span>
+      <span class="viewers">浏览&nbsp;11</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">华为认证</span><span class="news-tag">职业认证</span></span></div>
+  </div>
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">资讯</span>
+      <span class="card-title-text">华为产学合作协同育人项目对接<em>会</em>主题报告PPT | 深化产学合作，共育ICT人才</span>
+      <span class="viewers">浏览&nbsp;194</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">ICT 学院</span><span class="news-tag">院校活动</span></span></div>
+  </div>
+  <div class="row-card has-tags">
+    <div class="card-title-box">
+      <span class="aui-tag aui-tag--dark">资讯</span>
+      <span class="card-title-text">邀请有奖丨华为认证直聘日：100+岗位专场招聘<em>会</em>直播亮点抢先看</span>
+      <span class="viewers">浏览&nbsp;25</span>
+    </div>
+    <div class="description"><span class="mark"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAbVJREFUKBV9kj0vQ2EUx92XdsIHMFgQo0Xa5Gr6QiiDhEQ3g1UMiInUZOpAk3qJxYRB4gtoNPdWW4kdtRhJ7KbbN7/T29temnqSc8/znHN+5/7Pc6/S12OVSqWRSqWSJT2IVb1ljUbDpyhKWfEG3b2Atm3nVFU9iEQiF27c6y3L+tK9AdmbpjkKeE/nfcBLibVUzPHGQiwWe5YYy1Yd7zwFBMpxSkaj0SZYLBaHkf8IGJRcoVCYcJk2nM/nxySJ7dH9yi2oVqtT7IvE1vC3tVptxs01YQHpLFJ3kXrtJsX7/f4HnMGMEl+hTi6xudQWKFIVTdMsJ9x5GobxQdMAlsVCnpk1hY5PlJ5jA9iGruuxUCj02cG7dzAJoikVGeMAd1xQhsApM5pc0lA34kS41CWYNMwin1JNA9wQ7JcGSDvr1UBAWpz4fL446l6aPwlzp+k2iS0w0zdFWzRZ946A1GXyxy4oOtp/2H8NUBKkNoPKeDgcfhVQVhuWA92P6B5gOy8KOG9z3kSF9heU+l+wBAAOAYJ8tgR+ul6vpwBn+f5lyXtXFyxJZk7yth3gd46rqHjzQu7+B3Hr6AJvOvcXAAAAAElFTkSuQmCC"><span class="news-tag">华为认证</span><span class="news-tag">职业认证</span></span></div>
+  </div>
+
+  <!-- 分页器：共 14 条 / 12 条每页 -->
+  <div class="aui-pager">
+    <span class="aui-pager__total">共 14 条</span>
+    <button class="pager-btn disabled" aria-label="上一页">‹</button>
+    <button class="pager-btn num on">1</button>
+    <button class="pager-btn num">2</button>
+    <button class="pager-btn next" aria-label="下一页">›</button>
+    <span class="pager-sizes"><span>12 条/页</span><span class="caret"></span></span>
+  </div>
+</div>
+
+<!-- 页脚 -->
+<footer class="com-footer-wrapper">
+  <div class="container">
+    <div class="com-footer-content">
+      <div class="com-footer-content-left">
+        <ul>
+          <li>关于我们</li>
+          <li>华为认证</li>
+          <li>华为ICT学院</li>
+          <li>华为培训合作伙伴</li>
+          <li>资讯中心</li>
+        </ul>
+        <ul>
+          <li>资源</li>
+          <li>资源中心</li>
+          <li>合作伙伴（HALP）下载专区</li>
+          <li>ICT学院下载专区</li>
+          <li>工具专区</li>
+          <li>成功案例</li>
+        </ul>
+        <ul>
+          <li>快速链接</li>
+          <li>集团网站</li>
+          <li>企业业务网站</li>
+          <li>华为人才发展中心</li>
+          <li>华为招聘</li>
+          <li>华为认证论坛</li>
+          <li>华为云</li>
+        </ul>
+        <ul>
+          <li>联系我们</li>
+          <li>智能客服</li>
+          <li>提交问题单</li>
+        </ul>
+      </div>
+      <div class="com-footer-content-right">
+        <div class="qr-box">
+          <div class="qr" aria-label="微信公众号二维码（示意）">
+            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
+            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
+            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i>
+            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
+            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
+            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i>
+            <i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i>
+          </div>
+          <p>官方微信</p>
+        </div>
+        <div class="social-col">
+          <a class="social-btn" aria-label="微信公众号">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4zM11.7 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4z" fill="currentColor"/><path d="M3 6.8C3 4.9 5.2 3.5 8 3.5h4c2.8 0 5 1.4 5 3.3v3.9c0 1.9-2.2 3.3-5 3.3-.4 0-.8 0-1.2-.1l-2.6 1.8v-2.4C5.2 12.8 3 11.4 3 9.5V6.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="social-btn" aria-label="微博">
+            <svg viewBox="0 0 20 20" fill="none"><circle cx="9.5" cy="11" r="4.4" stroke="currentColor" stroke-width="1.3"/><path d="M13.2 6.2c1 .2 1.9.9 2.3 1.9M13.5 3.9c1.6.4 2.9 1.5 3.5 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container" style="padding:0">
+        <span>版权所有 © 华为技术有限公司 1998-2026。保留一切权利。 <a class="red">粤A2-20044005号</a></span>
+        <span class="footer-links">
+          <a>联系我们</a><a>隐私保护</a><a>法律声明</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 右侧悬浮联系我们 -->
+<a class="float-contact">联系我们</a>
+
+<script>
+// 表现层：Tab 切换
+document.querySelectorAll('.main-tabs .tab').forEach(function (t) {
+  t.addEventListener('click', function () {
+    document.querySelectorAll('.main-tabs .tab').forEach(function (x) { x.classList.remove('on'); });
+    t.classList.add('on');
+  });
+});
+</script>
+
+<!-- REPLICA-NOTE:
+  1. 搜索词「双选会」在现网结果页不可见于任何搜索框：主导航搜索框为空（placeholder 搜索全部），
+     搜索子应用本身未渲染可见搜索输入框，仅以标题中橙色（#ff7b00）高亮「双选/会」体现 —— 「就业双选断头路」缺陷证据，忠实复刻。
+  2. Tab：全部（红，28x2 红下划线）/ 在线课程 / HALP班级 / 考试认证 / 大赛 / 资讯，间距 27px，与 DOM aui-tabs 一致。
+  3. 排序行「排序： 最新 最多浏览」均为 #666（DOM 中两个 sort-btn 无选中类，截图两词同色）。
+  4. 类型角标：资讯/成功案例为青色 #00cbcb，在线课程为红色 #d0313a（截图实测），22px 高。
+  5. 结果标签行的小图标为 dom.html 内嵌 base64 原图；标签文字 #faad14。
+  6. 分页器：共 14 条 | ‹(禁用) | 1(蓝#1890ff 边框+文字) | 2 | ›(蓝) | 12 条/页▾，右对齐，与 DOM aui-pager 一致。
+  7. 左侧筛选栏（全部/重置/开课时间日历/更新时间）在现网 DOM 中存在但 display:none，截图不可见，故不渲染。
+  8. 导航选中态：截图像素实测第一项「学习」为红色（与 stories/news 一致）。
+  9. 页脚底部版权条：现网为 #e6e6e6 灰底（40px）。
+-->
+</body>
+</html>

@@ -1,0 +1,234 @@
+/* 华为人才在线 · 共享壳样式（从已验收的 index.html 样式基线提取）
+ * 新页面引用本文件后，只需在页内 <style> 写页面自身样式。
+ * 基线值不得修改（tokens 见 :root）。 */
+
+/* ============================================================
+ * 华为人才在线门户首页 · 原样复刻版
+ * 依据 2026-11-15 现网实测（DOM/计算样式/截图）复刻
+ * class 命名与现网一致，便于后续逐步优化时对齐
+ * ============================================================ */
+:root {
+  --hw-red: #c7000b;
+  --hw-red-press: #a50009;
+  --ink: #000000;
+  --text: #333333;
+  --text-2: #595959;
+  --text-3: #666666;
+  --faint: #999999;
+  --line: #e5e5e5;
+  --line-input: #d9d9d9;
+  --page-bg: #f7f8fa;
+  --gray-bg: #f2f3f5;
+  --white: #ffffff;
+  --mooc-blue: #2b7cf5;
+  --cookie-bg: #ededed;
+  --font: 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { font-family: var(--font); background: var(--page-bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; cursor: pointer; }
+button { font: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--hw-red); outline-offset: 2px; }
+
+.container { width: 1200px; max-width: 92vw; margin: 0 auto; }
+
+/* ============ Cookie 提示条 ============ */
+.cookie-bar { background: var(--cookie-bg); font-size: 13px; color: var(--text); position: relative; }
+.cookie-bar .container { display: flex; align-items: center; justify-content: center; gap: 6px; height: 38px; }
+.cookie-bar a.red { color: var(--hw-red); text-decoration: underline; text-underline-offset: 3px; }
+.cookie-close {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--text-2); color: #fff; font-size: 12px; line-height: 20px; text-align: center;
+}
+
+/* ============ 黑色工具条 ============ */
+.topbar { background: var(--ink); color: #fff; height: 40px; }
+.topbar .container { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+.topbar-left { font-size: 14px; color: #fff; }
+.topbar-right { display: flex; align-items: center; gap: 22px; font-size: 14px; }
+.topbar-right .tool { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.topbar-right svg { width: 16px; height: 16px; }
+.msg-badge {
+  background: var(--hw-red); color: #fff; border-radius: 8px;
+  min-width: 16px; height: 16px; font-size: 11px; line-height: 16px; text-align: center; padding: 0 4px;
+}
+.lang-group { display: inline-flex; gap: 8px; }
+.lang-group .cur { font-weight: 600; }
+.lang-group button:hover { text-decoration: underline; }
+
+/* ============ 白色主导航 ============ */
+.mainnav { background: var(--white); border-bottom: 1px solid var(--line); }
+.mainnav .container { display: flex; align-items: center; height: 72px; gap: 48px; }
+.hw-logo { display: flex; align-items: center; gap: 10px; flex: none; }
+.hw-logo .petal { display: grid; grid-template-columns: repeat(2, 11px); grid-template-rows: repeat(2, 15px); gap: 2px; transform: rotate(0deg); }
+.hw-logo .petal i { background: var(--hw-red); border-radius: 0 60% 60% 60%; transform: rotate(45deg); }
+.hw-logo .petal i:nth-child(1) { transform: rotate(-15deg) skewY(-8deg); }
+.hw-logo .petal i:nth-child(2) { transform: rotate(15deg) skewY(8deg); }
+.hw-logo .petal i:nth-child(3) { transform: rotate(15deg) skewY(8deg) scale(-1, 1); }
+.hw-logo .petal i:nth-child(4) { transform: rotate(-15deg) skewY(-8deg) scale(-1, 1); }
+.hw-logo .word { font-weight: 700; font-size: 22px; letter-spacing: 0.08em; color: var(--ink); }
+.nav-list { display: flex; align-items: center; gap: 36px; flex: 1; }
+.nav-item { font-size: 16px; color: var(--ink); display: inline-flex; align-items: center; gap: 5px; padding: 6px 0; position: relative; }
+.nav-item:hover { color: var(--hw-red); }
+.nav-item .caret { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; }
+.nav-search { display: flex; align-items: center; border: 1px solid var(--line-input); width: 200px; height: 40px; padding: 0 10px; gap: 8px; flex: none; }
+.nav-search input { border: none; outline: none; flex: 1; font-size: 13px; color: var(--text); }
+.nav-search input::placeholder { color: var(--faint); }
+.nav-search svg { width: 15px; height: 15px; color: var(--hw-red); flex: none; }
+
+/* ============ 顶部轮播 Banner ============ */
+.TopBanner-wrapper { position: relative; overflow: hidden; background: #fff; }
+.banner-track { display: flex; transition: transform .5s ease; }
+.banner-slide { flex: 0 0 100%; }
+.banner-slide img { width: 100%; height: auto; display: block; }
+.banner-dots {
+  position: absolute; left: 0; right: 0; bottom: 14px;
+  display: flex; justify-content: center; gap: 8px; z-index: 5;
+}
+.banner-dots button { width: 56px; height: 3px; background: rgba(255,255,255,.65); transition: background .2s; }
+.banner-dots button.on { background: var(--hw-red); }
+
+/* ============ 区块通用 ============ */
+.home-content-wrapper { padding: 70px 0 60px; }
+.home-content-title { text-align: center; margin-bottom: 40px; }
+.home-content-title h1 { font-size: 32px; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+.home-content-title p { margin-top: 14px; font-size: 16px; color: var(--text-3); }
+.more-wrapper { text-align: right; margin: -30px 0 26px; }
+.more-wrapper a { color: var(--hw-red); font-size: 14px; }
+.more-wrapper a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ============ 热门课程 ============ */
+.course-section { background: var(--gray-bg); }
+.course-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+.Course-item { background: var(--white); border-radius: 8px; overflow: hidden; position: relative; transition: box-shadow .2s, transform .2s; }
+.Course-item:hover { box-shadow: 0 6px 20px rgba(0,0,0,.10); transform: translateY(-2px); }
+.Course-item-cover { height: 140px; position: relative; padding: 12px 14px; overflow: hidden; }
+.cover-g1 { background: linear-gradient(135deg, #f6c8a8, #fbe3d0); }
+.cover-g2 { background: linear-gradient(135deg, #b9d4f2, #e2edfa); }
+.cover-g3 { background: linear-gradient(135deg, #c9e3d4, #e8f4ee); }
+.cover-g4 { background: linear-gradient(135deg, #d8cdec, #efe8fa); }
+.cover-g5 { background: linear-gradient(135deg, #f4d2cb, #fae8e4); }
+.cover-mark {
+  position: absolute; left: 8px; bottom: 6px;
+  font-size: 22px; font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: 0.14em; white-space: nowrap;
+}
+.cover-meta { position: relative; z-index: 1; font-size: 10px; color: rgba(255,255,255,.95); text-shadow: 0 0 2px rgba(0,0,0,.18); line-height: 18px; margin-top: 34px; max-width: 68%; }
+.cover-icon {
+  position: absolute; right: 10px; top: 10px; width: 44px; height: 44px;
+  background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+.cover-icon svg { width: 24px; height: 24px; color: var(--hw-red); }
+.mooc-tag {
+  position: absolute; left: 0; top: 10px; background: var(--mooc-blue); color: #fff;
+  font-size: 12px; padding: 2px 8px 2px 6px; border-radius: 0 3px 3px 0; z-index: 2;
+}
+.new-tag {
+  position: absolute; right: -26px; top: 8px; background: var(--hw-red); color: #fff;
+  font-size: 10px; padding: 1px 30px; transform: rotate(45deg); z-index: 2; letter-spacing: 1px;
+}
+.Course-item-title-wrapper { padding: 12px 14px 14px; }
+.Course-item-title { font-size: 16px; font-weight: 600; color: #262626; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.Course-item-bottomTip { display: flex; justify-content: space-between; align-items: baseline; margin-top: 10px; }
+.Course-item-bottomTip .free { color: var(--hw-red); font-size: 14px; }
+.bottomTip-right { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--faint); }
+.bottomTip-right svg { width: 13px; height: 13px; }
+
+/* ============ 热门认证 ============ */
+.cert-section { background: var(--white); }
+.cert-head-row { display: flex; align-items: baseline; justify-content: center; position: relative; margin-bottom: 36px; }
+.cert-head-row .more-wrapper { position: absolute; right: 0; margin: 0; }
+.cert-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+.cert-item-wrapper {
+  background-image: url('assets/cert-card-bg.png'); background-size: 100% 100%;
+  min-height: 235px; padding: 14px 10px 12px; display: flex; flex-direction: column; align-items: center;
+}
+.cert-badge {
+  width: 84px; height: 84px; border-radius: 50%; flex: none;
+  background: radial-gradient(circle at 50% 36%, #fdf6e0 0%, #eccf8f 62%, #d9b56c 100%);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,.7), 0 2px 6px rgba(160,120,30,.25);
+}
+.cert-badge svg { width: 40px; height: 40px; }
+.cert-list-items { margin-top: 20px; text-align: center; }
+.cert-list-items li {
+  font-size: 14px; color: #262626; line-height: 28px; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+}
+.cert-more { margin-top: 10px; color: var(--hw-red); font-size: 13px; }
+.cert-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ============ 成功案例 ============ */
+.story-section { background: var(--gray-bg); }
+.cards-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.story-item { background: var(--white); border-radius: 8px; overflow: hidden; transition: box-shadow .2s, transform .2s; }
+.story-item:hover { box-shadow: 0 6px 20px rgba(0,0,0,.10); transform: translateY(-2px); }
+.story-cover { height: 150px; position: relative; display: flex; align-items: center; justify-content: center; }
+.story-cover .story-mark { position: absolute; left: 12px; bottom: 8px; font-size: 11px; color: rgba(255,255,255,.85); letter-spacing: .12em; }
+.story-cover h3 { position: relative; color: #fff; font-size: 20px; font-weight: 600; text-shadow: 0 1px 4px rgba(0,0,0,.18); padding: 0 20px; text-align: center; }
+.story-body { padding: 16px 18px 18px; }
+.story-title { font-size: 15px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.story-desc { margin-top: 6px; font-size: 13px; color: var(--text-2); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.s-g1 { background: linear-gradient(135deg, #3556c6, #7190e8); }
+.s-g2 { background: linear-gradient(135deg, #b5491f, #e08a5a); }
+.s-g3 { background: linear-gradient(135deg, #1f7a58, #58b58e); }
+
+/* ============ 人才双选 ============ */
+.talent-wrapper { background: var(--white); padding: 70px 0 80px; }
+.talent-wrapper .home-content-title { margin-bottom: 26px; }
+.talent-bridge { width: 1180px; max-width: 92vw; margin: 0 auto; display: block; }
+
+/* ============ 页脚 ============ */
+.com-footer-wrapper { background: var(--white); border-top: 1px solid var(--line); }
+.com-footer-content { display: flex; justify-content: space-between; gap: 60px; padding: 56px 0 44px; }
+.com-footer-content-left { display: flex; gap: 72px; flex: 1; }
+.com-footer-content-left ul { min-width: 120px; }
+.com-footer-content-left li:first-child { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 22px; }
+.com-footer-content-left li { font-size: 14px; color: var(--text); margin-bottom: 14px; }
+.com-footer-content-left li:not(:first-child):hover { color: var(--hw-red); }
+.com-footer-content-right { display: flex; align-items: flex-start; gap: 18px; }
+.qr-box { text-align: center; }
+.qr-box .qr {
+  width: 92px; height: 92px; background: #fff; border: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(7, 1fr); gap: 1px; padding: 5px;
+}
+.qr-box .qr i { background: var(--ink); }
+.qr-box .qr i.o { background: transparent; }
+.qr-box p { font-size: 12px; color: var(--text-3); margin-top: 8px; }
+.social-col { display: flex; flex-direction: column; gap: 16px; padding-top: 4px; }
+.social-btn {
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line-input);
+  display: flex; align-items: center; justify-content: center; color: var(--text-2);
+}
+.social-btn svg { width: 17px; height: 17px; }
+.social-btn:hover { color: var(--hw-red); border-color: var(--hw-red); }
+.footer-bottom { border-top: 1px solid var(--line); padding: 18px 0 22px; }
+.footer-bottom .container { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text); flex-wrap: wrap; gap: 10px; }
+.footer-links { display: flex; gap: 18px; }
+.footer-links a, .footer-bottom a.red { color: var(--hw-red); }
+.footer-bottom a.red { text-decoration: underline; text-underline-offset: 2px; }
+
+/* ============ 右侧悬浮联系我们 ============ */
+.float-contact {
+  position: fixed; right: 0; top: 55%; z-index: 90;
+  background: var(--hw-red); color: #fff; font-size: 14px;
+  padding: 10px 16px; border-radius: 4px 0 0 4px;
+  box-shadow: -2px 3px 10px rgba(199,0,11,.3);
+}
+.float-contact:hover { background: var(--hw-red-press); }
+
+@media (max-width: 1280px) {
+  .course-list, .cert-list { grid-template-columns: repeat(3, 1fr); }
+  .cards-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .course-list, .cert-list { grid-template-columns: repeat(2, 1fr); }
+  .cards-container { grid-template-columns: 1fr; }
+  .nav-list { display: none; }
+  .com-footer-content { flex-direction: column; }
+}
+

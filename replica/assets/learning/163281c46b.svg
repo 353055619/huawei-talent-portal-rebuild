@@ -1,0 +1,47 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" fill="none">
+	<mask id="mask_0" width="47" height="41" x="0.5" y="3" maskUnits="userSpaceOnUse" mask-type="luminance">
+		<g id="mask-3">
+			<g id="use">
+				<path id="path-2" d="M40.5 3C44.366 3 47.5 6.13401 47.5 10L47.5 30C47.5 33.866 44.366 37 40.5 37L26 37L26 40L39.5 40C40.4644 40 41.2798 40.6856 41.4664 41.6607L41.4916 41.8258L41.5 42C41.5 43.1046 40.6046 44 39.5 44L8.5 44C7.39543 44 6.5 43.1046 6.5 42C6.5 40.8954 7.39543 40 8.5 40L22 40L22 37L7.5 37C3.71455 37 0.630901 33.9952 0.504059 30.2407L0.5 30L0.5 10C0.5 6.13401 3.63401 3 7.5 3L40.5 3Z" fill="rgba(255,255,255,1)" fill-rule="nonzero" />
+			</g>
+		</g>
+	</mask>
+	<defs>
+		<linearGradient id="paint_linear_0" x1="0.500004768" x2="37.6514168" y1="7.89995575" y2="34.4315529" gradientUnits="userSpaceOnUse">
+			<stop stop-color="rgba(191,185,250,1)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgba(113,90,251,1)" offset="1" stop-opacity="1" />
+		</linearGradient>
+		<radialGradient id="paint_radial_0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(16.7075,0,0,14.6196,41,36.1328)">
+			<stop stop-color="rgba(85,49,235,1)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgba(85,49,235,1)" offset="1" stop-opacity="0" />
+		</radialGradient>
+		<radialGradient id="paint_radial_1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(29.7278,0,0,55.2089,39,60.5273)">
+			<stop stop-color="rgba(142,129,244,1)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgba(191,185,250,1)" offset="1" stop-opacity="1" />
+		</radialGradient>
+		<linearGradient id="paint_linear_1" x1="39" x2="39" y1="20" y2="46" gradientUnits="userSpaceOnUse">
+			<stop stop-color="rgba(255,255,255,1)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgba(255,255,255,1)" offset="1" stop-opacity="0" />
+		</linearGradient>
+	</defs>
+	<rect id="ic_huawei_cloud_ cloudsite1" width="48" height="48" x="0" y="0" />
+	<g id="ic_huawei_cloud_-cloudsite-云速建站_质感图标">
+		<rect id="矩形" width="48" height="48" x="0" y="0" fill="rgba(0,0,0,1)" fill-opacity="0" />
+		<rect id="矩形" width="48" height="48" x="0" y="0" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+		<g id="形状结合">
+			<path id="path-2" d="M40.5 3C44.366 3 47.5 6.13401 47.5 10L47.5 30C47.5 33.866 44.366 37 40.5 37L26 37L26 40L39.5 40C40.4644 40 41.2798 40.6856 41.4664 41.6607L41.4916 41.8258L41.5 42C41.5 43.1046 40.6046 44 39.5 44L8.5 44C7.39543 44 6.5 43.1046 6.5 42C6.5 40.8954 7.39543 40 8.5 40L22 40L22 37L7.5 37C3.71455 37 0.630901 33.9952 0.504059 30.2407L0.5 30L0.5 10C0.5 6.13401 3.63401 3 7.5 3L40.5 3Z" fill="url(#paint_linear_0)" fill-rule="nonzero" />
+			<path id="path-2" d="M47.5 10L47.5 30C47.5 33.866 44.366 37 40.5 37L26 37L26 40L39.5 40C40.4644 40 41.2798 40.6856 41.4664 41.6607L41.4916 41.8258L41.5 42C41.5 43.1046 40.6046 44 39.5 44L8.5 44C7.39543 44 6.5 43.1046 6.5 42C6.5 40.8954 7.39543 40 8.5 40L22 40L22 37L7.5 37C3.71455 37 0.630901 33.9952 0.504059 30.2407L0.5 30L0.5 10C0.5 6.13401 3.63401 3 7.5 3L40.5 3C44.366 3 47.5 6.13401 47.5 10Z" fill-rule="nonzero" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+		</g>
+		<g id="mask" mask="url(#mask_0)">
+			<path id="形状结合" d="M41 20C49.8366 20 57 27.1634 57 36C57 40.7793 54.9045 45.0692 51.5822 48.001L30.4178 48.001C27.0955 45.0692 25 40.7793 25 36C25 27.1634 32.1634 20 41 20Z" opacity="0.900000036" fill="url(#paint_radial_0)" fill-rule="nonzero" />
+			<path id="形状结合" d="M57 36C57 40.7793 54.9045 45.0692 51.5822 48.001L30.4178 48.001C27.0955 45.0692 25 40.7793 25 36C25 27.1634 32.1634 20 41 20C49.8366 20 57 27.1634 57 36Z" opacity="0.900000036" fill-rule="nonzero" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+		</g>
+		<path id="path6" d="M24 36L7.5 36C4.18629 36 1.5 33.3137 1.5 30L1.5 10C1.5 6.68629 4.18629 4 7.5 4L40.5 4C43.8137 4 46.5 6.68629 46.5 10L46.5 30C46.5 33.3137 43.8137 36 40.5 36L28 36" stroke="rgba(255,255,255,1)" stroke-opacity="0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+		<path id="path5" d="M17.1135 29.25C13.7328 29.25 10.9922 26.4891 10.9922 23.0833C10.9922 19.9256 13.3481 17.3223 16.3858 16.9598C16.7467 13.4705 19.6754 10.75 23.2348 10.75C26.2374 10.75 28.7911 12.6858 29.7333 15.3861L29.9183 15.378L30.1213 15.375C33.9246 15.375 37.0078 18.481 37.0078 22.3125C37.0078 26.144 33.9246 29.25 30.1213 29.25L17.1135 29.25Z" opacity="0.300000012" fill="rgba(255,255,255,1)" fill-rule="nonzero" />
+		<path id="path5" d="M10.9922 23.0833C10.9922 19.9256 13.3481 17.3223 16.3858 16.9598C16.7467 13.4705 19.6754 10.75 23.2348 10.75C26.2374 10.75 28.7911 12.6858 29.7333 15.3861L29.9183 15.378L30.1213 15.375C33.9246 15.375 37.0078 18.481 37.0078 22.3125C37.0078 26.144 33.9246 29.25 30.1213 29.25L17.1135 29.25C13.7328 29.25 10.9922 26.4891 10.9922 23.0833Z" opacity="0.300000012" fill-rule="nonzero" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+		<rect id="矩形" width="14" height="26" x="32" y="20" rx="4" fill="url(#paint_radial_1)" />
+		<rect id="矩形" width="14" height="26" x="32" y="20" rx="4" stroke="url(#paint_linear_1)" stroke-width="1.20000005" />
+		<circle id="椭圆形" cx="39.5003242" cy="42.89925" r="1.08333206" fill="rgba(255,255,255,1)" />
+		<circle id="椭圆形" cx="39.5003242" cy="42.89925" r="1.08333206" stroke="rgba(0,0,0,1)" stroke-opacity="0" stroke-width="1" />
+	</g>
+</svg>

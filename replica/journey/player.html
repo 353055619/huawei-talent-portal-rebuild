@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, initial-scale=1" />
+<title>用户旅程演示</title>
+<style>
+/* ============================================================
+ * 用户旅程导演引擎 · 在复刻站页面上自动演示"用户点击完成"全过程
+ * 用法: player.html?j=J1  （时间线在 timelines.js）
+ * 录制: tools/record-journeys.mjs（Playwright video）
+ * ============================================================ */
+:root {
+  --hw-red: #c7000b; --hw-red-press: #a50009;
+  --ink: #000; --text: #333; --text-2: #595959;
+  --line: #e5e5e5; --gray: #f2f3f5; --white: #fff;
+  --font: 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0a0a0a; font-family: var(--font); }
+
+/* 舞台：iframe 承载复刻页 */
+#stage { position: absolute; inset: 0; width: 1920px; height: 1080px; border: 0; background: #fff; }
+#stage.fade { opacity: 0; transition: opacity .28s ease; }
+
+/* 顶部进度条 */
+#progress { position: absolute; top: 0; left: 0; height: 4px; width: 0; background: var(--hw-red); z-index: 60; transition: width .5s ease; }
+
+/* 旅程徽标（左上角） */
+#badge {
+  position: absolute; top: 20px; left: 24px; z-index: 50;
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(0,0,0,.78); color: #fff; border-radius: 6px;
+  padding: 8px 14px; font-size: 15px; letter-spacing: .02em;
+  backdrop-filter: blur(6px);
+}
+#badge .jid { background: var(--hw-red); border-radius: 4px; padding: 1px 8px; font-weight: 700; font-size: 14px; }
+#badge .persona { color: rgba(255,255,255,.62); font-size: 13px; }
+
+/* 底部步骤字幕条 */
+#caption {
+  position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%);
+  z-index: 50; display: flex; align-items: center; gap: 14px;
+  background: rgba(0,0,0,.82); color: #fff; border-radius: 8px;
+  padding: 12px 22px; max-width: 1400px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.35);
+  opacity: 0; transition: opacity .25s ease, transform .25s ease;
+}
+#caption.show { opacity: 1; }
+#caption .step-no {
+  flex: none; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--hw-red); color: #fff; font-weight: 700; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+#caption .cap-main { min-width: 0; }
+#caption .cap-title { font-size: 17px; font-weight: 600; line-height: 1.35; }
+#caption .cap-detail { font-size: 13.5px; color: rgba(255,255,255,.72); line-height: 1.45; margin-top: 2px; }
+#caption .cap-chip {
+  flex: none; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.4); color: #fff; white-space: nowrap;
+}
+#caption .cap-chip.warn { background: var(--hw-red); border-color: var(--hw-red); }
+
+/* 合成光标 */
+#cursor {
+  position: absolute; z-index: 55; width: 26px; height: 26px; left: 0; top: 0;
+  transition: transform .72s cubic-bezier(.45,.05,.25,1);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.35));
+  pointer-events: none;
+}
+#cursor.pressed { transition: transform .1s ease; }
+#cursor svg { display: block; }
+
+/* 点击涟漪 */
+.ripple {
+  position: absolute; z-index: 54; width: 14px; height: 14px; margin: -7px 0 0 -7px;
+  border: 3px solid var(--hw-red); border-radius: 50%; pointer-events: none;
+  animation: ripple .6s ease-out forwards;
+}
+@keyframes ripple { from { transform: scale(.4); opacity: .95; } to { transform: scale(3.2); opacity: 0; } }
+
+/* 聚焦高亮框 */
+.focusbox {
+  position: absolute; z-index: 53; border: 2.5px solid var(--hw-red); border-radius: 4px;
+  pointer-events: none; animation: fb .5s ease-out;
+  box-shadow: 0 0 0 3000px rgba(0,0,0,.18);
+}
+@keyframes fb { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ============ 插卡（外部系统 / 线下步骤 / 断点） ============ */
+#inter {
+  position: absolute; inset: 0; z-index: 58; display: none;
+  background: rgba(6,8,12,.86); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+}
+#inter.show { display: flex; }
+.inter-card {
+  width: 1080px; background: var(--white); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 30px 90px rgba(0,0,0,.5);
+  animation: card .4s cubic-bezier(.2,.9,.3,1);
+}
+@keyframes card { from { transform: translateY(26px) scale(.97); opacity: 0; } to { transform: none; opacity: 1; } }
+/* 浏览器条（外链卡） */
+.inter-chrome { background: #e8eaed; display: flex; align-items: center; gap: 8px; padding: 10px 14px; }
+.inter-chrome .dot { width: 12px; height: 12px; border-radius: 50%; background: #c9ccd1; }
+.inter-chrome .dot:first-child { background: #f26d5f; }
+.inter-chrome .dot:nth-child(2) { background: #f5bd4f; }
+.inter-chrome .dot:nth-child(3) { background: #61c464; }
+.inter-url {
+  flex: 1; background: #fff; border-radius: 999px; font-size: 13.5px; color: var(--text-2);
+  padding: 5px 16px; margin-left: 8px; white-space: nowrap; overflow: hidden;
+  display: flex; align-items: center; gap: 8px;
+}
+.inter-url .lock { color: #61c464; font-size: 12px; }
+.inter-chrome .newtab {
+  background: var(--hw-red); color: #fff; font-size: 12.5px; border-radius: 4px; padding: 3px 10px; font-weight: 600;
+}
+.inter-body { padding: 34px 44px 38px; }
+.inter-kicker { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.inter-kind {
+  font-size: 12.5px; font-weight: 700; letter-spacing: .08em; padding: 3px 12px; border-radius: 4px;
+}
+.inter-kind.ext { background: #ecf1f9; color: #2f4e8f; }
+.inter-kind.off { background: #faf1dc; color: #935d00; }
+.inter-kind.cut { background: #faecea; color: #b3261e; }
+.inter-kind.ok  { background: #e9f4ec; color: #1d7a40; }
+.inter-step { margin-left: auto; color: var(--hw-red); font-weight: 700; font-size: 14px; }
+.inter-title { font-size: 30px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.inter-desc { margin-top: 12px; font-size: 16.5px; color: var(--text-2); line-height: 1.75; }
+.inter-list { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+.inter-list .li { display: flex; gap: 10px; font-size: 15px; color: var(--text); line-height: 1.6; }
+.inter-list .li::before { content: ''; flex: none; width: 7px; height: 7px; background: var(--hw-red); margin-top: 8px; }
+.inter-note {
+  margin-top: 18px; padding: 12px 16px; background: #faecea; color: #b3261e;
+  border-left: 3px solid var(--hw-red); font-size: 14.5px; line-height: 1.6; border-radius: 0 4px 4px 0;
+}
+/* 片头/片尾 */
+#intro, #outro {
+  position: absolute; inset: 0; z-index: 59; display: none;
+  background: #0a0a0a; color: #fff; flex-direction: column;
+  align-items: center; justify-content: center; gap: 18px;
+}
+#intro.show, #outro.show { display: flex; }
+.io-kicker { color: var(--hw-red); font-weight: 700; letter-spacing: .35em; font-size: 15px; }
+.io-title { font-size: 54px; font-weight: 700; letter-spacing: .02em; }
+.io-sub { color: rgba(255,255,255,.6); font-size: 19px; }
+.io-line { width: 64px; height: 3px; background: var(--hw-red); margin: 6px 0; }
+.io-meta { display: flex; gap: 26px; color: rgba(255,255,255,.45); font-size: 14.5px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<iframe id="stage"></iframe>
+<div id="progress"></div>
+<div id="badge" style="display:none"><span class="jid"></span><span class="jname"></span><span class="persona"></span></div>
+<div id="caption">
+  <div class="step-no"></div>
+  <div class="cap-main"><div class="cap-title"></div><div class="cap-detail"></div></div>
+  <div class="cap-chip"></div>
+</div>
+<div id="cursor" aria-hidden="true">
+  <svg width="26" height="26" viewBox="0 0 26 26"><path d="M4 2l16.5 9.2-7 1.6 4.1 7.6-3.1 1.7-4.1-7.7-5 5.2z" fill="#fff" stroke="#1a1a1a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+</div>
+<div id="inter">
+  <div class="inter-card">
+    <div class="inter-chrome" id="interChrome">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <div class="inter-url"><span class="lock">🔒</span><span id="interUrl"></span></div>
+      <span class="newtab" id="interNew">新开标签页</span>
+    </div>
+    <div class="inter-body">
+      <div class="inter-kicker"><span class="inter-kind" id="interKind"></span><span class="inter-step" id="interStep"></span></div>
+      <div class="inter-title" id="interTitle"></div>
+      <div class="inter-desc" id="interDesc"></div>
+      <div class="inter-list" id="interList"></div>
+      <div class="inter-note" id="interNote" style="display:none"></div>
+    </div>
+  </div>
+</div>
+<div id="intro"><div class="io-kicker">华为人才在线 · 现网用户旅程实拍</div><div class="io-title" id="introTitle"></div><div class="io-line"></div><div class="io-sub" id="introSub"></div><div class="io-meta"><span id="introMeta"></span></div></div>
+<div id="outro"><div class="io-kicker">旅程结束</div><div class="io-title" id="outroTitle"></div><div class="io-line"></div><div class="io-sub" id="outroSub"></div></div>
+
+<script src="timelines.js"></script>
+<script>
+/* ================= 导演引擎 ================= */
+const qs = new URLSearchParams(location.search);
+const JID = qs.get('j') || 'J1';
+const J = TIMELINES[JID];
+if (!J) { document.title = 'NO-JOURNEY'; throw new Error('no journey ' + JID); }
+
+const $ = id => document.getElementById(id);
+const stage = $('stage'), cursor = $('cursor'), caption = $('caption');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+let curPage = null;
+
+function setCaption(no, step) {
+  caption.querySelector('.step-no').textContent = no;
+  caption.querySelector('.cap-title').textContent = step.caption;
+  caption.querySelector('.cap-detail').textContent = step.detail || '';
+  const chip = caption.querySelector('.cap-chip');
+  const flag = step.flag || (step.break ? '断点' : '');
+  chip.textContent = flag;
+  chip.className = 'cap-chip' + (step.break || /断点|缺陷|无/.test(flag) ? ' warn' : '');
+  chip.style.display = flag ? '' : 'none';
+  caption.classList.add('show');
+}
+function hideCaption() { caption.classList.remove('show'); }
+
+async function loadPage(page) {
+  if (curPage === page) return;
+  stage.classList.add('fade');
+  await sleep(280);
+  stage.src = page;
+  await new Promise(res => { stage.onload = res; });
+  await sleep(pageSettle(page));
+  stage.classList.remove('fade');
+  await sleep(300);
+  curPage = page;
+}
+function pageSettle(page) { return 900; }
+
+/* iframe 同源 → 可直接操作内部文档 */
+function iWin() { try { return stage.contentWindow; } catch (e) { return null; } }
+function iDoc() { try { return stage.contentDocument; } catch (e) { return null; } }
+
+/* 元素定位：selector 在 iframe 内查找（可选 text 文本过滤，命中可见元素），返回舞台坐标 */
+function locate(sel, text) {
+  const d = iDoc(); if (!d) return null;
+  let el = null;
+  try {
+    if (text) {
+      const list = [...d.querySelectorAll(sel)];
+      el = list.find(e => (e.textContent || '').includes(text) && e.getBoundingClientRect().width > 2) || null;
+    } else {
+      el = d.querySelector(sel);
+    }
+  } catch (e) {}
+  if (!el) return null;
+  const r = el.getBoundingClientRect();
+  if (r.width < 2 || r.height < 2) return null;
+  const sr = stage.getBoundingClientRect();
+  return { x: sr.left + r.left + r.width / 2, y: sr.top + r.top + r.height / 2, el, rect: { x: sr.left + r.left, y: sr.top + r.top, w: r.width, h: r.height } };
+}
+async function moveCursor(x, y) {
+  cursor.style.transform = `translate(${x - 3}px, ${y - 2}px)`;
+  await sleep(780);
+}
+function rippleAt(x, y) {
+  const r = document.createElement('div');
+  r.className = 'ripple'; r.style.left = x + 'px'; r.style.top = y + 'px';
+  document.body.appendChild(r); setTimeout(() => r.remove(), 650);
+}
+async function pressCursor() {
+  cursor.classList.add('pressed');
+  const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(cursor.style.transform || '');
+  if (m) rippleAt(+m[1] + 3, +m[2] + 2);
+  await sleep(160); cursor.classList.remove('pressed'); await sleep(220);
+}
+async function realClick(el) {
+  try {
+    const d = iDoc(), w = iWin();
+    const r = el.getBoundingClientRect();
+    const x = r.left + r.width / 2, y = r.top + r.height / 2;
+    for (const type of ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click']) {
+      el.dispatchEvent(new d.defaultView.MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y, view: w }));
+    }
+  } catch (e) {}
+}
+function focusBox(rect) {
+  const b = document.createElement('div');
+  b.className = 'focusbox';
+  b.style.left = (rect.x - 6) + 'px'; b.style.top = (rect.y - 6) + 'px';
+  b.style.width = (rect.w + 12) + 'px'; b.style.height = (rect.h + 12) + 'px';
+  document.body.appendChild(b);
+  return b;
+}
+async function scrollToSel(sel) {
+  const d = iDoc(); if (!d) return;
+  let el = null; try { el = d.querySelector(sel); } catch (e) {}
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  await sleep(650);
+}
+async function scrollText(sel, text) {
+  const d = iDoc(); if (!d) return;
+  let el = null;
+  try { el = [...d.querySelectorAll(sel)].find(e => (e.textContent || '').includes(text)); } catch (e) {}
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  await sleep(650);
+}
+
+async function playInterstitial(step, no) {
+  const inter = $('inter');
+  const chrome = $('interChrome');
+  const isExt = step.kind === 'external';
+  chrome.style.display = isExt ? '' : 'none';
+  if (isExt) { $('interUrl').textContent = step.url || ''; $('interNew').style.display = step.newTab === false ? 'none' : ''; }
+  const kindEl = $('interKind');
+  const kinds = { external: ['ext', '外部系统'], offline: ['off', '线下步骤'], cut: ['cut', '体验断点'], info: ['ok', '说明'] };
+  const [kcls, klabel] = kinds[step.kind] || kinds.info;
+  kindEl.className = 'inter-kind ' + kcls; kindEl.textContent = step.flag || klabel;
+  $('interStep').textContent = '第 ' + no + ' 步';
+  $('interTitle').textContent = step.title;
+  $('interDesc').textContent = step.desc || '';
+  const list = $('interList'); list.innerHTML = '';
+  (step.bullets || []).forEach(t => { const li = document.createElement('div'); li.className = 'li'; li.textContent = t; list.appendChild(li); });
+  const note = $('interNote');
+  if (step.note) { note.textContent = step.note; note.style.display = ''; } else note.style.display = 'none';
+  inter.classList.add('show');
+  await sleep(step.dwell || 3200);
+  inter.classList.remove('show');
+  await sleep(420);
+}
+
+async function run() {
+  /* 片头 */
+  $('introTitle').textContent = J.name;
+  $('introSub').textContent = J.persona ? '角色：' + J.persona : '';
+  $('introMeta').textContent = J.summary || '';
+  document.title = 'PLAYING';
+  $('intro').classList.add('show');
+  await sleep(2600);
+  $('intro').classList.remove('show');
+  await sleep(380);
+
+  const badge = $('badge');
+  badge.style.display = 'flex';
+  badge.querySelector('.jid').textContent = JID;
+  badge.querySelector('.jname').textContent = J.name;
+  badge.querySelector('.persona').textContent = J.persona ? '· ' + J.persona : '';
+
+  let cx = 960, cy = 540;
+  cursor.style.transform = `translate(${cx}px, ${cy}px)`;
+
+  for (let i = 0; i < J.steps.length; i++) {
+    const step = J.steps[i];
+    $('progress').style.width = ((i) / J.steps.length * 100) + '%';
+
+    if (step.kind) { await playInterstitial(step, i + 1); setCaption(i + 1, step); await sleep(300); hideCaption(); continue; }
+
+    await loadPage(step.page);
+    if (step.scrollText) await scrollText(step.scrollSel || '*', step.scrollText);
+    else if (step.scroll) await scrollToSel(step.scroll);
+    setCaption(i + 1, step);
+
+    /* 点击目标序列 */
+    for (const act of (step.acts || [])) {
+      const loc = act.sel ? locate(act.sel, act.text) : null;
+      if (loc) {
+        if (act.focus) { const fb = focusBox(loc.rect); setTimeout(() => fb.remove(), act.dwell || 1600); }
+        await moveCursor(loc.x, loc.y);
+        if (act.click !== false) { await pressCursor(); if (act.real) realClick(loc.el); }
+        await sleep(act.dwell || 1200);
+      } else if (act.xy) {
+        await moveCursor(act.xy[0], act.xy[1]);
+        await pressCursor();
+        await sleep(act.dwell || 1200);
+      } else {
+        await sleep(act.dwell || 1500);
+      }
+    }
+    await sleep(step.dwell != null ? step.dwell : 1800);
+    hideCaption();
+    await sleep(260);
+  }
+  $('progress').style.width = '100%';
+
+  /* 片尾 */
+  $('outroTitle').textContent = J.name + ' · 完';
+  $('outroSub').textContent = J.outro || '';
+  $('outro').classList.add('show');
+  await sleep(2200);
+  $('outro').classList.remove('show');
+  await sleep(400);
+  document.title = 'DONE';
+}
+run();
+</script>
+</body>
+</html>

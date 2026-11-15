@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>用户中心-实名认证（复刻）</title>
+<link rel="stylesheet" href="shell.css" />
+<style>
+/* ===== 用户中心共享壳覆盖（对照 captures 实测：cookie 44px #ccc / 黑条 32px / 导航 78px） ===== */
+.cookie-bar{background:#cccccc;font-size:13px;color:#333}
+.cookie-bar .container{height:44px}
+.cookie-bar a.red{color:#333;text-decoration:underline;text-underline-offset:3px}
+.topbar{height:32px}
+.topbar .container{height:32px}
+.topbar-left{font-size:13px}
+.topbar-right{gap:26px;font-size:12px}
+.mainnav .container{height:78px}
+.nav-search{height:40px}
+/* 现网 usercenter 全站容器实测 1180（截图 370-1550 @1910 宽） */
+.container{width:1180px;max-width:94vw}
+.mainnav .container{gap:54px}
+.nav-list{gap:28px}
+.nav-item{font-size:16px}
+.hw-logo .word{font-size:21px;letter-spacing:.03em}
+.uc-account{display:inline-flex;align-items:center;color:#fff;cursor:pointer;font-size:12px;white-space:nowrap}
+.uc-account:hover{text-decoration:underline;text-underline-offset:3px}
+/* 页脚密度对照实测（链接行距 36px，版权行紧随其后） */
+.com-footer-content{padding:55px 0 26px}
+.com-footer-content-left li{margin-bottom:13px}
+.com-footer-content-left li:first-child{margin-bottom:13px}
+.footer-bottom{padding:16px 0 0}
+/* ===== 内容区公共 ===== */
+body{background:var(--page-bg)}
+.uc-main{background:var(--page-bg)}
+.uc-crumbs{width:1200px;max-width:94vw;margin:0 auto;padding:17px 0 0;font-size:13px;color:#666;line-height:1.5}
+.uc-crumbs .crumb{color:#666}
+.uc-crumbs .sep{margin:0 10px;color:#a6a6a6}
+.uc-card{width:1200px;max-width:94vw;margin:12px auto 0;background:#fff;position:relative}
+.uc-main{padding-bottom:10px}
+/* 空态 */
+.uc-nodata{text-align:center;padding:20px;margin-top:50px;color:#999;font-size:14px}
+/* m-button 复刻（现网 usercenter 组件库） */
+.m-btn{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 14px;border:1px solid var(--hw-red);border-radius:2px;color:var(--hw-red);background:#fff;font-size:13px;cursor:pointer;line-height:1}
+.m-btn:hover{opacity:.85}
+.m-btn.primary{background:var(--hw-red);color:#fff}
+.m-btn.disabled{border-color:#d9d9d9;background:#f5f5f5;color:#bfbfbf;cursor:not-allowed}
+/* 输入框 */
+.m-input{display:inline-flex;align-items:center;height:32px;border:1px solid #dcdfe6;border-radius:2px;background:#fff;padding:0 10px;font-size:13px;color:#606266}
+.m-input input{border:none;outline:none;font-size:13px;color:#606266;width:100%;background:transparent}
+.m-input input::placeholder{color:#bfbfbf}
+.m-input .ph{color:#bfbfbf}
+.m-input .caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #b0b0b0;margin-left:6px}
+
+.realAuth{padding:24px 60px 40px}
+.realAuth h2{font-size:18px;color:#333;font-weight:600;text-align:center;margin-bottom:28px}
+.realAuth__form_wrapper{display:flex;align-items:flex-start;margin-bottom:18px}
+.realAuth__form_left{width:110px;text-align:right;font-size:13px;color:#666;flex:none;margin-right:12px}
+.realAuth__form_left i{color:var(--hw-red);font-style:normal}
+.formInputWrapper{flex:1;max-width:420px}
+.formInput{width:100%;height:36px}
+.realAuth__form_lastName_input_tip{font-size:12px;color:#999;margin-top:4px;line-height:18px}
+.m-input.m-disabled{background:#f5f5f5}
+.m-input.m-disabled input{color:#c0c4cc}
+.realAuth__checkbox{margin:26px 0 10px;display:flex;flex-direction:column;gap:16px}
+.realAuth__checkbox_item{display:flex;align-items:flex-start;gap:0}
+.realAuth__checkbox_item .m-checkbox{margin-top:2px}
+.realAuth__checkbox_item .checkbox{width:14px;height:14px;border:1px solid #dcdfe6;border-radius:2px;display:inline-block;background:#fff}
+.realAuth__checkbox_item .txt{font-size:12.5px;color:#666;line-height:22px}
+.realAuth__checkbox_item .txt b{font-weight:600;color:#333}
+.realAuth__checkbox_item .txt a{color:#1890ff}
+.realAuth__bottom{display:flex;gap:14px;margin-top:26px}
+.realAuth__bottom .m-btn{height:34px;min-width:88px}
+
+</style>
+</head>
+<body>
+
+<!-- Cookie 提示条（截图口径：无关闭按钮） -->
+<div class="cookie-bar">
+  <div class="container">
+    本站点使用Cookies，继续浏览表示您同意我们使用Cookies。
+    <a class="red">Cookies和隐私政策</a>
+  </div>
+</div>
+
+<!-- 黑色工具条（登录态） -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">华为人才在线</div>
+    <div class="topbar-right">
+      <span class="tool">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 3.5h12v7H8.5L5 13.5v-3H2v-7z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <span class="msg-badge">0</span>
+      </span>
+      <span class="tool lang-group">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.2" stroke="currentColor" stroke-width="1.2"/><path d="M2 8h12M8 1.8c-2.2 2.4-2.2 10 0 12.4M8 1.8c2.2 2.4 2.2 10 0 12.4" stroke="currentColor" stroke-width="1.1"/></svg>
+        <button class="cur">中</button>
+        <button>EN</button>
+      </span>
+      <span class="tool uc-account"><span>Uniportal账号 : </span><span>hw_353055619_qq.com_01</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- 白色主导航 -->
+<header class="mainnav">
+  <div class="container">
+    <a class="hw-logo" aria-label="华为官网首页">
+      <span class="petal" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="word">HUAWEI</span>
+    </a>
+    <nav class="nav-list" aria-label="主导航">
+      <a class="nav-item">学习<span class="caret"></span></a>
+      <a class="nav-item">认证<span class="caret"></span></a>
+      <a class="nav-item">华为ICT学院<span class="caret"></span></a>
+      <a class="nav-item">华为ICT大赛</a>
+      <a class="nav-item">培训伙伴<span class="caret"></span></a>
+      <a class="nav-item">企业培训</a>
+      <a class="nav-item">成功案例</a>
+      <a class="nav-item">商城</a>
+    </nav>
+    <div class="nav-search" role="search">
+      <input type="search" placeholder="搜索全部" aria-label="搜索全部" />
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="4.6" stroke="currentColor" stroke-width="1.5"/><path d="M10.6 10.6 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+</header>
+<div class="uc-main" style="min-height:986px">
+  <div class="uc-crumbs"><a class="crumb">首页</a><span class="sep">&gt;</span><a class="crumb">实名认证</a><span class="sep">&gt;</span></div>
+  <div class="uc-card realAuth">
+    <h2>实名认证</h2>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left"><i>*</i> 姓拼音 </div>
+      <div class="formInputWrapper"><div class="m-input formInput"><input placeholder="请输入" /></div></div>
+    </div>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left"><i>*</i> 名拼音 </div>
+      <div class="formInputWrapper"><div class="m-input formInput"><input placeholder="请输入" /></div></div>
+    </div>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left"> 全名拼音 </div>
+      <div class="formInputWrapper"><div class="m-input formInput m-disabled"><input placeholder="请输入" disabled /></div><div class="realAuth__form_lastName_input_tip">全名拼音自动生成规则为“名+姓”</div></div>
+    </div>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left"><i>*</i> 邮箱 </div>
+      <div class="formInputWrapper"><div class="m-input formInput"><input placeholder="请输入" /></div></div>
+    </div>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left"><i>*</i> 证件类型 </div>
+      <div class="formInputWrapper"><div class="m-input formInput m-disabled" style="justify-content:space-between"><input placeholder="" disabled value="中华人民共和国居民身份证" /><span class="caret"></span></div></div>
+    </div>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left"><i>*</i> 输入证件号 </div>
+      <div class="formInputWrapper"><div class="m-input formInput"><input placeholder="请输入" /></div></div>
+    </div>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left"><i>*</i> 确认证件号 </div>
+      <div class="formInputWrapper"><div class="m-input formInput"><input placeholder="请输入" /></div></div>
+    </div>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left"><i>*</i> 中文姓 </div>
+      <div class="formInputWrapper"><div class="m-input formInput"><input placeholder="请输入" /></div><div class="realAuth__form_lastName_input_tip">提交后将无法修改！请确认填写的是正确的“中文”姓和名！</div></div>
+    </div>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left"><i>*</i> 中文名 </div>
+      <div class="formInputWrapper"><div class="m-input formInput"><input placeholder="请输入" /></div><div class="realAuth__form_lastName_input_tip">提交后将无法修改！请确认填写的是正确的“中文”姓和名！</div></div>
+    </div>
+    <div class="realAuth__form_wrapper">
+      <div class="realAuth__form_left">中文全名</div>
+      <div class="m-input formInput m-disabled" style="width:420px"><input placeholder="请输入" disabled /></div>
+    </div>
+    <div class="realAuth__checkbox">
+      <div class="realAuth__checkbox_item">
+        <span class="m-checkbox"><span class="checkbox"></span></span>
+        <span style="color:red;margin:0 6px">*</span>
+        <div class="txt"><span>按照华为认证管理规定，华为将会在考生参加华为认证考试时，校验考生的证件信息。因此在您申请华为认证考券、预约华为认证考试、绑定华为证书、使用培训基金兑换学习产品等活动时，需按华为认证管理规定完成实名证件信息登记，以便正常使用华为提供的相关服务</span><span style="font-weight:600">一经提交，不允许修改。</span><span>有关华为实名认证的详细说明，请点击</span><a>此处</a><span>了解更多。</span></div>
+      </div>
+      <div class="realAuth__checkbox_item">
+        <span class="m-checkbox"><span class="checkbox"></span></span>
+        <span style="color:red;margin:0 6px">*</span>
+        <div class="txt"> 我已阅读并同意华为的 <a>隐私声明</a></div>
+      </div>
+      <div class="realAuth__checkbox_item">
+        <div class="txt" style="padding-left:38px"><span>若实名认证过程中遇到任何问题，请点击</span><a style="margin:0 5px">此处</a><span>获得帮助。</span></div>
+      </div>
+    </div>
+    <div class="realAuth__bottom">
+      <button class="m-btn">重置</button>
+      <button class="m-btn primary disabled" disabled>提交</button>
+    </div>
+  </div>
+</div>
+<!-- REPLICA-NOTE: 本页为 #/realinfosystem 实名认证表单页（面包屑仅 首页>实名认证>，与个人信息页不同）——URL 变化后整页换成实名认证表单即现网实际表现；证件类型为禁用下拉(唯一选项 中华人民共和国居民身份证)，取自 dom 隐藏下拉 -->
+<!-- 页脚 -->
+<footer class="com-footer-wrapper">
+  <div class="container">
+    <div class="com-footer-content">
+      <div class="com-footer-content-left">
+        <ul>
+          <li>关于我们</li>
+          <li>华为认证</li>
+          <li>华为ICT学院</li>
+          <li>华为培训合作伙伴</li>
+          <li>资讯中心</li>
+        </ul>
+        <ul>
+          <li>资源</li>
+          <li>资源中心</li>
+          <li>合作伙伴（HALP）下载专区</li>
+          <li>ICT学院下载专区</li>
+          <li>工具专区</li>
+          <li>成功案例</li>
+        </ul>
+        <ul>
+          <li>快速链接</li>
+          <li>集团网站</li>
+          <li>企业业务网站</li>
+          <li>华为人才发展中心</li>
+          <li>华为招聘</li>
+          <li>华为认证论坛</li>
+          <li>华为云</li>
+        </ul>
+        <ul>
+          <li>联系我们</li>
+          <li>智能客服</li>
+          <li>提交问题单</li>
+        </ul>
+      </div>
+      <div class="com-footer-content-right">
+        <div class="qr-box">
+          <div class="qr" aria-label="微信公众号二维码（示意）">
+            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
+            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
+            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i>
+            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
+            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
+            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i>
+            <i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i>
+          </div>
+          <p>官方微信</p>
+        </div>
+        <div class="social-col">
+          <a class="social-btn" aria-label="微信公众号">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4zM11.7 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4z" fill="currentColor"/><path d="M3 6.8C3 4.9 5.2 3.5 8 3.5h4c2.8 0 5 1.4 5 3.3v3.9c0 1.9-2.2 3.3-5 3.3-.4 0-.8 0-1.2-.1l-2.6 1.8v-2.4C5.2 12.8 3 11.4 3 9.5V6.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="social-btn" aria-label="微博">
+            <svg viewBox="0 0 20 20" fill="none"><circle cx="9.5" cy="11" r="4.4" stroke="currentColor" stroke-width="1.3"/><path d="M13.2 6.2c1 .2 1.9.9 2.3 1.9M13.5 3.9c1.6.4 2.9 1.5 3.5 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container" style="padding:0">
+        <span>版权所有 © 华为技术有限公司 1998-2026。保留一切权利。 <a class="red">粤A2-20044005号</a></span>
+        <span class="footer-links">
+          <a>联系我们</a><a>隐私保护</a><a>法律声明</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 右侧悬浮联系我们 -->
+<a class="float-contact">联系我们</a>
+
+</body>
+</html>

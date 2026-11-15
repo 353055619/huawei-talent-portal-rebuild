@@ -10,3 +10,7 @@ Thumbs.db
 # 本地环境
 .env
 .env.local
+
+# 插件运行时标记
+.v2c/
+.video_agent/
