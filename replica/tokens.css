@@ -1,0 +1,69 @@
+/* ============================================================
+ * 华为人才在线 · 复刻样式基线（固定版 v1）
+ * 提取自现网 2026-11-15 实测（DOM 计算样式 + 截图核对）。
+ * 本文件是"复刻样式"的单一事实来源：后续逐步优化在此之上叠加，
+ * 不得直接修改本基线值；优化样式写入 override 层。
+ * ============================================================ */
+:root {
+  /* —— 品牌与色彩 —— */
+  --hw-red: #c7000b;          /* 华为企业业务红：logo/CTA/链接/徽标 */
+  --hw-red-press: #a50009;
+  --mooc-blue: #2b7cf5;       /* "慕课"标签蓝 */
+
+  /* —— 中性 —— */
+  --ink: #000000;             /* 黑工具条 / 一级标题 */
+  --text: #333333;            /* 正文 */
+  --text-2: #595959;
+  --text-3: #666666;          /* 副标题 */
+  --faint: #999999;           /* 占位/辅助数字 */
+  --line: #e5e5e5;            /* 分割线 */
+  --line-input: #d9d9d9;      /* 搜索框边框 */
+  --page-bg: #f7f8fa;         /* 页面底 */
+  --gray-bg: #f2f3f5;         /* 隔区块浅灰底 */
+  --cookie-bg: #ededed;
+  --white: #ffffff;
+
+  /* —— 字体 —— */
+  --font: 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif;
+  /* 字号阶梯（现网实测） */
+  --fs-body: 14px;            /* 导航/链接/正文 */
+  --fs-nav: 16px;             /* 主导航项 */
+  --fs-title: 28px;           /* 区块 H1（实测 28px/700，截图估读 32-36 均为此级） */
+  --fs-sub: 16px;             /* 区块副标题 */
+  --fs-card-title: 16px;      /* 课程卡标题 */
+  --fs-card-meta: 12px;       /* 卡片辅助信息 */
+  --fs-cookie: 13px;
+
+  /* —— 结构尺寸 —— */
+  --cookie-h: 38px;           /* Cookie 提示条 */
+  --topbar-h: 40px;           /* 黑色工具条 */
+  --mainnav-h: 72px;          /* 白色主导航 */
+  --banner-ratio: 2880 / 840; /* 轮播 banner 宽高比（≈3.43） */
+  --container-w: 1200px;      /* 内容容器 */
+
+  /* —— 组件规格 —— */
+  /* 卡片：白底 8px 圆角、无边框、hover 阴影 0 6px 20px rgba(0,0,0,.10) 上浮 2px */
+  --card-radius: 8px;
+  --card-hover-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+  /* 按钮：红底白字、直角~4px 小圆角（华为商务风，非胶囊） */
+  --btn-radius: 4px;
+  /* 课程卡封面：135-140px 高，渐变色块 + 白色 HUAWEI ACADEMY 水印 + 44px 白底图标块 */
+  --course-cover-h: 140px;
+  /* 认证卡：220×283 背景图等比，金色徽章 84px */
+  /* 轮播指示器：56×3 横线，激活红 */
+  --dot-w: 56px; --dot-h: 3px;
+
+  /* —— 间距节奏 —— */
+  --sec-pad-y: 70px;          /* 区块上下留白 */
+  --sec-title-gap: 40px;      /* 区块标题到内容 */
+  --grid-gap: 24px;           /* 卡片网格间距 */
+}
+
+/* 组件 class 语义（与现网一致，优化层必须沿用）：
+ * .cookie-bar / .topbar / .mainnav / .TopBanner-wrapper
+ * .home-content-wrapper / .home-content-title（居中 28px/700 + 16px 副标）
+ * .Course-item（封面 .Course-item-cover + 信息 .Course-item-title-wrapper）
+ * .cert-item-wrapper（背景图卡 + .cert-badge 徽章 + .cert-list-items）
+ * .story-item / .talent-wrapper / .com-footer-wrapper
+ * 区块底色交替：课程区 --gray-bg → 认证区白 → 案例区 --gray-bg → 双选白
+ */

@@ -1,0 +1,80 @@
+/* ============ 设计 tokens ============
+ * 视觉语言：华为红 + 墨黑 + 中性纸面（信任优先的企业级产品 UI）
+ * 规则：中性色 70-90% 像素，accent 每屏 ≤2 处可见使用；
+ *       语义色按用途命名；圆角体系全局唯一（按钮 6 / 卡片 10 / 药丸 999）。
+ */
+:root {
+  /* 中性层 */
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #fbfbfa;
+  --surface-3: #f1f1ee;
+  --fg: #1b1c1f;
+  --fg-2: #3a3c42;
+  --muted: #5f6270;
+  --faint: #90939d;
+  --border: #e7e6e2;
+  --border-strong: #d6d5cf;
+  --inverse-bg: #17181b;
+  --inverse-fg: #f4f4f2;
+
+  /* 品牌强调（唯一 accent） */
+  --accent: #c7000b;
+  --accent-deep: #a5000a;
+  --accent-ink: #b00010;      /* 浅底文字用 */
+  --accent-soft: #faecec;     /* 浅底填充 */
+  --accent-line: #f0cfd0;
+
+  /* 语义色 */
+  --success: #1d7a40;
+  --success-soft: #e9f4ec;
+  --warn: #935d00;
+  --warn-soft: #faf1dc;
+  --danger: #b3261e;
+  --danger-soft: #faecea;
+  --info: #2f4e8f;
+  --info-soft: #ecf1f9;
+
+  /* 字体 */
+  --font-ui: 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Source Han Sans SC', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --font-num: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+
+  /* 字号（1.25 比例，全局 ≤8 档） */
+  --fs-caption: 12px;
+  --fs-small: 13px;
+  --fs-body: 14px;
+  --fs-body-l: 16px;
+  --fs-h3: 18px;
+  --fs-h2: 22px;
+  --fs-h1: 28px;
+  --fs-display: 40px;
+
+  /* 圆角体系 */
+  --r-s: 6px;
+  --r-m: 10px;
+  --r-l: 14px;
+  --r-pill: 999px;
+
+  /* 间距（4 的倍数） */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px; --sp-16: 64px;
+
+  /* 层叠与阴影 */
+  --shadow-1: 0 1px 2px rgba(23, 24, 27, 0.05);
+  --shadow-2: 0 4px 16px rgba(23, 24, 27, 0.08);
+  --shadow-3: 0 12px 40px rgba(23, 24, 27, 0.14);
+  --z-nav: 100; --z-dropdown: 200; --z-modal: 300; --z-toast: 400;
+
+  /* 动效（150ms 状态确认 / 240ms 进出场） */
+  --t-fast: 120ms cubic-bezier(0.2, 0, 0, 1);
+  --t-mid: 240ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
