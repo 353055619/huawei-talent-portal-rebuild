@@ -1,0 +1,1075 @@
+{
+  "generatedAt": "2026-11-15",
+  "sources": [
+    "survey/learn-cert",
+    "survey/academy-contest",
+    "survey/user-center",
+    "research/00",
+    "research/04",
+    "research/07(登录态补验)"
+  ],
+  "platforms": [
+    {
+      "platform": "华为人才在线",
+      "site": "e.huawei.com/cn/talent/*",
+      "modules": [
+        {
+          "id": "LC1",
+          "name": "学习中心",
+          "path": "/learning/",
+          "desc": "课程目录浏览、筛选排序、课程详情与学习器入口（频道主路由 /learning/#/ict-academy）",
+          "status": "verified",
+          "features": [
+            {
+              "id": "lc-1-1",
+              "name": "课程目录-专业课程视图",
+              "path": "/learning/#/ict-academy",
+              "desc": "按专业浏览课程，专业维度 4 个：计算机科学与技术、人工智能、软件工程、物联网工程",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-1-2",
+              "name": "课程目录-岗位课程视图",
+              "path": "/learning/#/ict-academy",
+              "desc": "按岗位维度浏览课程（课程目录三视图之一）",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-1-3",
+              "name": "课程目录-全部课程视图",
+              "path": "/learning/#/ict-academy",
+              "desc": "全量课程列表，共 133 条、12 页；课程分三层：实践课（专业综合实训）、核心课（算子开发/并行计算/编译原理/计组/数据结构等）、通识课（AI通识/智能体与AI编程/计算机系统通识等）",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-1-4",
+              "name": "课程筛选器",
+              "path": "/learning/#/ict-academy",
+              "desc": "五个筛选维度：专业 / 岗位 / 技术方向 / 课程类型 / 难度级别",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-1-5",
+              "name": "课程排序",
+              "path": "/learning/#/ict-academy",
+              "desc": "两种排序：学习量 / 发布时间",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-1-6",
+              "name": "课程卡",
+              "path": "/learning/#/ict-academy",
+              "desc": "卡片字段：类型标签（院校课程）、学习人数、时长（h）、难度、报名按钮、分享；课程大量绑定昇腾/CANN/鲲鹏/仓颉等华为技术栈",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-1-7",
+              "name": "慕课卡片（学习频道首页）",
+              "path": "/learning/#/ict-academy",
+              "desc": "学习频道首页另展示慕课卡片：免费标识 + 学习人数",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-1-8",
+              "name": "我的学习",
+              "path": "/learning/（频道内入口，需登录）",
+              "desc": "登录用户的学习入口；与用户中心 usercenter/#/mycourse（全部/在线课程/实验案例/学习中/已结束）互通，公告提示平台升级后建议前往【学习】页面重新学习（学习记录迁移断档）",
+              "status": "现网在线（登录后可见）"
+            },
+            {
+              "id": "lc-1-9",
+              "name": "课程详情页",
+              "path": "/ict-academy/#/ict-courses-detail",
+              "desc": "含课程目录树、能力目标、课程团队；双角色入口：我是学生-去学习、我是老师-去学习+我要开班",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-1-10",
+              "name": "学习器",
+              "path": "/outPage/#/sxz-course",
+              "desc": "独立子应用（新标签打开，iframe 嵌入）：课程目录与学习进度（已完成百分比）、课件下载（学生版/老师版，走 backplatform）、电子书外链 GitCode",
+              "status": "现网在线（登录后可见）"
+            }
+          ]
+        },
+        {
+          "id": "LC2",
+          "name": "认证中心",
+          "path": "/cert/",
+          "desc": "职业认证/专业认证全景、约考、考券与重认证规则、机构查询、丛书与资讯（频道主路由 /cert/#/careerCert）",
+          "status": "verified",
+          "features": [
+            {
+              "id": "lc-2-1",
+              "name": "职业认证全景图",
+              "path": "/cert/#/careerCert",
+              "desc": "三级认证体系矩阵：HCIA（工程师）/ HCIP（高级工程师）/ HCIE（专家）",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-2-2",
+              "name": "认证方向分类",
+              "path": "/cert/#/careerCert",
+              "desc": "四大方向族：ICT基础设施（Datacom/WLAN/Security/Transmission/Access/5G/LTE/MDC）、基础软硬件（Computing/Storage）、云平台及云服务、项目管理；research/04 口径为 22 个技术方向",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-2-3",
+              "name": "专业认证",
+              "path": "/cert/#/specialistCert",
+              "desc": "职业认证之外的第二大类认证（specialist cert）全景浏览",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-2-4",
+              "name": "认证课程详情",
+              "path": "/cert/#/course-details",
+              "desc": "认证关联课程详情页（路由存在，需课程 ID 参数）",
+              "status": "路由存在，内容待登录/带参验证"
+            },
+            {
+              "id": "lc-2-5",
+              "name": "参加考试",
+              "path": "/cert/（频道内入口，笔试外链 Pearson VUE）",
+              "desc": "笔试统一由 Pearson VUE 授权考试中心代理（外链）；电子证书考后 1 个工作日可下载，HCIE 例外；2024年10月起约考前须在人才在线完成实名登记",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-2-6",
+              "name": "考券规则",
+              "path": "/cert/（规则说明；考券持有入口在 usercenter/#/my-coupons）",
+              "desc": "考试券（voucher）生命周期规则：暗码考券/数字考券、考券记录；占用后 24h 自动取消、HCIE 需提前 7 天约考；含 HALP 渠道券与学生优惠券；usercenter 有考券申请路由（voucher/application，登录后实测空白页）",
+              "status": "inferred（规则内容已实证，频道内规则页入口待确认）"
+            },
+            {
+              "id": "lc-2-7",
+              "name": "重认证规则",
+              "path": "/cert/（频道内规则页）",
+              "desc": "证书有效期与重认证（再认证）规则说明",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-2-8",
+              "name": "授权培训机构查询",
+              "path": "/cert/（频道内查询入口）",
+              "desc": "查询华为授权培训伙伴（HALP）机构的入口",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-2-9",
+              "name": "认证丛书",
+              "path": "/cert/（频道内入口）",
+              "desc": "《华为ICT认证系列丛书》展示/导购",
+              "status": "现网在线"
+            },
+            {
+              "id": "lc-2-10",
+              "name": "认证资讯公告",
+              "path": "/cert/（频道内列表）",
+              "desc": "认证相关资讯公告列表",
+              "status": "现网在线"
+            }
+          ]
+        },
+        {
+          "id": "tal-contest",
+          "name": "华为ICT大赛",
+          "path": "/cn/talent/ict-academy/#/ict-contest?compId=...",
+          "desc": "年度赛事（以赛促学/以赛选才）：7条赛道、校赛→省赛→全国→全球四级赛程、分大区报名；本届报名187,560人、累计1,180,000+、2000+院校、100+国家。挂在 ict-academy 子应用下。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "tal-contest-tracks",
+              "name": "赛道展示（7赛道）",
+              "path": "/cn/talent/ict-academy/#/ict-contest",
+              "desc": "实践赛（网络/云/基础软件3方向）、创新赛、教学赛（教师·产教融合）、挑战赛（昇腾+鲲鹏调优）、编程赛（仓颉）、算子赛（昇腾C算子开发）、精英赛（商业/toB销售）。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-contest-schedule",
+              "name": "赛程展示",
+              "path": "/cn/talent/ict-academy/#/ict-contest",
+              "desc": "实践赛：校赛→省赛（初赛+复赛）→全国总决赛→全球总决赛四级；创新赛：初赛→中国总决赛→全球总决赛三级。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-contest-enroll",
+              "name": "分区报名",
+              "path": "/cn/talent/ict-academy/#/ict-contest",
+              "desc": "分大区报名：中国区（124,758人，截止2026-10-31）、Middle East & Central Asia、Southern Africa、Asia Pacific、Northern Africa、Latin America、Europe；报名走ICT学院线上通道（账号→学生身份认证→组队→报名）；截止后仅显示'报名已结束'。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-contest-detail",
+              "name": "赛道详情与报名状态",
+              "path": "/cn/talent/#/ict/innovation-details",
+              "desc": "赛道维度详情：报名人数（网络90,336/云19,326/基础软件15,096）、报名状态；问卷在 survey.huaweicloud.com、活动报名在 edu.huaweicloud.com（外域）。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-contest-materials",
+              "name": "大赛手册/路演资料下载",
+              "path": "/cn/talent/ict-academy/#/ict-contest（filepreview PDF 附件）",
+              "desc": "大赛手册、路演胶片以 PDF 附件交付（filepreview 链接），无结构化内容运营。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-contest-qualify",
+              "name": "省资格赛测试（外链考试系统）",
+              "path": "外链 https://talent.shixizhi.huawei.com/iexam",
+              "desc": "省资格赛测试链接指向 talent.shixizhi.huawei.com/iexam（第7套独立考试系统）；报名与考试分离。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-contest-history",
+              "name": "往届回顾",
+              "path": "/cn/talent/ict-academy/#/ict-contest（往届回顾区）",
+              "desc": "第1~10届 tab 切换回顾；'榜首SHOW'获奖者展示；中国区纳入全国普通高校大学生竞赛榜单，海外纳入 UNESCO 全球技能学院旗舰项目。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-contest-mycomp",
+              "name": "我的大赛（参赛记录）",
+              "path": "/cn/talent/usercenter/#/home/myComp",
+              "desc": "用户中心'我的大赛'页面（实测为空页面，空态无引导 CTA）；属用户中心域、大赛频道未打通引导。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-contest-news",
+              "name": "大赛资讯",
+              "path": "/cn/talent/ict-academy/#/ict-contest（资讯区）",
+              "desc": "大赛相关资讯/通知列表（频道内容组成）。",
+              "status": "inferred"
+            }
+          ]
+        },
+        {
+          "id": "tal-halp",
+          "name": "培训伙伴 HALP",
+          "path": "/cn/talent/halp/#/home?navType=halp",
+          "desc": "华为授权培训伙伴（HALP，对标思科 ASC）专区：面向商业培训伙伴的注册/认证/续认证、讲师专区（HCSI）、教学管理（开班/招生）、资讯公告。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "tal-halp-register",
+              "name": "HALP 注册/认证/续认证",
+              "path": "/cn/talent/halp/#/home",
+              "desc": "培训伙伴入驻与资质生命周期管理（注册、认证、续认证）；具体表单流程需登录后验证。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-halp-instructor",
+              "name": "讲师专区（HCSI）",
+              "path": "/cn/talent/halp/#/home（讲师专区入口）",
+              "desc": "HALP 讲师认证与赋能专区（HCSI，华为认证讲师体系）；登录后专区内容待验证。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-halp-teaching",
+              "name": "教学管理（开班/招生）",
+              "path": "/cn/talent/halp/#/home（教学管理入口）",
+              "desc": "HALP 伙伴的开班与招生管理；具体管理界面待登录验证。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-halp-news",
+              "name": "资讯公告",
+              "path": "/cn/talent/halp/#/home（资讯公告区）",
+              "desc": "HALP 公告列表；最旧到2022-2023、最新公告停在2023年（更新停滞，运营带宽不足信号）。",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "tal-corporate",
+          "name": "企业培训",
+          "path": "/cn/talent/corporate/#/home（redirectConfig 路由）；现网导航实际落地与 HALP 同 URL 或外链",
+          "desc": "企业侧培训业务频道：redirectConfig 中存在独立 /corporate/ 子应用（企业培训），但现网顶部导航点击'企业培训'后新标签打开 e.huawei.com/cn/solutions/services/learning-and-certification 及 elearning.huawei.com/cn/homepage——与 HALP 落地页相同或跳出独立系统，体验割裂。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "tal-corporate-landing",
+              "name": "企业培训落地页（导航入口）",
+              "path": "/cn/talent/corporate/#/home；现网导航 → https://e.huawei.com/cn/solutions/services/learning-and-certification",
+              "desc": "顶部导航'企业培训'频道入口；与'培训伙伴'导航落地重复，corporate 子应用路由存活但实际内容被 solutions 页/外链替代（待主线核实）。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-corporate-elearning",
+              "name": "elearning 外链（认证官网/商城）",
+              "path": "外链 https://elearning.huawei.com/cn/homepage",
+              "desc": "企业培训/商城指向 elearning.huawei.com（华为认证官网/elearning，另一套系统），非本门户功能。",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "tal-stories",
+          "name": "成功案例",
+          "path": "/cn/talent/success-stories/#/home",
+          "desc": "成功案例频道：内容全部为华为ICT大赛获奖故事（学生视角），列表+加载更多分页，无筛选/分类。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "tal-stories-list",
+              "name": "获奖故事列表",
+              "path": "/cn/talent/success-stories/#/home",
+              "desc": "ICT大赛获奖故事（学生视角）列表展示；页脚'资源'区亦设成功案例入口。",
+              "status": "verified"
+            },
+            {
+              "id": "tal-stories-more",
+              "name": "加载更多（分页）",
+              "path": "/cn/talent/success-stories/#/home",
+              "desc": "列表以'加载更多'方式分页；无分类筛选/搜索（未见证据）。",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "portal-shell",
+          "name": "门户壳（portal）",
+          "path": "https://e.huawei.com/cn/talent/portal/#/",
+          "desc": "华为人才在线统一门户：顶部导航 8 频道拼装 ≥5 个 SPA 子站，主体为 banner/课程/认证/案例等营销目录内容，核心交易分散在子站与外部系统。门户本身是壳，静态抓取 body 为空（SPA 动态渲染）。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "portal-nav",
+              "name": "顶部导航 8 频道",
+              "path": "e.huawei.com/cn/talent/{portal|learning|cert|ict-academy|halp|success-stories}/...",
+              "desc": "频道：首页/学习/认证/华为ICT学院/华为ICT大赛/培训伙伴(HALP)/企业培训/成功案例/商城。至少 3 个频道（企业培训/商城/部分资源）新标签跳出到独立系统；'企业培训'与'培训伙伴'落地页相同。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-banner",
+              "name": "首页 banner 轮播",
+              "path": "/cn/talent/portal/#/",
+              "desc": "门户首页轮播 banner 区。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-hot-course",
+              "name": "热门课程",
+              "path": "/cn/talent/portal/#/",
+              "desc": "首页热门课程轮播/推荐区，点击进入 learning 课程目录。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-hot-cert",
+              "name": "热门认证",
+              "path": "/cn/talent/portal/#/",
+              "desc": "首页热门认证推荐区，导流至 cert 职业认证全景图（HCIA/HCIP/HCIE）。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-success-story",
+              "name": "成功案例区",
+              "path": "/cn/talent/success-stories/#/home",
+              "desc": "成功案例（全部为 ICT 大赛获奖学生故事，加载更多分页），门户首页设入口图区。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-talent-fair",
+              "name": "人才双选图区",
+              "path": "/cn/talent/portal/#/",
+              "desc": "首页人才双选会/就业出口图区（全球每年数十场 Job Fair、1000+ 合作招聘企业的双选会导流）。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-search",
+              "name": "全站搜索",
+              "path": "e.huawei.com/cn/talent/search → /cn/talent/learning/",
+              "desc": "全站搜索入口，搜索结果由 learning 子应用承接。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-lang",
+              "name": "中/EN 语言切换",
+              "path": "/cn/talent/portal/#/（/cn/ ↔ 英文站）",
+              "desc": "门户中英文语言切换。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-footer",
+              "name": "页脚四栏",
+              "path": "/cn/talent/portal/#/",
+              "desc": "关于我们（华为认证/ICT学院/培训合作伙伴/资讯中心）、资源（资源中心/HALP下载专区/ICT学院下载专区/工具专区/成功案例）、快速链接（华为招聘/华为云/认证论坛等）、联系我们（智能客服/提交问题单）。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-cookies",
+              "name": "Cookies 提示条",
+              "path": "/cn/talent/portal/#/",
+              "desc": "门户底部 Cookies 合规提示条。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-msg-entry",
+              "name": "消息中心入口",
+              "path": "/cn/talent/portal/#/（顶栏铃铛）",
+              "desc": "顶栏消息中心入口，未登录时显示'0'（未登录占位，无内容）。",
+              "status": "现网在线"
+            },
+            {
+              "id": "portal-login-entry",
+              "name": "登录/注册入口",
+              "path": "uniportal.huawei.com（顶栏'登录/注册'）",
+              "desc": "顶栏登录/注册按钮，跳华为统一账号 uniportal 登录后回门户。",
+              "status": "外链系统"
+            }
+          ]
+        },
+        {
+          "id": "usercenter",
+          "name": "用户中心（usercenter）",
+          "path": "https://e.huawei.com/cn/talent/usercenter/#/home",
+          "desc": "登录后个人中心，左侧菜单 8 子模块：我的课程/我的班级/我的大赛/我的券包/我的证书/我的考试/我的消息/个人信息。已知硬伤：首页主区空白；左侧菜单仅在 #/home 渲染，进入子页后菜单消失；证书企业关联跳 myspace 第三系统。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "uc-home-frame",
+              "name": "用户中心首页框架",
+              "path": "/cn/talent/usercenter/#/home",
+              "desc": "首页主区域空白：无概览、无待办聚合、无快捷入口；左侧菜单 8 项；菜单只在 #/home 渲染，进入子页后消失、模块间只能浏览器后退；账号下拉仅 4 项（用户中心/我的课程/个人信息/实名认证/退出）。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-course-list",
+              "name": "我的课程-课程列表",
+              "path": "/cn/talent/usercenter/#/home/mycourse",
+              "desc": "我的课程列表，五个视图/筛选：全部/在线课程/实验案例/学习中/已结束。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-course-notice",
+              "name": "我的课程-平台升级断档公告",
+              "path": "/cn/talent/usercenter/#/home/mycourse",
+              "desc": "两条公告：①班级课程不在此显示、需去我的班级；②'由于平台升级，建议前往【学习】页面重新学习'——旧学习记录迁移断档。",
+              "status": "断档"
+            },
+            {
+              "id": "uc-class-list",
+              "name": "我的班级-班级列表筛选",
+              "path": "/cn/talent/usercenter/#/home/myclass-list",
+              "desc": "按组织方/班级状态/班级名称筛选已加入班级。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-class-join",
+              "name": "我的班级-邀请码加入",
+              "path": "/cn/talent/usercenter/#/home/myclass-list",
+              "desc": "输入邀请码加入班级——学生进班唯一方式，无'本校班级'浏览/搜索。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-comp-empty",
+              "name": "我的大赛",
+              "path": "/cn/talent/usercenter/#/home/myComp",
+              "desc": "我的大赛页面为空，空态无任何引导 CTA（无去报名/去组队入口）。",
+              "status": "空白页"
+            },
+            {
+              "id": "uc-coupon-dark",
+              "name": "我的券包-暗码考券",
+              "path": "/cn/talent/usercenter/#/home/my-coupons",
+              "desc": "暗码（字符串码）形式考试券的查看/管理。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-coupon-digital",
+              "name": "我的券包-数字考券",
+              "path": "/cn/talent/usercenter/#/home/my-coupons",
+              "desc": "数字考券的查看/管理。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-coupon-record",
+              "name": "我的券包-考券记录",
+              "path": "/cn/talent/usercenter/#/home/my-coupons",
+              "desc": "考券使用/流转记录列表。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-coupon-rule",
+              "name": "我的券包-考券规则",
+              "path": "/cn/talent/usercenter/#/home/my-coupons",
+              "desc": "规则文本暴露复杂状态机：考券占用后 24h 未使用自动取消；HCIE 需提前 7 天约考。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-coupon-apply",
+              "name": "我的券包-考券申请",
+              "path": "/cn/talent/usercenter/#/home/voucher/application",
+              "desc": "考券申请路由存在但渲染为空白页。",
+              "status": "空白页"
+            },
+            {
+              "id": "uc-cert-list",
+              "name": "我的证书-证书列表",
+              "path": "e.huawei.com/cn/talent/#/personal/mycert",
+              "desc": "认证证书/结课证书两类；电子证书考后 1-3 工作日生成可下载；HCIE 纸质证书套件 15/30 工作日邮寄。注意：从用户中心跳入后布局变化（实为 talent 主站另一子应用）。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-cert-merge",
+              "name": "我的证书-关联其他账号证书",
+              "path": "e.huawei.com/cn/talent/#/personal/mycert",
+              "desc": "将其他账号名下证书关联到当前账号（多账号合并场景）。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-cert-upgrade",
+              "name": "我的证书-关联 Upgrade 成绩",
+              "path": "e.huawei.com/cn/talent/#/personal/mycert",
+              "desc": "关联 Upgrade 认证升级考试成绩。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-cert-enterprise",
+              "name": "我的证书-企业关联",
+              "path": "e.huawei.com/cn/myspace/...",
+              "desc": "证书与企业（雇主）关联，跳 myspace 第三套系统；企业关联变更需间隔 12 个月。",
+              "status": "外链系统"
+            },
+            {
+              "id": "uc-exam-list",
+              "name": "我的考试-考试列表",
+              "path": "e.huawei.com/cn/talent/#/personal/myappointments/list",
+              "desc": "职业&专业认证考试/其他考试两类；支持'是否在线预约'筛选。布局与用户中心不同（另一子应用）。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-exam-vue",
+              "name": "我的考试-VUE 考试记录",
+              "path": "e.huawei.com/cn/talent/#/personal/myappointments/list",
+              "desc": "Pearson VUE 代理的认证考试记录查看。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-exam-receipt",
+              "name": "我的考试-考试收据",
+              "path": "e.huawei.com/cn/talent/#/personal/myappointments/list",
+              "desc": "考试收据下载/查看按钮。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-news-tabs",
+              "name": "我的消息-三 tab",
+              "path": "/cn/talent/usercenter/#/home/my-news",
+              "desc": "待办事项(0)/消息提醒(0)/平台公告(0) 三个 tab；实测账号下均为空。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-info-profile",
+              "name": "个人信息-资料查看编辑",
+              "path": "/cn/talent/usercenter/#/home/myinfo",
+              "desc": "个人信息查看/编辑；姓名'确定后将无法修改'（锁定）；实测姓字段被填成账号 ID（数据质量缺陷）；无学校 SSO/学信网式可信认证。",
+              "status": "现网在线"
+            },
+            {
+              "id": "uc-info-realname",
+              "name": "个人信息-实名认证",
+              "path": "/cn/talent/usercenter/#/realinfosystem",
+              "desc": "实名认证入口（2024-10 起约考前置要求）；实测点击后仅 URL 变为 #/realinfosystem、内容不变（疑似弹层渲染缺陷）。注意该路由不在 #/home 之下。",
+              "status": "空白页"
+            },
+            {
+              "id": "uc-info-role",
+              "name": "个人信息-角色关联向导",
+              "path": "/cn/talent/usercenter/#/home/myinfo",
+              "desc": "关联-讲师/关联-学生按钮 → 向导：国家/我的学院选择器/专业/学历/班级/学号/入学毕业年月/备注+隐私声明；姓名确定后无法修改；自填+审批制，无可信学籍校验。",
+              "status": "现网在线"
+            }
+          ]
+        },
+        {
+          "id": "account-join",
+          "name": "账号与入驻",
+          "path": "https://partner.huawei.com/eplusweb/#/cn/web/become-an-ict-academy",
+          "desc": "统一账号与学校入驻旅程。学校入驻跳出人才在线门户、在华为伙伴系统完成：注册华为账号（授权函盖章）→ metaEcpri 填信息传扫描件 → 邮件审批 → 在线签校企合作协议 → 申请认证分级（metaEcpri/#/authenApply 查进度）→ 通过后回人才在线用户中心管理。全程跨 2 系统 3 应用、邮件+线下盖章。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "acct-login",
+              "name": "uniportal 统一登录",
+              "path": "https://uniportal.huawei.com",
+              "desc": "华为统一账号：手机号/邮箱/账号名+密码登录、短信验证码登录；人才在线全部子站共用（WeLink 鉴权）。",
+              "status": "外链系统"
+            },
+            {
+              "id": "acct-register",
+              "name": "注册华为账号",
+              "path": "https://uniportal.huawei.com",
+              "desc": "未登录顶栏'注册'入口，注册华为统一账号（短信验证码）。",
+              "status": "外链系统"
+            },
+            {
+              "id": "acct-forgot",
+              "name": "忘记密码",
+              "path": "https://uniportal.huawei.com",
+              "desc": "华为账号找回密码流程。",
+              "status": "外链系统"
+            },
+            {
+              "id": "join-entry",
+              "name": "学校入驻入口（成为华为ICT学院）",
+              "path": "ict-academy/#/home'立即注册' → partner.huawei.com/eplusweb/#/cn/web/become-an-ict-academy",
+              "desc": "ICT学院首页'成为华为ICT学院（学校）'立即注册按钮，新标签跳出门户到伙伴系统；教师/学生注册同走 uniportal。学校入驻与学生学习是两套系统。",
+              "status": "外链系统"
+            },
+            {
+              "id": "join-letter",
+              "name": "授权函下载/盖章/上传",
+              "path": "ihelp-center 文档页（下载）+ metaEcpri（上传）",
+              "desc": "下载《华为人才联盟伙伴管理员授权函》，盖二级学院章+公章，扫描件在 metaEcpri 上传。",
+              "status": "外链系统"
+            },
+            {
+              "id": "join-approve",
+              "name": "注册信息填报与邮件审批",
+              "path": "partner.huawei.com/metaEcpri/#/",
+              "desc": "metaEcpri 填写注册信息并等待邮件审批（全程邮件通知、无站内进度提醒闭环）。",
+              "status": "外链系统"
+            },
+            {
+              "id": "join-agreement",
+              "name": "在线签校企合作协议",
+              "path": "partner.huawei.com/metaEcpri/#/",
+              "desc": "申请认证 ICT 学院时在线签署校企合作协议。",
+              "status": "外链系统"
+            },
+            {
+              "id": "join-authen",
+              "name": "认证分级申请",
+              "path": "partner.huawei.com/metaEcpri/#/authenApply",
+              "desc": "ICT 学院分级运营申请：认证级 → 优选级 → 领先级，逐年评审晋升。",
+              "status": "外链系统"
+            },
+            {
+              "id": "join-progress",
+              "name": "入驻/认证进度查询",
+              "path": "partner.huawei.com/metaEcpri/#/authenApply",
+              "desc": "在 metaEcpri 查询入驻与认证申请进度；通过后回人才在线用户中心管理。",
+              "status": "外链系统"
+            }
+          ]
+        },
+        {
+          "id": "mall-external",
+          "name": "商城与外部系统（elearning.huawei.com）",
+          "path": "https://elearning.huawei.com/cn/homepage",
+          "desc": "门户导航'商城'新标签打开 elearning.huawei.com（另一套系统，承载认证官网/商城/代金券）。同一用户旅程实际横跨 7+ 独立系统：e.huawei.com/cn/talent/*（≈10 个子应用）、elearning、partner、iexam、survey/edu.huaweicloud、myspace、Pearson VUE、uniportal。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "mall-cert-site",
+              "name": "华为认证官网（elearning）",
+              "path": "https://elearning.huawei.com/cn/homepage",
+              "desc": "HCIA/HCIP/HCIE 认证官网：认证考试与课程培训信息门户（与人才在线 cert 频道信息重叠、两套系统各自维护）。",
+              "status": "外链系统"
+            },
+            {
+              "id": "mall-shop",
+              "name": "商城入口",
+              "path": "门户导航'商城' → https://elearning.huawei.com/cn/homepage",
+              "desc": "门户顶部导航'商城'频道，新标签打开 elearning（非本门户子应用）；'企业培训'频道亦外链同一地址，体验割裂。",
+              "status": "外链系统"
+            },
+            {
+              "id": "mall-voucher",
+              "name": "代金券/考试券购买",
+              "path": "elearning.huawei.com（商城）+ pearsonvue.com/cn/zh/huawei/vouchers.html",
+              "desc": "商城代金券/考试券购买与 VUE 考试券体系（与用户中心'我的券包/考券申请'构成券生命周期闭环）。",
+              "status": "外链系统"
+            },
+            {
+              "id": "ext-system-map",
+              "name": "外部系统外链全景",
+              "path": "跨 7+ 域名",
+              "desc": "登录后实测确认的独立系统：①e.huawei.com/cn/talent/*（≈10 个子应用：portal/learning/cert/ict-academy/usercenter/halp/success-stories/news/outPage/backplatform）②elearning ③partner（eplusweb+metaEcpri）④talent.shixizhi.huawei.com（iexam 考试）⑤survey/edu.huaweicloud.com ⑥myspace ⑦Pearson VUE + uniportal。多标签跳转、上下文与登录态多次中断。",
+              "status": "现网在线"
+            }
+          ]
+        },
+        {
+          "id": "news",
+          "name": "资讯中心（news）",
+          "path": "https://e.huawei.com/cn/talent/news/",
+          "desc": "门户资讯中心：新闻列表与详情；门户页脚'关于我们-资讯中心'入口。静态抓取 body 为空（SPA 动态渲染），结构以 redirectConfig.js 路由与 research 笔记佐证。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "news-list",
+              "name": "新闻列表",
+              "path": "https://e.huawei.com/cn/talent/news/#/",
+              "desc": "资讯中心新闻/公告列表页（门户级资讯聚合）。",
+              "status": "现网在线"
+            },
+            {
+              "id": "news-detail",
+              "name": "新闻详情",
+              "path": "https://e.huawei.com/cn/talent/news/#/details",
+              "desc": "新闻详情页（redirectConfig 存在 /news/details 旧路径重定向）。",
+              "status": "现网在线"
+            }
+          ]
+        },
+        {
+          "id": "cross-cutting",
+          "name": "通用横切功能",
+          "path": "e.huawei.com/cn/talent/*",
+          "desc": "贯穿各子应用的通用能力：站内搜索、消息通知、问题单工单（issue-history/approval-details 路由）、下载专区（backplatform）、智能客服。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "cross-search",
+              "name": "站内搜索",
+              "path": "e.huawei.com/cn/talent/search/ → learning 子应用承接",
+              "desc": "全站内容搜索（课程/认证等），结果页在 learning 渲染。",
+              "status": "现网在线"
+            },
+            {
+              "id": "cross-message",
+              "name": "消息通知",
+              "path": "门户顶栏入口 + /cn/talent/usercenter/#/home/my-news",
+              "desc": "双入口消息体系：门户顶栏铃铛（未登录 0 占位）+ 用户中心我的消息（待办/消息/平台公告三 tab）；未观察到站内 toast/推送等其他通知形态。",
+              "status": "现网在线"
+            },
+            {
+              "id": "cross-issue",
+              "name": "问题单工单",
+              "path": "/cn/talent/usercenter/#/home/issue-history、#/home/approval-details",
+              "desc": "历史问题单与关联审批详情（工单闭环）；门户页脚'联系我们-提交问题单'为提交入口。",
+              "status": "现网在线"
+            },
+            {
+              "id": "cross-download",
+              "name": "下载专区",
+              "path": "e.huawei.com/cn/talent/backplatform/",
+              "desc": "backplatform 承载课件/资料下载（学习器内学生版/老师版课件下载走 backplatform）；页脚资源栏另有 HALP 下载专区/ICT学院下载专区/工具专区。注意：backplatform 不在 redirectConfig.js 中，属实测发现的隐藏子应用。",
+              "status": "现网在线"
+            },
+            {
+              "id": "cross-service",
+              "name": "智能客服",
+              "path": "门户页脚'联系我们-智能客服'",
+              "desc": "页脚智能客服入口（在线客服咨询）。",
+              "status": "现网在线"
+            }
+          ]
+        }
+      ],
+      "featureCount": 91
+    },
+    {
+      "platform": "ICT学院",
+      "site": "e.huawei.com/cn/talent/ict-academy/*（入驻在 partner.huawei.com）",
+      "modules": [
+        {
+          "id": "icta-home",
+          "name": "频道首页与资源资讯聚合",
+          "path": "/cn/talent/ict-academy/#/home",
+          "desc": "ICT学院频道落地页与内容聚合：规模数据展示、三类角色注册入口、大赛入口、资源中心、资讯中心、授权课程目录与课程详情。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "icta-home-page",
+              "name": "频道首页（数据与入口）",
+              "path": "/cn/talent/ict-academy/#/home",
+              "desc": "规模数据展示（110+国家/3500+学院/11000+教师/年培养500,000+学生）；三个'立即注册'入口（学院/教师/学生）与大赛入口。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-resource-center",
+              "name": "资源中心（下载专区）",
+              "path": "/cn/talent/ict-academy/#/home（首页模块）",
+              "desc": "课程/资料/工具三类资源下载聚合；页脚另有'ICT学院下载专区''HALP下载专区''工具专区'入口。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-news",
+              "name": "资讯中心（学院资讯）",
+              "path": "/cn/talent/ict-academy/#/home（首页模块）；详情 /cn/talent/news/#/details",
+              "desc": "ICT学院相关资讯列表与新闻详情（news 子应用承接）。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-course-catalog",
+              "name": "授权课程目录",
+              "path": "/cn/talent/ict-academy/#/home（首页模块）；全量目录在 /cn/talent/learning/#/ict-academy",
+              "desc": "22个技术方向认证、14门专业课程的授权课程目录；与平台'学习'频道共用课程数据（133门课程、专业/岗位/技术方向/类型/难度筛选在 learning 域）。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-course-detail",
+              "name": "课程详情页",
+              "path": "/cn/talent/ict-academy/#/ict-courses-detail",
+              "desc": "目录树/能力目标/课程团队；角色分叉入口：我是学生-去学习；我是老师-去学习+我要开班（开班入口挂在此页）。",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "icta-join",
+          "name": "学院入驻与合作",
+          "path": "/cn/talent/ict-academy/#/become-ict-academy（门户入口）；实际注册落点 https://partner.huawei.com/eplusweb/#/cn/web/become-an-ict-academy",
+          "desc": "学校申请成为华为ICT学院的全流程：注册华为账号→下载盖章授权函→填报审批→在线签校企合作协议→认证分级（认证级/优选级/领先级）→续认证。核心入驻流程在华为伙伴系统（partner.huawei.com），跨出人才在线门户。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "icta-join-register",
+              "name": "学校注册申请（授权函）",
+              "path": "https://partner.huawei.com/eplusweb/#/cn/web/become-an-ict-academy",
+              "desc": "注册华为账号后，下载《华为人才联盟伙伴管理员授权函》（需盖二级学院+公章），在 metaEcpri 填注册信息并上传扫描件。授权函模板下载在 ihelp-center 文档页。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-join-approval",
+              "name": "注册信息填报与邮件审批",
+              "path": "https://partner.huawei.com（metaEcpri 应用）",
+              "desc": "metaEcpri 填报注册信息、上传授权函扫描件后等待邮件审批；全程邮件通知、无站内进度提醒。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-join-agreement",
+              "name": "在线签署校企合作协议",
+              "path": "https://partner.huawei.com（申请认证 ICT 学院环节）",
+              "desc": "注册审批通过后申请认证 ICT 学院，在线签署校企合作协议。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-join-authen",
+              "name": "认证申请与进度查询",
+              "path": "https://partner.huawei.com/metaEcpri/#/authenApply",
+              "desc": "在 metaEcpri 的认证申请页查看认证进度；通过后回人才在线用户中心管理。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-join-level",
+              "name": "认证分级运营",
+              "path": "（业务规则，无独立线上页面证据）",
+              "desc": "ICT学院分认证级/优选级/领先级三级，逐年评审晋升；层级在'查找ICT学院'结果卡展示（如'领先级·双一流'）。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-join-renewal",
+              "name": "续认证",
+              "path": "（入口在频道页文案，流程未验证）",
+              "desc": "已授权学院的续认证（与注册/认证并列为频道三类角色入口的核心动作）。",
+              "status": "inferred"
+            },
+            {
+              "id": "icta-join-manage",
+              "name": "入驻后管理（回门户用户中心）",
+              "path": "/cn/talent/usercenter/#/home",
+              "desc": "认证通过后回到人才在线用户中心进行日常管理（与入驻系统分离，院校管理员需跨 partner.huawei.com 与 e.huawei.com 两套系统）。",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "icta-teacher",
+          "name": "教师服务（成为ICT学院教师）",
+          "path": "/cn/talent/ict-academy/#/home（教师注册入口）",
+          "desc": "面向高校教师：注册关联学院、HCAI 讲师认证路径、TTT 培训、开班开课、教学资料下载、奖教金。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "icta-teacher-register",
+              "name": "教师注册与学院关联",
+              "path": "/cn/talent/ict-academy/#/home → uniportal.huawei.com 登录",
+              "desc": "教师注册走华为统一账号（uniportal）；用户中心'个人信息-角色关联'提供关联-讲师向导（国家/我的学院选择器/专业/学历/班级/备注+隐私声明），姓名确定后无法修改，无学校 SSO/学信网式可信认证。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-teacher-hcai",
+              "name": "HCAI 讲师认证路径",
+              "path": "（认证流程描述，线上入口待验证）",
+              "desc": "Huawei Certified Academy Instructor：课前测试 → 考取对应方向 HCIA → HCAI 线上学习与考试 → 拿证并与院校绑定。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-teacher-ttt",
+              "name": "TTT 讲师培训（Train-the-Trainer）",
+              "path": "（项目介绍，线上入口待验证）",
+              "desc": "TTT 项目同时产出 HCIA+HCAI 双证讲师。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-teacher-class",
+              "name": "开班开课",
+              "path": "/cn/talent/ict-academy/#/ict-courses-detail（'我要开班'按钮）；班级管理在 /cn/talent/usercenter/#/home/myclass-list",
+              "desc": "教师在课程详情页点'我要开班'（我是老师-去学习+我要开班）；开班后学生以邀请码进班（我的班级在用户中心域）。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-teacher-materials",
+              "name": "教学资料下载",
+              "path": "/cn/talent/outPage/#/sxz-course（学习器课件下载，老师版走 backplatform）",
+              "desc": "教师版课件/教学套件下载（大纲/MOOC/实验指导/题库），与学生版区分，经 backplatform 后台分发。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-teacher-award",
+              "name": "奖教金",
+              "path": "（智能基座配套项目，线上申请入口未验证）",
+              "desc": "智能基座等项目配套奖教金（与奖学金、基地班并列的激励权益）。",
+              "status": "inferred"
+            }
+          ]
+        },
+        {
+          "id": "icta-student",
+          "name": "学生服务（成为ICT学院学生）",
+          "path": "/cn/talent/ict-academy/#/become-ict-student",
+          "desc": "面向在校学生：注册关联学院/班级、在线学习、学习资料下载。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "icta-student-register",
+              "name": "学生注册与学院/班级关联",
+              "path": "/cn/talent/ict-academy/#/become-ict-student → 用户中心角色关联",
+              "desc": "学生注册走 uniportal，后在用户中心'角色关联-关联-学生'完成向导（国家/我的学院/专业/学历/班级/学号/入学毕业年月），自填+审批，无可信学籍校验。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-student-learn",
+              "name": "在线学习（学习器）",
+              "path": "/cn/talent/outPage/#/sxz-course（'去学习'新标签跳转，iframe 嵌入）",
+              "desc": "课程学习器：目录进度（完成百分比）、课件下载、电子书外链 GitCode；属第6套子系统 outPage。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-student-materials",
+              "name": "学习资料下载",
+              "path": "/cn/talent/ict-academy/#/home（资料下载入口）→ 学习器课件下载",
+              "desc": "学生版课件与学习资料下载；资源中心/下载专区聚合。",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "icta-find",
+          "name": "查找ICT学院（学院目录检索）",
+          "path": "/cn/talent/#/organization/search?type=Academy",
+          "desc": "公开的ICT学院目录检索：按伙伴类型/层级筛选+名称模糊检索；必须至少输入一个查询条件，不能浏览全量目录，无地图视图/地区筛选（对比思科 NetAcad Academy Locator）。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "icta-find-filter",
+              "name": "伙伴类型/伙伴层级筛选",
+              "path": "/cn/talent/#/organization/search?type=Academy",
+              "desc": "伙伴类型默认ICT学院，可切换其他伙伴类型；伙伴层级筛选（认证级/优选级/领先级等）。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-find-search",
+              "name": "学院名称模糊检索",
+              "path": "/cn/talent/#/organization/search?type=Academy",
+              "desc": "按学院名称模糊搜索（'大学'返回258条）；仅默认类型点查询会弹窗'请至少输入一个查询条件'——不支持全量浏览。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-find-result",
+              "name": "学院信息卡（检索结果）",
+              "path": "/cn/talent/#/organization/search?type=Academy",
+              "desc": "结果展示：学院名/地址/网址/国家/层级（认证级、领先级·双一流）/授权产品（12个技术方向）；无省市/高校类型/合作起始年份等维度。",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "icta-iasc",
+          "name": "IASC 支持",
+          "path": "/cn/talent/ict-academy/#/home（IASC 介绍区）",
+          "desc": "ICT Academy Support Center（华为授权生态运营伙伴）对学院的四类支持服务；线上以介绍内容为主，工具化程度待验证。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "icta-iasc-enablement",
+              "name": "教师赋能（Enablement）",
+              "path": "/cn/talent/ict-academy/#/home（IASC 介绍区）",
+              "desc": "IASC 讲师赋能服务（对应 HCAI 认证路径的运营支撑）。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-iasc-development",
+              "name": "拓展支持（Development）",
+              "path": "/cn/talent/ict-academy/#/home（IASC 介绍区）",
+              "desc": "新认证/续认证相关拓展支持服务。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-iasc-operation",
+              "name": "运营管理（Operation）",
+              "path": "/cn/talent/ict-academy/#/home（IASC 介绍区）",
+              "desc": "面向学院的信息/资源/工具日常运营支持。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-iasc-event",
+              "name": "活动支持（Event Support）",
+              "path": "/cn/talent/ict-academy/#/home（IASC 介绍区）",
+              "desc": "线上线下活动支持（双选会、师资培训营等活动的运营支撑）。",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "icta-industry",
+          "name": "产学合作",
+          "path": "/cn/talent/ict-academy/#/home（产学合作区）",
+          "desc": "校企深度合作项目展示：协同育人（智能基座）、案例展示、产业学院共建、众智/火花类产学研项目。",
+          "status": "verified",
+          "features": [
+            {
+              "id": "icta-industry-cy",
+              "name": "协同育人（智能基座）",
+              "path": "外链 https://edu.huaweicloud.com/activity/colleges.html",
+              "desc": "教育部-华为'智能基座'产教融合协同育人基地：72所高校、22门专业课（鲲鹏/昇腾/openEuler/openGauss/华为云），2.0阶段打造'操作系统+物联网+分布式'课程矩阵；衍生华为5G创新班等'3+1'模式、学分互认、课证融通。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-industry-cases",
+              "name": "案例展示",
+              "path": "/cn/talent/ict-academy/#/home（产学合作-案例展示）",
+              "desc": "产学合作院校案例展示（频道首页产学合作模块的组成）。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-industry-college",
+              "name": "产业学院共建",
+              "path": "外链 https://edu.hicomputing.huawei.com/industry-edu-base（鲲鹏昇腾产教融合育人基地）",
+              "desc": "鲲鹏产业学院、昇腾产业学院等校企共建实训室（数通/安全/云/大数据）与课程体系。",
+              "status": "verified"
+            },
+            {
+              "id": "icta-industry-projects",
+              "name": "众智/火花产学研项目",
+              "path": "外链 https://edu.huaweicloud.com/activity/colleges-projects.html（昇腾众智计划）",
+              "desc": "鲲鹏众智、昇腾众智计划（框架协议+课题子协议、揭榜挂帅）、MindSpore火花奖等面向高校科研团队的产学研协同；频道页是否聚合入口未验证。",
+              "status": "inferred"
+            }
+          ]
+        },
+        {
+          "id": "icta-career",
+          "name": "就业对接（人才联盟双选会宣传）",
+          "path": "/cn/talent/ict-academy/#/home（就业文案区）",
+          "desc": "ICT学院就业出口的营销文案：全球每年数十场人才双选会、1000+合作招聘企业、近千岗位（'优先就业'卖点）。线上无对应功能入口（无岗位浏览/报名/简历投递），功能实体缺失。",
+          "status": "copy-only",
+          "features": [
+            {
+              "id": "icta-career-fair",
+              "name": "人才联盟双选会（宣传文案）",
+              "path": "/cn/talent/ict-academy/#/home（文案区，无功能入口）",
+              "desc": "文案口径：全球每年数十场 Job Fair、1000+参与企业、近千岗位（单场如长沙站5000+岗位）；实际双选会活动报名分散在 edu.huaweicloud.com 等外部系统，门户无专区。",
+              "status": "copy-only"
+            }
+          ]
+        }
+      ],
+      "featureCount": 33
+    }
+  ]
+}
