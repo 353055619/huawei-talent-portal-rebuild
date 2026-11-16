@@ -24,7 +24,7 @@
   --gray-bg: #f2f3f5;
   --white: #ffffff;
   --mooc-blue: #2b7cf5;
-  --cookie-bg: #ededed;
+  --cookie-bg: #cccccc;
   --font: 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,7 +43,7 @@ img { display: block; max-width: 100%; }
 .cookie-bar .container { display: flex; align-items: center; justify-content: center; gap: 6px; height: 38px; }
 .cookie-bar a.red { color: var(--hw-red); text-decoration: underline; text-underline-offset: 3px; }
 .cookie-close {
-  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  position: static; flex: none; margin-left: 10px; transform: none;
   width: 20px; height: 20px; border-radius: 50%;
   background: var(--text-2); color: #fff; font-size: 12px; line-height: 20px; text-align: center;
 }
@@ -77,7 +77,7 @@ img { display: block; max-width: 100%; }
 .nav-list { display: flex; align-items: center; gap: 36px; flex: 1; }
 .nav-item { font-size: 16px; color: var(--ink); display: inline-flex; align-items: center; gap: 5px; padding: 6px 0; position: relative; }
 .nav-item:hover { color: var(--hw-red); }
-.nav-item .caret { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; }
+.nav-item .caret { width: 9px; height: 6px; border: none; flex: none; background-color: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 6'%3E%3Cpath d='M1 1l3.5 3.5L8 1' stroke='%23000' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 6'%3E%3Cpath d='M1 1l3.5 3.5L8 1' stroke='%23000' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain; }
 .nav-search { display: flex; align-items: center; border: 1px solid var(--line-input); width: 200px; height: 40px; padding: 0 10px; gap: 8px; flex: none; }
 .nav-search input { border: none; outline: none; flex: 1; font-size: 13px; color: var(--text); }
 .nav-search input::placeholder { color: var(--faint); }
@@ -194,14 +194,6 @@ img { display: block; max-width: 100%; }
 .com-footer-content-left li { font-size: 14px; color: var(--text); margin-bottom: 14px; }
 .com-footer-content-left li:not(:first-child):hover { color: var(--hw-red); }
 .com-footer-content-right { display: flex; align-items: flex-start; gap: 18px; }
-.qr-box { text-align: center; }
-.qr-box .qr {
-  width: 92px; height: 92px; background: #fff; border: 1px solid var(--line);
-  display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(7, 1fr); gap: 1px; padding: 5px;
-}
-.qr-box .qr i { background: var(--ink); }
-.qr-box .qr i.o { background: transparent; }
-.qr-box p { font-size: 12px; color: var(--text-3); margin-top: 8px; }
 .social-col { display: flex; flex-direction: column; gap: 16px; padding-top: 4px; }
 .social-btn {
   width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line-input);
@@ -296,13 +288,13 @@ img { display: block; max-width: 100%; }
 <!-- 顶部轮播 Banner（现网原始营销图） -->
 <div class="TopBanner-wrapper">
   <div class="banner-track" id="bannerTrack">
-    <div class="banner-slide"><img src="assets/banner-1.jpg" alt="华为ICT学院新一代信息技术领域数字教材" loading="eager" /></div>
-    <div class="banner-slide"><img src="assets/banner-2.jpg" alt="" loading="lazy" /></div>
+    <div class="banner-slide"><img src="assets/banner-7.jpg" alt="《智能世界的ICT岗位与技能》白皮书发布" loading="eager" /></div>
+    <div class="banner-slide"><img src="assets/banner-2.jpg" alt="华为ICT学院新一代信息技术领域数字教材" loading="lazy" /></div>
     <div class="banner-slide"><img src="assets/banner-3.jpg" alt="" loading="lazy" /></div>
     <div class="banner-slide"><img src="assets/banner-4.jpg" alt="" loading="lazy" /></div>
     <div class="banner-slide"><img src="assets/banner-5.jpg" alt="" loading="lazy" /></div>
     <div class="banner-slide"><img src="assets/banner-6.jpg" alt="" loading="lazy" /></div>
-    <div class="banner-slide"><img src="assets/banner-7.jpg" alt="" loading="lazy" /></div>
+    <div class="banner-slide"><img src="assets/banner-1.jpg" alt="" loading="lazy" /></div>
     <div class="banner-slide"><img src="assets/banner-8.jpg" alt="" loading="lazy" /></div>
     <div class="banner-slide"><img src="assets/banner-9.jpg" alt="" loading="lazy" /></div>
     <div class="banner-slide"><img src="assets/banner-10.jpg" alt="" loading="lazy" /></div>
@@ -587,18 +579,6 @@ img { display: block; max-width: 100%; }
         </ul>
       </div>
       <div class="com-footer-content-right">
-        <div class="qr-box">
-          <div class="qr" aria-label="微信公众号二维码（示意）">
-            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
-            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
-            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i>
-            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
-            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
-            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i>
-            <i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i>
-          </div>
-          <p>官方微信</p>
-        </div>
         <div class="social-col">
           <a class="social-btn" aria-label="微信公众号">
             <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4zM11.7 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4z" fill="currentColor"/><path d="M3 6.8C3 4.9 5.2 3.5 8 3.5h4c2.8 0 5 1.4 5 3.3v3.9c0 1.9-2.2 3.3-5 3.3-.4 0-.8 0-1.2-.1l-2.6 1.8v-2.4C5.2 12.8 3 11.4 3 9.5V6.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>

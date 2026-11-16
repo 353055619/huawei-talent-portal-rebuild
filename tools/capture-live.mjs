@@ -4,8 +4,10 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = '/Users/godw/GodwGarage/sandbox/高校人才';
+// 仓库根 = tools/ 上一级（任意 checkout 均可运行）
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'replica/captures');
 
 // name, url, 抓取后的动作(clicks: [selector]) —— clicks 用于进入 SPA 子视图

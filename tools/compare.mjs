@@ -4,9 +4,11 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 
-const ROOT = '/Users/godw/GodwGarage/sandbox/高校人才';
+// 仓库根 = tools/ 上一级（任意 checkout 均可运行）
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REP = path.join(ROOT, 'replica');
 const CMP = path.join(ROOT, 'replica/compare');
 fs.mkdirSync(CMP, { recursive: true });

@@ -57,9 +57,10 @@ body{background:var(--page-bg)}
 .alert-left svg{flex:none;margin-top:2px}
 .alert-left p{font-size:12.5px;color:#333;line-height:21px}
 .alert-left a{color:#1f70c1}
-.alert-right{color:#999;font-size:14px;cursor:pointer;padding:0 4px}
-.nav_container{display:flex;justify-content:space-between;align-items:center;padding:4px 0 14px}
-.nav_box{display:flex;gap:34px}
+.alert-right{width:17px;height:17px;flex:none;border:1px solid #8a8a8a;border-radius:50%;color:#666;font-size:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-top:2px}
+.nav_container{display:block;padding:4px 0 14px}
+.nav_container .nav_box+.nav_box{margin-top:10px}
+.nav_box{display:flex}
 .nav_box div{font-size:14px;color:#333;cursor:pointer}
 .nav_box div.sortColor{color:var(--hw-red)}
 .crs-list{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 14px;padding-bottom:26px}
@@ -67,8 +68,8 @@ body{background:var(--page-bg)}
 .new-card-course:hover{box-shadow:0 4px 14px rgba(0,0,0,.08)}
 .new-card-course .img{position:relative;height:158px;overflow:hidden}
 .new-card-course .img img{width:100%;height:100%;object-fit:cover}
-.new-card-course .img span{position:absolute;left:0;top:10px;background:#2b7cf5;color:#fff;font-size:12px;padding:2px 9px 2px 7px;border-radius:0 3px 3px 0}
-.new-card-course .text{padding:10px 12px 6px;font-size:15px;color:#262626;line-height:22px;height:58px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.new-card-course .img span{position:absolute;right:0;top:10px;background:#d3e5fd;color:#3a79c8;font-size:12px;line-height:16px;padding:2px 8px;border-radius:3px 0 0 3px}
+.new-card-course .text{padding:10px 12px 6px;font-size:15px;font-weight:bold;color:#262626;line-height:22px;height:58px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .process-box{display:flex;align-items:center;padding:0 12px 14px;gap:10px}
 .process-grey{flex:1;height:6px;background:#ededed;border-radius:3px;overflow:hidden}
 .process-grey b{display:block;height:100%;background:#f66913;width:0}
@@ -81,6 +82,16 @@ body{background:var(--page-bg)}
 .aui-pager .pg-goto{display:inline-flex;align-items:center;gap:6px;color:#606266}
 .aui-pager .pg-goto input{width:42px;height:28px;border:1px solid #dcdfe6;border-radius:2px;outline:none;text-align:center}
 
+
+/* ==== 修差：对照 captures（面包屑末分隔符隐藏 / 页脚列宽 285 / 右侧社交图标去框 / 悬浮钮位于页脚右上） ==== */
+.uc-crumbs .sep:last-of-type{display:none}
+.com-footer-content-left{display:flex}
+.com-footer-content-left ul{width:285px}
+.com-footer-content-right{display:flex;gap:26px;padding-top:6px}
+.social-col{padding-top:0;gap:20px}
+.social-btn{border:none;width:auto;height:auto}
+.com-footer-wrapper{position:relative}
+.float-contact{position:absolute;right:10px;top:15px}
 </style>
 </head>
 <body>
@@ -140,7 +151,7 @@ body{background:var(--page-bg)}
   <div class="uc-card myclass-card">
     <div class="alert">
       <div class="alert-left">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.6" stroke="#2b7cf5" stroke-width="1.4"/><path d="M8 7.2v4M8 4.8v.6" stroke="#2b7cf5" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg width="15" height="15" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.2" fill="#2b7cf5"/><path d="M8 7.2v4M8 4.6v.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
         <div>
           <p>1、【我的课程】不包括您通过班级进入的课程,如需查看,请前往【用户中心】-【我的班级】。</p>
           <p>2、由于平台升级，建议前往<a>【学习】</a>页面重新学习，给您造成不便，敬请谅解！</p>
@@ -175,12 +186,12 @@ body{background:var(--page-bg)}
         <button><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 1.5 3 5l3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <span class="pg-num">1</span>
         <button><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3.5 1.5 7 5 3.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <span class="pg-goto">跳至 <input type="text" /></span>
+        <span class="pg-goto">跳至 <input type="text" value="1" /></span>
       </span>
     </div>
   </div>
 </div>
-<!-- REPLICA-NOTE: 课程封面为现网原图(course-cover-ascend.png)；进度条为 0%（橙填充宽 0）；面包屑尾随 “>” 如实复刻 -->
+<!-- REPLICA-NOTE: 课程封面为现网原图(course-cover-ascend.png)；进度条为 0%（橙填充宽 0）；面包屑末尾分隔符现网渲染时隐藏，已在样式中同步 -->
 <!-- 页脚 -->
 <footer class="com-footer-wrapper">
   <div class="container">
@@ -217,18 +228,6 @@ body{background:var(--page-bg)}
         </ul>
       </div>
       <div class="com-footer-content-right">
-        <div class="qr-box">
-          <div class="qr" aria-label="微信公众号二维码（示意）">
-            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
-            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
-            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i>
-            <i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i>
-            <i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i>
-            <i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i>
-            <i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i>
-          </div>
-          <p>官方微信</p>
-        </div>
         <div class="social-col">
           <a class="social-btn" aria-label="微信公众号">
             <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4zM11.7 8.6c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4z" fill="currentColor"/><path d="M3 6.8C3 4.9 5.2 3.5 8 3.5h4c2.8 0 5 1.4 5 3.3v3.9c0 1.9-2.2 3.3-5 3.3-.4 0-.8 0-1.2-.1l-2.6 1.8v-2.4C5.2 12.8 3 11.4 3 9.5V6.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>

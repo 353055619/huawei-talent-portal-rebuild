@@ -189,6 +189,8 @@ if (!J) { document.title = 'NO-JOURNEY'; throw new Error('no journey ' + JID); }
 
 const $ = id => document.getElementById(id);
 const stage = $('stage'), cursor = $('cursor'), caption = $('caption');
+/* 选择器未命中日志（冒烟/维护用）：window.missLog */
+const missLog = []; window.missLog = missLog;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 let curPage = null;
 
@@ -369,6 +371,8 @@ async function run() {
         await moveCursor(loc.x, loc.y);
         await pressCursor();
         await sleep(260);
+      } else if (v.sel) {
+        missLog.push({ journey: JID, step: i + 1, where: 'via', sel: v.sel, text: v.text || '' });
       }
     }
 
@@ -400,6 +404,7 @@ async function run() {
         await sleep(act.dwell != null ? act.dwell : 900);
         if (act.nav) { await loadPage(act.nav); }
       } else {
+        if (act.sel) missLog.push({ journey: JID, step: i + 1, where: 'act', sel: act.sel, text: act.text || '' });
         await sleep(act.dwell != null ? act.dwell : 1200);
       }
     }

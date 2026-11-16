@@ -39,8 +39,9 @@ img { display: block; max-width: 100%; }
 .cookie-bar { background: var(--cookie-bg); font-size: 13px; color: var(--text); position: relative; }
 .cookie-bar .container { display: flex; align-items: center; justify-content: center; gap: 6px; height: 38px; }
 .cookie-bar a.red { color: var(--hw-red); text-decoration: underline; text-underline-offset: 3px; }
+/* 现网 cookie 条：文案居中、✕ 紧跟文案右侧（非贴右绝对定位；login 页 uniportal 系统为贴右，页面内自行覆盖） */
 .cookie-close {
-  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  position: static; flex: none; margin-left: 10px; transform: none;
   width: 20px; height: 20px; border-radius: 50%;
   background: var(--text-2); color: #fff; font-size: 12px; line-height: 20px; text-align: center;
 }
@@ -74,7 +75,13 @@ img { display: block; max-width: 100%; }
 .nav-list { display: flex; align-items: center; gap: 36px; flex: 1; }
 .nav-item { font-size: 16px; color: var(--ink); display: inline-flex; align-items: center; gap: 5px; padding: 6px 0; position: relative; }
 .nav-item:hover { color: var(--hw-red); }
-.nav-item .caret { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; }
+/* 现网导航下拉箭头 = 细线 chevron（bottom.9638cf68.svg），mask 方案随文字变色 */
+.nav-item .caret {
+  width: 9px; height: 6px; border: none; flex: none;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 6'%3E%3Cpath d='M1 1l3.5 3.5L8 1' stroke='%23000' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 6'%3E%3Cpath d='M1 1l3.5 3.5L8 1' stroke='%23000' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+}
 .nav-search { display: flex; align-items: center; border: 1px solid var(--line-input); width: 200px; height: 40px; padding: 0 10px; gap: 8px; flex: none; }
 .nav-search input { border: none; outline: none; flex: 1; font-size: 13px; color: var(--text); }
 .nav-search input::placeholder { color: var(--faint); }

@@ -12,7 +12,7 @@
 | [research/](research/) | 调研报告 00–07：现网信息架构一手笔记、国内大厂/海外平台/GitHub 开源调研、业务背景、重构总报告、demo 验收对比报告、登录态补验笔记 |
 | [survey/](survey/) | 三域并行勘察归一化数据：modules-combined.json（20 模块/124 功能）+ journeys.json（7 条全量用户旅程） |
 | [platform/](platform/) | 重构全栈 demo（Vue3 + Express + PostgreSQL，tracker 统一状态机），详见 [platform/README](platform/) 与 research/06 验收报告 |
-| [tools/](tools/) | 复刻工具链：capture-live（现网抓取）/ fetch-assets（素材本地化）/ compare（并排比对）/ record-journeys（旅程录制） |
+| [tools/](tools/) | 复刻工具链：capture-live（现网抓取）/ fetch-assets（素材本地化）/ compare（并排比对）/ record-journeys（旅程录制）/ health-check（全站健康检查）/ smoke-journeys（时间线选择器冒烟）。脚本从自身位置解析仓库根，任意 checkout 可直接运行 |
 
 ## 快速开始
 

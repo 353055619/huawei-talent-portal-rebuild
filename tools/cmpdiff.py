@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # 对比 compare/<name>-cmp.png 左右两半，输出行级差异报告
+import os
 import sys
 from PIL import Image, ImageChops
 
 name = sys.argv[1]
-path = f'/Users/godw/GodwGarage/sandbox/高校人才/replica/compare/{name}-cmp.png'
+# 仓库根 = 本文件上一级（任意 checkout 均可运行）
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+path = os.path.join(ROOT, 'replica', 'compare', f'{name}-cmp.png')
 im = Image.open(path).convert('RGB')
 w, h = im.size
 half = w // 2
@@ -37,5 +40,6 @@ for y, v in enumerate(rows):
         band = None
 if band: print(f'rows {band[0]}-{band[1]} avg-diff {max(rows[band[0]:band[1]+1]):.0f}')
 # 保存差热图
+os.makedirs('/tmp/uc-crops', exist_ok=True)
 diff.save(f'/tmp/uc-crops/{name}-diff.jpg', quality=70)
 print('diff image: /tmp/uc-crops/%s-diff.jpg' % name)
