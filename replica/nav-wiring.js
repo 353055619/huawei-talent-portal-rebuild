@@ -58,6 +58,13 @@
   function here() { return location.pathname.split('/').pop() || 'index.html'; }
   function go(p) { if (p && p !== here()) location.href = p; }
   function txt(el) { return (el.textContent || '').trim().replace(/\s+/g, ''); }
+  /* 导航项主标签：排除注入的下拉菜单文字 */
+  function navLabel(nav) {
+    var clone = nav.cloneNode(true);
+    var d = clone.querySelector('.nav-drop');
+    if (d) d.remove();
+    return txt(clone);
+  }
 
   /* 课程详情面包屑：把"首页 > 学习 >"动态包成链接（不改页面文件） */
   function wireCrumb() {
@@ -75,9 +82,9 @@
     /* 显式 data-nav 优先 */
     var dn = t.closest('[data-nav]');
     if (dn) { go(dn.dataset.nav); return; }
-    /* 登录页"登录"按钮（button 元素）→ 用户中心首页（表现登录成功），先于通用 button 排除 */
+    /* 登录页"登录"按钮：静态打开(file://)时降级直跳用户中心；服务模式下由 app.js 走真实登录 */
     var lb = t.closest('.login-btn');
-    if (lb && /login\.html$/.test(location.pathname)) { go('uc-home.html'); return; }
+    if (lb && location.protocol === 'file:' && /login\.html$/.test(location.pathname)) { go('uc-home.html'); return; }
     /* 已有真实 href/onclick 的元素不劫持 */
     var a = t.closest('a[href],[onclick],button,input,label,select,textarea');
     if (a) return;
@@ -87,7 +94,7 @@
 
     var nav = t.closest('.nav-item');
     /* 下拉菜单内无 data-nav 的子项 = 外域/未复刻入口，保持死点（不冒泡成频道跳转） */
-    if (nav && !t.closest('.nav-drop')) { go(PAGES[txt(nav)]); return; }        /* 商城/企业培训等不在表内 → 保持死点（外域） */
+    if (nav && !t.closest('.nav-drop')) { go(PAGES[navLabel(nav)]); return; }        /* 商城/企业培训等不在表内 → 保持死点（外域） */
 
     if (t.closest('.hw-logo')) { go('index.html'); return; }
 
@@ -128,7 +135,7 @@
   /* 给带 caret 的导航项注入下拉菜单（现网 t-popSelect 结构的静态化） */
   function injectDrops() {
     document.querySelectorAll('.nav-item').forEach(function (nav) {
-      var label = txt(nav).replace(/▼|▾|⌄/g, '');
+      var label = navLabel(nav).replace(/▼|▾|⌄/g, '');
       var items = DROPS[label];
       if (!items || nav.querySelector('.nav-drop')) return;
       var d = document.createElement('div');

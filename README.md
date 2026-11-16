@@ -1,6 +1,6 @@
 # 华为高校人才IT系统 · 重构调研与全站复刻基线
 
-华为人才在线（e.huawei.com/cn/talent）重构项目的调研与复刻工作区：业界调研、现网缺陷一手勘察、全栈重构 demo、**全站 24 页像素级复刻**与 **7 条用户旅程演示视频**。
+华为人才在线（e.huawei.com/cn/talent）重构项目的调研与复刻工作区：业界调研、现网缺陷一手勘察、全栈重构 demo、**全站 24 页像素级复刻**（含可运行的登录/注册/课程管理功能层）与 **7 条用户旅程演示视频**。
 
 ## 目录导览
 
@@ -12,19 +12,30 @@
 | [research/](research/) | 调研报告 00–07：现网信息架构一手笔记、国内大厂/海外平台/GitHub 开源调研、业务背景、重构总报告、demo 验收对比报告、登录态补验笔记 |
 | [survey/](survey/) | 三域并行勘察归一化数据：modules-combined.json（20 模块/124 功能）+ journeys.json（7 条全量用户旅程） |
 | [platform/](platform/) | 重构全栈 demo（Vue3 + Express + PostgreSQL，tracker 统一状态机），详见 [platform/README](platform/) 与 research/06 验收报告 |
-| [tools/](tools/) | 复刻工具链：capture-live（现网抓取）/ fetch-assets（素材本地化）/ compare（并排比对）/ record-journeys（旅程录制）/ health-check（全站健康检查）/ smoke-journeys（时间线选择器冒烟）。脚本从自身位置解析仓库根，任意 checkout 可直接运行 |
+| [tools/](tools/) | 复刻工具链：capture-live（现网抓取）/ fetch-assets（素材本地化）/ compare（并排比对）/ record-journeys（旅程录制）/ health-check（全站健康检查）/ smoke-journeys（时间线选择器冒烟）/ **server.mjs（功能版应用服务器）** / test-flows（功能全流程用例）。脚本从自身位置解析仓库根，任意 checkout 可直接运行 |
 
 ## 快速开始
 
 ```bash
-# 复刻站（含旅程播放器，需 HTTP 因 iframe 同源）
-cd replica && python3 -m http.server 8930
-# 打开 http://localhost:8930/ict-academy.html 等任意页面
-# 旅程演示：http://localhost:8930/journey/player.html?j=J3
+# 方式一（推荐）：功能版复刻站 —— 注册/登录/会话/课程报名/教师开班/我的数据 全部可用
+node tools/server.mjs          # http://127.0.0.1:8930  零依赖，数据存 tools/.server-db.json
+# 演示账号：hw_demo_teacher_01 / demo123456（教师，可开班）
+#          hw_demo_student_01 / demo123456（学生，已有一门课 35% 进度）
+# 或在登录页点「注册」新建学生/教师账号
+
+# 方式二：纯静态复刻站（无功能层，file:// 也可直接打开）
+cd replica && python3 -m http.server 8931
+# 旅程演示（两种方式均可）：http://localhost:8930/journey/player.html?j=J3
 
 # 功能模块图（双击或 file:// 直接打开）
 open 原型/华为人才在线功能模块图.html
 ```
+
+## 功能层（server.mjs + app.js）
+
+- **静态保真不变**：所有页面 file:// 直开仍是像素级静态复刻；功能层只在经 server.mjs 打开时接管（`replica/app.js` 同源探测 `/api/*`，纯静态打开自动降级，无外网请求）
+- **已实现**：注册（学生/教师身份）→ 自动登录；登录/退出/会话（cookie）；顶栏账号态（登录后 `登录/注册` → `Uniportal账号 : xxx + 退出`）；课程报名（课程详情「去学习」）→ 我的课程实时列表（进度条）；**教师开班**（课程详情「我要开班」弹窗创建）→ 我的班级（邀请码/人数）；学生凭邀请码加入班级；我的证书/考试/券包/消息实时数据卡；站内导航接线（nav-wiring.js：导航互跳/课程卡/用户中心卡/面包屑/页脚链接）与 hover 下拉菜单（现网 t-popSelect 逐字菜单）
+- **流程验收**：`node tools/test-flows.mjs`（8 用例：注册→登录→报名→我的课程；开班→我的班级；跨账号邀请码加入；退出；file:// 降级）
 
 ## 核心发现（详见 research/05 总报告）
 

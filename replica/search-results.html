@@ -6,7 +6,13 @@
 <title>搜索-华为人才在线（复刻）</title>
 <link rel="stylesheet" href="shell.css">
 <style>
+/* 导航项间距收窄，防止 1200 容器内换行（与 uc-home 同口径） */
+.nav-list { gap: 28px; }
+.nav-item { white-space: nowrap; }
 /* ============ 全站搜索结果页（talent/search · productName=双选会）============ */
+/* 页脚四列等宽均布，列距约 286px（对照现网） */
+.com-footer-content-left { flex: none; gap: 0; }
+.com-footer-content-left ul { width: 286px; min-width: 286px; }
 /* 顶部灰底带：面包屑 + 结果类型 Tab + 排序行（现网 134px 高，#F7F8FA）*/
 .search-base { background: var(--page-bg); }
 .search-band { width: 1200px; max-width: 92vw; margin: 0 auto; padding: 15px 0 15px 12px; }
@@ -106,7 +112,7 @@
       <span class="word">HUAWEI</span>
     </a>
     <nav class="nav-list" aria-label="主导航">
-      <a class="nav-item" style="color:var(--hw-red)">学习<span class="caret"></span></a>
+      <a class="nav-item">学习<span class="caret"></span></a>
       <a class="nav-item">认证<span class="caret"></span></a>
       <a class="nav-item">华为ICT学院<span class="caret"></span></a>
       <a class="nav-item">华为ICT大赛</a>
@@ -335,5 +341,6 @@ document.querySelectorAll('.main-tabs .tab').forEach(function (t) {
   9. 页脚底部版权条：现网为 #e6e6e6 灰底（40px）。
 -->
 <script src="nav-wiring.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>

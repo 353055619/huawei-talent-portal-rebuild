@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>华为账号注册（复刻 · 功能层）</title>
+<style>
+/* uniportal 华为账号注册页 · 与 login.html 同壳（复刻页新增功能页，非现网抓取页） */
+:root {
+  --hw-red: #c7000b; --ink: #000; --text: #333; --text-2: #595959; --text-3: #666;
+  --line-input: #ccc; --page-bg: #f3f3f3; --blue: #2070f3; --link-blue: #5d77cf;
+  --font: 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--page-bg); color: var(--text); font-size: 14px; min-height: 100vh; display: flex; flex-direction: column; }
+a { color: inherit; text-decoration: none; cursor: pointer; }
+button { font: inherit; border: none; background: none; cursor: pointer; }
+.un-top { height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 65px; background: #fff; }
+.hw-logo { display: flex; align-items: center; gap: 8px; }
+.hw-logo .petal { display: grid; grid-template-columns: repeat(2, 14px); grid-template-rows: repeat(2, 10px); gap: 2px; }
+.hw-logo .petal i { background: var(--hw-red); border-radius: 0 60% 60% 60%; transform: rotate(45deg); }
+.hw-logo .petal i:nth-child(1) { transform: rotate(-15deg) skewY(-8deg); }
+.hw-logo .petal i:nth-child(2) { transform: rotate(15deg) skewY(8deg); }
+.hw-logo .petal i:nth-child(3) { transform: rotate(15deg) skewY(8deg) scale(-1, 1); }
+.hw-logo .petal i:nth-child(4) { transform: rotate(-15deg) skewY(-8deg) scale(-1, 1); }
+.hw-logo .word { font-weight: 700; font-size: 16px; letter-spacing: .01em; color: var(--ink); }
+.lang-sel { font-size: 16px; color: #515151; letter-spacing: .06em; }
+.un-main { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding-top: 56px; }
+.login-card { width: 542px; background: #fff; padding: 52px 48px 56px; }
+.login-card h1 { font-size: 24px; font-weight: 700; color: #1a1a1a; text-align: center; line-height: 32px; }
+.field { margin-top: 22px; }
+.field input, .field select { width: 100%; height: 50px; border: 1px solid var(--line-input); border-radius: 4px; padding: 0 19px; font-size: 14px; color: var(--text); outline: none; background: #fff; font-family: inherit; }
+.field input::placeholder { color: #cdcdcd; }
+.field input:focus, .field select:focus { border-color: var(--blue); }
+.field.pwd { position: relative; }
+.field.tip { font-size: 12px; color: #979797; margin-top: 10px; line-height: 18px; }
+.app-reg-err { color: #d13438; font-size: 13px; margin-top: 14px; min-height: 18px; }
+.login-btn { width: 100%; height: 48px; background: var(--hw-red); color: #fff; border-radius: 4px; font-size: 16px; margin-top: 14px; transition: background .2s; }
+.login-btn:hover { background: #a50009; }
+.login-links { display: flex; justify-content: center; align-items: center; margin-top: 30px; font-size: 14px; line-height: 14px; color: #979797; }
+.login-links a:hover { color: var(--link-blue); }
+.un-cookie { background: #eef3fe; display: flex; align-items: center; padding: 0 65px; height: 50px; font-size: 14px; line-height: 14px; color: #535558; }
+.un-cookie .info { color: var(--blue); font-style: normal; font-size: 14px; margin-right: 8px; }
+.un-cookie .cookie-more { color: var(--blue); margin-left: 16px; }
+.un-cookie .close-x { margin-left: auto; color: #2b2b2c; font-size: 14px; line-height: 1; }
+.un-footer { background: #fff; display: flex; justify-content: space-between; align-items: center; padding: 15px 65px; font-size: 14px; line-height: 14px; color: #919191; }
+.un-footer .links { display: flex; }
+.un-footer .links a + a { margin-left: 24px; }
+</style>
+</head>
+<body>
+<div class="un-top">
+  <a class="hw-logo" href="index.html" aria-label="华为">
+    <span class="petal" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="word">HUAWEI</span>
+  </a>
+  <button class="lang-sel">简体中文(中国)</button>
+</div>
+
+<div class="un-main">
+  <div class="login-card">
+    <h1>华为账号注册</h1>
+    <div class="field first">
+      <input type="text" placeholder="账号名（4-40 位字母数字._@-）" aria-label="账号名" />
+    </div>
+    <div class="field pwd">
+      <input type="password" placeholder="密码（至少 6 位）" aria-label="密码" />
+    </div>
+    <div class="field pwd2">
+      <input type="password" placeholder="确认密码" aria-label="确认密码" />
+    </div>
+    <div class="field role">
+      <select aria-label="注册身份">
+        <option value="student">我是学生 —— 我要学习课程</option>
+        <option value="teacher">我是教师 —— 我要开班授课</option>
+      </select>
+    </div>
+    <div class="field tip">注册即表示同意 <a style="color:var(--link-blue)">华为用户协议</a> 与 <a style="color:var(--link-blue)">隐私声明</a>。本页为复刻站功能层演示，数据仅存于本地演示服务。</div>
+    <div class="app-reg-err"></div>
+    <button class="login-btn">注册</button>
+    <div class="login-links"><a href="login.html">已有账号？返回登录</a></div>
+  </div>
+</div>
+
+<div class="un-cookie">
+  <i class="info">ℹ</i>
+  <span>本网站使用 Cookie 功能，为您提供最佳的用户体验。</span>
+  <a class="cookie-more">了解更多</a>
+  <button class="close-x" aria-label="关闭">✕</button>
+</div>
+
+<footer class="un-footer">
+  <span>版权所有 © 华为技术有限公司 1998-2026。保留一切权利。粤A2-20044005号</span>
+  <span class="links"><a> 联系我们 </a><a> 隐私政策 </a><a>Cookies</a></span>
+</footer>
+<script src="nav-wiring.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
+<!-- REPLICA-NOTE: 功能层新增页（uniportal 注册壳与 login.html 同源），非现网抓取页；注册数据写入 tools/.server-db.json（本地演示）。 -->

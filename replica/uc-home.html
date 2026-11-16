@@ -64,8 +64,8 @@ body{background:var(--page-bg)}
 
 /* ==== 修差：对照 captures（面包屑末分隔符隐藏 / 页脚列宽 285 / 右侧社交图标去框 / 悬浮钮位于页脚右上） ==== */
 .uc-crumbs .sep:last-of-type{display:none}
-.com-footer-content-left{display:flex}
-.com-footer-content-left ul{width:285px}
+.com-footer-content-left{display:flex;flex:none;gap:0}
+.com-footer-content-left ul{width:285px;min-width:285px}
 .com-footer-content-right{display:flex;gap:26px;padding-top:6px}
 .social-col{padding-top:0;gap:20px}
 .social-btn{border:none;width:auto;height:auto}
@@ -207,5 +207,6 @@ body{background:var(--page-bg)}
 <a class="float-contact">联系我们</a>
 
 <script src="nav-wiring.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>

@@ -6,7 +6,7 @@ const BASE = 'http://127.0.0.1:8930';
 const CASES = [
   { start: 'index.html', sel: '.nav-item', text: '学习', expect: 'learning.html' },
   { start: 'index.html', sel: '.topbar-right .tool', text: '登录/注册', expect: 'login.html' },
-  { start: 'login.html', sel: '.login-btn', expect: 'uc-home.html' },
+  { start: 'login.html', sel: '.login-btn', expect: 'login.html' }, // 服务模式：空表单不跳转（真实登录流由 test-flows 覆盖；file:// 降级直跳 uc-home）
   { start: 'uc-home.html', sel: '.uc-cards .item', text: '我的课程', expect: 'uc-mycourse.html' },
   { start: 'learning.html', sel: '.course-image-box', expect: 'course-detail.html' },
   { start: 'course-detail.html', sel: '.cd-crumb a[data-nav="learning.html"]', expect: 'learning.html' },

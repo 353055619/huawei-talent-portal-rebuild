@@ -19,9 +19,19 @@
 5. 布局像素依据是 full.png：区块顺序、留白、分栏数、卡片高度比例、底色分区都要对上。设计宽度 1920、内容容器 1200px 居中（`.container` 已有）。
 6. 图片：优先 `assets/` 里的现网原图（按 index.json 的 URL 线索和文件名试读图片确认内容，Read 工具可以看 PNG/JPG）；没有下载到的图用与截图同色调的 CSS 渐变占位（参考 index.html 的 cover-g1..g5 写法），并在页尾 `<!-- REPLICA-NOTE: -->` 注释里列出占位项。
 7. 现网的**缺陷也要忠实复刻**（这是调研目的）：例如 usercenter 左侧菜单只在首页渲染、考券申请空白页、个人信息点击无响应等，按截图原样呈现。
-8. 交互只做表现层：tab 切换、hover 态、轮播用少量原生 JS；不做真实数据逻辑。
+8. 交互只做表现层：tab 切换、hover 态、轮播用少量原生 JS；不做真实数据逻辑（真实功能由共享功能层承担，见下「功能层」）。
 9. 完成后运行 `cd tools && node compare.mjs <你的页面名...>` 自查（生成 `replica/compare/<name>-cmp.png` 并排图），用 Read 看对比图，修掉明显差异，至少迭代一轮。
 10. 不改动：`shell.css`、`tokens.css`、`index.html`、`captures/`、`assets/index.json`。
 
 ## 页面命名（写成 replica/<name>.html）
-index(已有) / learning / learning-all / course-detail / cert / ict-academy / contest / halp / stories / news / find-academy / search-results / login / uc-home / uc-mycourse / uc-myclass-list / uc-mycomp / uc-mycoupons / uc-mynews / uc-mycert / uc-myexam / uc-myinfo / uc-realinfo / uc-voucher-app
+index(已有) / learning / learning-all / course-detail / cert / ict-academy / contest / halp / stories / news / find-academy / search-results / login / uc-home / uc-mycourse / uc-myclass-list / uc-mycomp / uc-mycoupons / uc-mynews / uc-mycert / uc-myexam / uc-myinfo / uc-realinfo / uc-voucher-app（另加功能层页 login-register.html：注册页，非现网抓取页）
+
+## 功能层（2026-11-16 起生效，修差工人无需关心但不得破坏）
+
+每页页尾按顺序注入两个共享脚本：
+1. `nav-wiring.js` — 站内导航接线（事件委托）+ hover 下拉菜单注入（现网 t-popSelect 逐字菜单）。**禁止**再手写导航 href/onclick，跳转关系统一在 nav-wiring.js 的 PAGES/DROPS 表维护。
+2. `app.js` — 功能层（登录注册/会话/课程报名/开班/我的数据），仅在经 `node tools/server.mjs`（同源 /api/*）打开时接管；file:// 纯静态打开自动降级，页面仍是像素级静态复刻。
+
+工人守则：改页面时保留这两个 script 标签与其相对顺序；不要给导航/顶栏/课程卡/uc 卡片加 href 或 onclick（会与接线层冲突）；不要删除 `.login-btn`/`.btn-go-study`/`.btn-open-class`/`.uc-account`/`.crs-list`/`.aui-pager` 等 app.js 依赖的类名锚点；新页如需接入功能层，页尾照抄两个 script 标签即可。
+
+流程验收闸：`node tools/test-navwiring.mjs`（接线+死点）→ `node tools/test-navdrop.mjs`（下拉）→ `node tools/test-flows.mjs`（需 server.mjs 运行中；注册→登录→报名→开班→邀请码加入→退出 8 用例）→ `node tools/health-check.mjs`（全站 0 JS 错误）。

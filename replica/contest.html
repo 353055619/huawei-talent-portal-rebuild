@@ -6,9 +6,11 @@
 <title>华为ICT大赛-华为人才在线（复刻）</title>
 <link rel="stylesheet" href="shell.css" />
 <style>
+.nav-list { gap: 26px; }
+.nav-item { white-space: nowrap; }
 
 /* ============ ICT大赛频道页样式 ============ */
-.cst-banner img { width: 100%; display: block; }
+.cst-banner img { width: 100%; height: 637px; object-fit: cover; display: block; }
 
 .cst-tabs { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
 .tab-row { display: flex; gap: 56px; }
@@ -22,7 +24,7 @@
 .more-link { color: var(--hw-red); font-size: 13.5px; }
 
 /* 报名通道 */
-.enroll-section { background: #f7f8f9; padding: 44px 0 56px; }
+.enroll-section { background: #f7f8f9; padding: 44px 0 120px; }
 .enroll-count { text-align: center; font-size: 14px; color: var(--text-2); margin: 22px 0 24px; }
 .enroll-count strong { color: var(--hw-red); font-size: 24px; font-weight: 800; padding: 0 6px; font-variant-numeric: tabular-nums; }
 .track-tabs { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 30px; }
@@ -73,10 +75,10 @@
 
 /* 赛事资讯（现网懒加载未出内容，仅标题+查看更多，忠实保留空白） */
 .news-section { background: #f7f8f9; padding: 44px 0 0; }
-.news-blank { height: 250px; }
+.news-blank { height: 620px; }
 
 /* 往届回顾 */
-.history-section { position: relative; background: #3a3230 center/cover no-repeat; padding: 44px 0 62px; color: #fff; }
+.history-section { position: relative; background: #3a3230 center/cover no-repeat; padding: 90px 0 130px; color: #fff; }
 .history-section::before { content: ''; position: absolute; inset: 0; background: rgba(24,18,14,.45); }
 .history-section .container { position: relative; }
 .history-section .cst-sec-title { color: #fff; }
@@ -98,7 +100,7 @@
 
 /* 榜首SHOW（现网内容未渲染出，忠实保留空白） */
 .show-section { background: var(--white); padding: 44px 0 0; }
-.show-blank { height: 220px; }
+.show-blank { height: 560px; }
 
 </style>
 </head>
@@ -146,7 +148,7 @@
       <a class="nav-item">学习<span class="caret"></span></a>
       <a class="nav-item">认证<span class="caret"></span></a>
       <a class="nav-item">华为ICT学院<span class="caret"></span></a>
-      <a class="nav-item" style="color:var(--hw-red)">华为ICT大赛</a>
+      <a class="nav-item">华为ICT大赛</a>
       <a class="nav-item">培训伙伴<span class="caret"></span></a>
       <a class="nav-item">企业培训</a>
       <a class="nav-item">成功案例</a>
@@ -392,5 +394,6 @@
 </script>
 <!-- REPLICA-NOTE: 报名通道卡片封面、赛事资讯列表、榜首SHOW内容为现网懒加载灰占位/空白，忠实保留；赛道卡片文案按截图可见范围摘录 -->
 <script src="nav-wiring.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>

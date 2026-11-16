@@ -6,6 +6,9 @@
 <title>培训伙伴HALP-华为人才在线（复刻）</title>
 <link rel="stylesheet" href="shell.css" />
 <style>
+/* 导航项间距收窄，防止 1200 容器内换行（与 uc-home 同口径） */
+.nav-list { gap: 28px; }
+.nav-item { white-space: nowrap; }
 
 /* ============ HALP 频道页样式 ============ */
 body { background: #f7f8fa; }
@@ -74,6 +77,9 @@ body { background: #f7f8fa; }
 
 /* —— 页内覆盖：页脚与现网行距/留白对齐 —— */
 .com-footer-content { padding: 48px 0 40px; }
+/* 现网页脚四列等宽均布（列距约 286px） */
+.com-footer-content-left { flex: none; gap: 0; }
+.com-footer-content-left ul { width: 286px; min-width: 286px; }
 .com-footer-content-left li { margin-bottom: 10px; }
 .footer-bottom { padding: 12px 0 12px; }
 
@@ -278,5 +284,6 @@ body { background: #f7f8fa; }
 })();
 </script>
 <script src="nav-wiring.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>

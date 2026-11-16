@@ -14,3 +14,6 @@ Thumbs.db
 # 插件运行时标记
 .v2c/
 .video_agent/
+
+# 运行时数据（演示库）
+tools/.server-db.json

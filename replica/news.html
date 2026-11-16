@@ -6,6 +6,9 @@
 <title>资讯中心-华为人才在线（复刻）</title>
 <link rel="stylesheet" href="shell.css">
 <style>
+/* 导航项间距收窄，防止 1200 容器内换行（与 uc-home 同口径） */
+.nav-list { gap: 28px; }
+.nav-item { white-space: nowrap; }
 /* ============ 资讯中心（news）============
  * 现网捕获时主体一直停留在 loading 态：导航下方到页脚之间为整块 #F7F8FA 空白，
  * 无横幅、无新闻列表、无分页（见 captures/news/full.png）。忠实复刻该缺陷。
@@ -67,7 +70,7 @@
       <span class="word">HUAWEI</span>
     </a>
     <nav class="nav-list" aria-label="主导航">
-      <a class="nav-item" style="color:var(--hw-red)">学习<span class="caret"></span></a>
+      <a class="nav-item">学习<span class="caret"></span></a>
       <a class="nav-item">认证<span class="caret"></span></a>
       <a class="nav-item">华为ICT学院<span class="caret"></span></a>
       <a class="nav-item">华为ICT大赛</a>
@@ -154,5 +157,6 @@
   4. 页脚底部版权条：现网为 #e6e6e6 灰底（40px），页内样式覆盖 shell 白底。
 -->
 <script src="nav-wiring.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>
