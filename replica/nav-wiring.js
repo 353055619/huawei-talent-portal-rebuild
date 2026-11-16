@@ -29,6 +29,32 @@
     '我的考试': 'uc-myexam.html',
     '我的消息': 'uc-mynews.html'
   };
+  /* 导航下拉菜单（取自现网 portal-home DOM 的 t-popSelect-list 逐字菜单项；
+   * p=映射复刻页，无复刻页的子项保持死点——现网各自跳子路由/外域） */
+  var DROPS = {
+    '学习': [
+      { t: '课程', p: 'learning.html' },
+      { t: '书籍', p: null }
+    ],
+    '认证': [
+      { t: '职业认证', p: 'cert.html' }, { t: '专业认证', p: 'cert.html' },
+      { t: '1+X认证', p: 'cert.html' }, { t: 'HCIE专区', p: 'cert.html' },
+      { t: '微认证', p: 'cert.html' }, { t: '资源中心', p: 'cert.html' },
+      { t: '认证资讯', p: 'cert.html' }, { t: '认证课程', p: 'cert.html' }
+    ],
+    '华为ICT学院': [
+      { t: 'ICT学院', p: 'ict-academy.html' }, { t: 'IASC', p: 'ict-academy.html' },
+      { t: '课程目录', p: 'ict-academy.html' }, { t: '岗位推荐课程', p: 'ict-academy.html' },
+      { t: '人才双选', p: 'ict-academy.html' }, { t: '产学合作', p: 'ict-academy.html' },
+      { t: '查找ICT学院', p: 'find-academy.html' }, { t: '资源中心', p: 'ict-academy.html' },
+      { t: '学院资讯', p: 'ict-academy.html' }
+    ],
+    '培训伙伴': [
+      { t: '培训伙伴HALP', p: 'halp.html' }, { t: '查找HALP', p: 'halp.html' },
+      { t: '资源中心', p: 'halp.html' }, { t: '伙伴资讯', p: 'halp.html' },
+      { t: 'HALP班级', p: 'halp.html' }
+    ]
+  };
   function here() { return location.pathname.split('/').pop() || 'index.html'; }
   function go(p) { if (p && p !== here()) location.href = p; }
   function txt(el) { return (el.textContent || '').trim().replace(/\s+/g, ''); }
@@ -60,7 +86,8 @@
     if (ucCard) { go(UC_CARDS[txt(ucCard)]); return; }
 
     var nav = t.closest('.nav-item');
-    if (nav) { go(PAGES[txt(nav)]); return; }        /* 商城/企业培训等不在表内 → 保持死点（外域） */
+    /* 下拉菜单内无 data-nav 的子项 = 外域/未复刻入口，保持死点（不冒泡成频道跳转） */
+    if (nav && !t.closest('.nav-drop')) { go(PAGES[txt(nav)]); return; }        /* 商城/企业培训等不在表内 → 保持死点（外域） */
 
     if (t.closest('.hw-logo')) { go('index.html'); return; }
 
@@ -86,9 +113,38 @@
 
   /* 可点击性提示（光标手型） */
   var st = document.createElement('style');
-  st.textContent = '.nav-item,.hw-logo,.uc-cards .item,.learning-tab,.course-image-box,.Course-item,.new-card-course,.login-btn,[data-nav]{cursor:pointer}';
+  st.textContent = '.nav-item,.hw-logo,.uc-cards .item,.learning-tab,.course-image-box,.Course-item,.new-card-course,.login-btn,[data-nav]{cursor:pointer}'
+    /* 导航下拉（样式依据现网 t-popSelect-list：hover 弹出白卡） */
+    + '.nav-item{position:relative}'
+    + '.nav-drop{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:2px;'
+    + 'background:#fff;border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:8px 0;min-width:128px;z-index:3000}'
+    + '.nav-item:hover>.nav-drop{display:block}'
+    + '.nav-drop-item{padding:9px 24px;font-size:14px;line-height:1.4;color:#333;white-space:nowrap;text-align:center;cursor:pointer}'
+    + '.nav-drop-item:hover{color:#c7000b}'
+    + '.nav-item .caret{transition:transform .18s}'
+    + '.nav-item:hover>.caret{transform:rotate(180deg)}';
   document.head.appendChild(st);
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireCrumb);
-  else wireCrumb();
+  /* 给带 caret 的导航项注入下拉菜单（现网 t-popSelect 结构的静态化） */
+  function injectDrops() {
+    document.querySelectorAll('.nav-item').forEach(function (nav) {
+      var label = txt(nav).replace(/▼|▾|⌄/g, '');
+      var items = DROPS[label];
+      if (!items || nav.querySelector('.nav-drop')) return;
+      var d = document.createElement('div');
+      d.className = 'nav-drop';
+      items.forEach(function (it) {
+        var li = document.createElement('div');
+        li.className = 'nav-drop-item';
+        li.textContent = it.t;
+        if (it.p) { li.dataset.nav = it.p; li.style.cursor = 'pointer'; }
+        else li.style.cursor = 'default';
+        d.appendChild(li);
+      });
+      nav.appendChild(d);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { wireCrumb(); injectDrops(); });
+  else { wireCrumb(); injectDrops(); }
 })();
