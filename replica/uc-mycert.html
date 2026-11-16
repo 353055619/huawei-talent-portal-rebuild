@@ -54,28 +54,24 @@ body{background:var(--page-bg)}
 .t-crumbs{width:1200px;max-width:94vw;margin:0 auto;padding:14px 0 0;font-size:13px;color:#666}
 .t-crumbs .sep{margin:0 9px;color:#a6a6a6}
 .cert-tabsbar{width:1200px;max-width:94vw;margin:12px auto 0;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 25px}
-.aui-tabs__nav{display:flex;gap:28px;height:49px;align-items:stretch}
+.aui-tabs__nav{display:flex;gap:28px;height:44px;align-items:stretch}
 .aui-tabs__item{font-size:16px;color:#333;display:flex;align-items:center;cursor:pointer;position:relative}
 .aui-tabs__item.is-active{color:var(--hw-red)}
 .aui-tabs__item.is-active:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--hw-red)}
 .cert-btns{display:flex;gap:12px}
 .cert-btns .m-btn{height:30px}
-.cert-main{width:1200px;max-width:94vw;margin:21px auto 0;background:#fff;min-height:813px;padding:30px 62px 40px}
-.inner-tabs{display:flex;gap:30px;border-bottom:1px solid #e8e8e8;margin-bottom:22px}
+.cert-main{width:1200px;max-width:94vw;margin:0 auto;background:#fff;min-height:813px;padding:30px 30px 40px}
+.inner-tabs{display:flex;gap:30px;border-bottom:1px solid #e8e8e8;margin-bottom:5px}
 .inner-tabs .it{font-size:14px;color:#333;padding:8px 0;cursor:pointer;position:relative}
 .inner-tabs .it.is-active{color:var(--hw-red)}
 .inner-tabs .it.is-active:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--hw-red)}
-.faq p{font-size:13.5px;color:#333;line-height:26px;margin-bottom:18px}
+.faq p{font-size:14px;color:#333;line-height:24px;margin:0}
 .faq b{font-weight:600;color:#333}
 .faq a{color:#1890ff;word-break:break-all}
+.cert-divider{height:1px;background:#d5d5d5;margin:18px 10px 0}
 .cert-empty{text-align:center}
-.cert-empty img{width:226px;height:185px;margin:56px auto 0}
+.cert-empty img{width:226px;height:185px;margin:60px auto 0}
 .cert-empty .nd{margin-top:26px;font-size:14px;color:#333;margin-bottom:16px}
-/* 右侧悬浮 HCIE 关注面板（对照截图：右缘中部） */
-.panel-main{position:absolute;right:0;top:504px;width:150px;text-align:center;z-index:50}
-.panel-main img.hcieImg{width:130px;margin:0 auto}
-.panel-main .joinHcietip{font-size:12px;color:#333;margin-top:2px}
-.panel-main .my-btn2{color:#ccc;font-size:12px;cursor:pointer;margin-top:2px}
 
 </style>
 </head>
@@ -103,7 +99,7 @@ body{background:var(--page-bg)}
         <button class="cur">中</button>
         <button>EN</button>
       </span>
-      <span class="tool uc-account"><span>Uniportal账号 : </span><span>hw_353055619_qq.com_01</span></span>
+      <span class="tool uc-account"><span>Uniportal账号 : </span><span>hw_******_01</span></span>
     </div>
   </div>
 </div>
@@ -154,18 +150,14 @@ body{background:var(--page-bg)}
       <p><span style="font-weight:600;color:#333">三、重认证规则</span><br> 若您期望重认证，需在证书到期前通过相关考试。重认证规则详见：<a>https://e.huawei.com/cn/talent/#/cert/re-certification</a> </p>
       <p><span style="font-weight:600;color:#333">四、企业关联服务</span><br>企业证书绑定入口：<a>https://e.huawei.com/cn/myspace/accountinformation#/uipm/formLoadRelationOrgInfo </a>。<br> 重要政策：企业关联变更需间隔<span style="font-weight:600;color:#333">12个月</span>。 <br> 政策咨询：请联系属地代表处服务经理。</p>
     </div>
+    <div class="cert-divider"></div>
     <div class="cert-empty">
       <img src="assets/usercenter/bear.png" alt=""/>
       <div class="nd">暂无数据</div>
     </div>
-    <div class="panel-main">
-      <img class="hcieImg" src="assets/usercenter/join-hcie.png" alt=""/>
-      <div class="joinHcietip">扫码关注获得实时动态</div>
-      <div class="my-btn2">✕</div>
-    </div>
   </div>
 </div>
-<!-- REPLICA-NOTE: bear.png / join-hcie.png 为现网原图（curl 下载）；截图中页底重复出现一套壳（cookie/黑条/导航）为抓屏缝合伪影，非页面真实结构，未复刻；dom 中的隐藏弹窗（温馨提示×3 等）不渲染；面包屑尾随 “>” 如实复刻 -->
+<!-- REPLICA-NOTE: bear.png 为现网原图（curl 下载）；截图中页底重复出现一套内容+页脚为抓屏缝合伪影（dom 中各文本仅出现一次），非页面真实结构，未复刻；HCIE 侧栏面板为 cert 页特有、mycert 页现网无此面板，已移除；dom 中的隐藏弹窗（温馨提示×3 等）不渲染；面包屑尾随 “>” 如实复刻 -->
 <!-- 页脚 -->
 <footer class="com-footer-wrapper">
   <div class="container">

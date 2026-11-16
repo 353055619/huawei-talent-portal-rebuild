@@ -14,7 +14,7 @@
 ## 硬规则
 1. 每页是**独立 HTML 文件**，`file://` 直接打开可用，禁止外网请求（图片只用 `assets/` 本地文件或 CSS 渐变/SVG）。
 2. `<head>` 里 `<link rel="stylesheet" href="shell.css">`（usercenter/login 等特殊壳除外，见分配说明），页面样式全部在页内 `<style>`。
-3. 壳顶部：把 `_shell-top.tpl.html` 内容贴进来，把当前频道对应的 `.nav-item` 加 `style="color:var(--hw-red)"` 或包一层 `<span style="color:var(--hw-red)">` 表示选中态（对照截图里导航红字态）。顶栏右侧登录态对照截图：截图显示 `登录/注册` 用模板原文；显示 `Uniportal账号 : hw_353055619_qq.com_01` 就替换成该按钮（黑底白字、hover 下划线，截图里是顶栏右端的一块）。
+3. 壳顶部：把 `_shell-top.tpl.html` 内容贴进来，把当前频道对应的 `.nav-item` 加 `style="color:var(--hw-red)"` 或包一层 `<span style="color:var(--hw-red)">` 表示选中态（对照截图里导航红字态）。顶栏右侧登录态对照截图：截图显示 `登录/注册` 用模板原文；显示 `Uniportal账号 : hw_******_01` 就替换成该按钮（黑底白字、hover 下划线，截图里是顶栏右端的一块）。
 4. 文本内容（标题/副标/列表项/按钮字/数字/时间）**逐字取自 dom.html**，不得自己编。数量大的列表（如课程卡 133 门）按截图可见范围复刻 + 分页器示意即可，不必全量。
 5. 布局像素依据是 full.png：区块顺序、留白、分栏数、卡片高度比例、底色分区都要对上。设计宽度 1920、内容容器 1200px 居中（`.container` 已有）。
 6. 图片：优先 `assets/` 里的现网原图（按 index.json 的 URL 线索和文件名试读图片确认内容，Read 工具可以看 PNG/JPG）；没有下载到的图用与截图同色调的 CSS 渐变占位（参考 index.html 的 cover-g1..g5 写法），并在页尾 `<!-- REPLICA-NOTE: -->` 注释里列出占位项。

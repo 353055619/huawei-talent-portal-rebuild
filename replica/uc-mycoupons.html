@@ -32,10 +32,10 @@
 /* ===== 内容区公共 ===== */
 body{background:var(--page-bg)}
 .uc-main{background:var(--page-bg)}
-.uc-crumbs{width:1200px;max-width:94vw;margin:0 auto;padding:17px 0 0;font-size:13px;color:#666;line-height:1.5}
+.uc-crumbs{width:1200px;max-width:94vw;margin:0 auto;padding:13px 0 0;font-size:13px;color:#666;line-height:1.5}
 .uc-crumbs .crumb{color:#666}
 .uc-crumbs .sep{margin:0 10px;color:#a6a6a6}
-.uc-card{width:1200px;max-width:94vw;margin:12px auto 0;background:#fff;position:relative}
+.uc-card{width:1200px;max-width:94vw;margin:8px auto 0;background:#fff;position:relative}
 .uc-main{padding-bottom:10px}
 /* 空态 */
 .uc-nodata{text-align:center;padding:20px;margin-top:50px;color:#999;font-size:14px}
@@ -51,16 +51,20 @@ body{background:var(--page-bg)}
 .m-input .ph{color:#bfbfbf}
 .m-input .caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #b0b0b0;margin-left:6px}
 
-.myCoupons{padding:0 24px}
-.myCoupons__menuTabs ul{display:flex;gap:44px;border-bottom:1px solid #e8e8e8}
-.myCoupons__menuTabs li{font-size:14px;color:#333;padding:12px 0 10px;cursor:pointer;position:relative}
+/* 结构对照 dom：m-tabs(暗码/数字) + rightBtn(考券记录) + content(topTip + m-tabs(全部/可用/不可用) + 空态) */
+.myCoupons{padding:0 24px 32px;position:relative}
+.myCoupons__menuTabs ul{display:flex;border-bottom:1px solid #f2f2f2}
+.myCoupons__menuTabs li{font-size:14px;color:#333;padding:36px 38px 13px;line-height:13px;cursor:pointer;position:relative}
 .myCoupons__menuTabs li.selected{color:var(--hw-red);font-weight:600}
-.myCoupons__menuTabs li.selected:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--hw-red)}
-.coupon-head{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.coupon-head .m-btn{margin-right:0}
-.myCoupons__content_topTip{font-size:12.5px;color:#333;line-height:24px;padding:14px 2px 10px}
+.myCoupons__menuTabs li.selected:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--hw-red)}
+.tabs-main ul{margin-left:-4px}
+.tabs-filter{margin-top:11px}
+.tabs-filter ul{margin-left:6px}
+.tabs-filter li{padding:14px 36px 13px}
+.myCoupons__rightBtn{position:absolute;right:19px;top:23px}
+.myCoupons__rightBtn .m-btn{height:30px;padding:0 15px;font-size:12px}
+.myCoupons__content_topTip{font-size:14px;color:#333;line-height:20px;padding:25px 2px 0 16px}
 .myCoupons__content_topTip a{color:#1f70c1;word-break:break-all}
-.uc-nodata Coupons{{}}
 
 </style>
 </head>
@@ -88,7 +92,7 @@ body{background:var(--page-bg)}
         <button class="cur">中</button>
         <button>EN</button>
       </span>
-      <span class="tool uc-account"><span>Uniportal账号 : </span><span>hw_353055619_qq.com_01</span></span>
+      <span class="tool uc-account"><span>Uniportal账号 : </span><span>hw_******_01</span></span>
     </div>
   </div>
 </div>
@@ -116,31 +120,33 @@ body{background:var(--page-bg)}
     </div>
   </div>
 </header>
-<div class="uc-main" style="min-height:830px">
+<div class="uc-main">
   <div class="uc-crumbs"><a class="crumb">首页</a><span class="sep">&gt;</span><a class="crumb">用户中心</a><span class="sep">&gt;</span><a class="crumb">我的券包</a><span class="sep">&gt;</span></div>
   <div class="uc-card myCoupons">
-    <div class="coupon-head" style="border-bottom:1px solid #e8e8e8">
-      <div class="m-tabs myCoupons__menuTabs" style="flex:1">
-        <ul>
-          <li class="selected">暗码考券</li>
-          <li>数字考券</li>
-        </ul>
-      </div>
-      <button class="m-btn">考券记录</button>
+    <div class="m-tabs myCoupons__menuTabs tabs-main">
+      <ul>
+        <li class="selected">暗码考券</li>
+        <li>数字考券</li>
+      </ul>
     </div>
-    <div class="myCoupons__content_topTip">1.暗码考券有效期请以考券上呈现有效期为准（有效期从发放日开始计算），您需要在考券有效期内参加考试。考券发放之后不予延期或更换。<br>
+    <div class="myCoupons__rightBtn"><button class="m-btn">考券记录</button></div>
+    <div class="myCoupons__content">
+      <div class="Parent_div">
+        <div class="myCoupons__content_topTip">1.暗码考券有效期请以考券上呈现有效期为准（有效期从发放日开始计算），您需要在考券有效期内参加考试。考券发放之后不予延期或更换。<br>
  2.请您至少在HCIE实验考试券到期前7个自然日完成预约。华为不接受任何因考试资源不足的实验延期理由。<br>
  3.使用暗码考券预约考试时，直接勾选符合条件的暗码考券即可，不需要输入暗码考券号，暗码号无法用于预约考试。<br>
  4.考券使用操作指引： <a>https://e.huawei.com/cn/talent/news/#/details?consultationId=4678</a><br>
  5.如您的考券状态为”已占用“，请在【用户中心】-【我的考试】中查看考试预约记录并继续预约，或等待24小时系统自动取消待支付订单后再重新预约。</div>
-    <div class="m-tabs myCoupons__menuTabs">
-      <ul>
-        <li class="selected">全部（0）</li>
-        <li>可用（0）</li>
-        <li>不可用（0）</li>
-      </ul>
+      </div>
+      <div class="m-tabs myCoupons__menuTabs tabs-filter">
+        <ul>
+          <li class="selected">全部（0）</li>
+          <li>可用（0）</li>
+          <li>不可用（0）</li>
+        </ul>
+      </div>
+      <div><p class="uc-nodata">暂无数据</p></div>
     </div>
-    <div><p class="uc-nodata">暂无数据</p></div>
   </div>
 </div>
 <!-- REPLICA-NOTE: 规则 5 条逐字取自 dom.html；“考券记录”为右侧按钮（非 tab），与 dom 一致；面包屑尾随 “>” 如实复刻 -->

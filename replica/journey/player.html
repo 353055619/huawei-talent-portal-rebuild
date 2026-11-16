@@ -222,8 +222,8 @@ function pageSettle(page) { return 900; }
 function iWin() { try { return stage.contentWindow; } catch (e) { return null; } }
 function iDoc() { try { return stage.contentDocument; } catch (e) { return null; } }
 
-/* 元素定位：selector 在 iframe 内查找（可选 text 文本过滤，命中可见元素），返回舞台坐标 */
-function locate(sel, text) {
+/* 元素定位：selector 在 iframe 内查找（可选 text 过滤）；若在视口外先平滑滚入，再返回舞台坐标 */
+async function locate(sel, text) {
   const d = iDoc(); if (!d) return null;
   let el = null;
   try {
@@ -235,8 +235,14 @@ function locate(sel, text) {
     }
   } catch (e) {}
   if (!el) return null;
-  const r = el.getBoundingClientRect();
+  let r = el.getBoundingClientRect();
   if (r.width < 2 || r.height < 2) return null;
+  const vh = iWin().innerHeight;
+  if (r.top < 40 || r.bottom > vh - 40) {  // 视口外 → 滚到中部再看
+    try { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    await sleep(750);
+    r = el.getBoundingClientRect();
+  }
   const sr = stage.getBoundingClientRect();
   return { x: sr.left + r.left + r.width / 2, y: sr.top + r.top + r.height / 2, el, rect: { x: sr.left + r.left, y: sr.top + r.top, w: r.width, h: r.height } };
 }
@@ -264,6 +270,25 @@ async function realClick(el) {
       el.dispatchEvent(new d.defaultView.MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y, view: w }));
     }
   } catch (e) {}
+}
+/* 在 iframe 输入框里逐字输入 */
+async function typeInto(loc, text) {
+  const el = loc.el, w = iWin(), d = iDoc();
+  try { el.focus(); } catch (e) {}
+  await sleep(200);
+  for (const ch of text) {
+    el.value = (el.value || '') + ch;
+    el.dispatchEvent(new w.Event('input', { bubbles: true }));
+    await sleep(120 + Math.random() * 90);
+  }
+  el.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+  el.dispatchEvent(new w.KeyboardEvent('keyup', { key: 'Enter', bubbles: true }));
+}
+/* 阅读手势：iframe 页面平滑滚动一段 */
+async function readScroll(dy) {
+  const w = iWin(); if (!w) return;
+  w.scrollBy({ top: dy, behavior: 'smooth' });
+  await sleep(900);
 }
 function focusBox(rect) {
   const b = document.createElement('div');
@@ -336,30 +361,51 @@ async function run() {
 
     if (step.kind) { await playInterstitial(step, i + 1); setCaption(i + 1, step); await sleep(300); hideCaption(); continue; }
 
+    /* 页面切换前的"入口点击"：在当前页面上点击触发跳转的元素，再换页 */
+    if (step.via && curPage) {
+      const v = step.via;
+      const loc = v.sel ? await locate(v.sel, v.text) : null;
+      if (loc) {
+        await moveCursor(loc.x, loc.y);
+        await pressCursor();
+        await sleep(260);
+      }
+    }
+
     await loadPage(step.page);
     if (step.scrollText) await scrollText(step.scrollSel || '*', step.scrollText);
     else if (step.scroll) await scrollToSel(step.scroll);
     setCaption(i + 1, step);
 
-    /* 点击目标序列 */
-    for (const act of (step.acts || [])) {
-      const loc = act.sel ? locate(act.sel, act.text) : null;
+    const acts = step.acts || [];
+    /* 无任何动作的页面步：自动补"阅读"手势（滚动浏览），避免画面静止 */
+    if (acts.length === 0 && !step.scroll && !step.scrollText) {
+      await readScroll(340); await sleep(500); await readScroll(-240);
+    }
+
+    /* 动作序列 */
+    for (const act of acts) {
+      if (act.scrollBy) { await readScroll(act.scrollBy); continue; }
+      const loc = act.sel ? await locate(act.sel, act.text) : null;
       if (loc) {
         if (act.focus) { const fb = focusBox(loc.rect); setTimeout(() => fb.remove(), act.dwell || 1600); }
         await moveCursor(loc.x, loc.y);
-        if (act.click !== false) { await pressCursor(); if (act.real) realClick(loc.el); }
-        await sleep(act.dwell || 1200);
+        if (act.type) { await pressCursor(); await typeInto(loc, act.type); }
+        else if (act.click !== false) { await pressCursor(); if (act.real) realClick(loc.el); }
+        await sleep(act.dwell != null ? act.dwell : 900);
+        if (act.nav) { await loadPage(act.nav); }  // 点击后跳页（表现"点击→换页"因果）
       } else if (act.xy) {
         await moveCursor(act.xy[0], act.xy[1]);
         await pressCursor();
-        await sleep(act.dwell || 1200);
+        await sleep(act.dwell != null ? act.dwell : 900);
+        if (act.nav) { await loadPage(act.nav); }
       } else {
-        await sleep(act.dwell || 1500);
+        await sleep(act.dwell != null ? act.dwell : 1200);
       }
     }
-    await sleep(step.dwell != null ? step.dwell : 1800);
+    await sleep(step.dwell != null ? step.dwell : 1500);
     hideCaption();
-    await sleep(260);
+    await sleep(240);
   }
   $('progress').style.width = '100%';
 

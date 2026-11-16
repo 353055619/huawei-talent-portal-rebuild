@@ -6,7 +6,7 @@
 
 | 编号 | 证据源 | 类型 | 可信度 |
 |---|---|---|---|
-| E1 | `/Users/godw/GodwGarage/sandbox/wt-user/research/00-现网系统信息架构笔记.md` | 2026-11-15 逐页一手实测（未登录 + 登录账号 hw_353055619_qq.com_01） | 高（一手） |
+| E1 | `/Users/godw/GodwGarage/sandbox/wt-user/research/00-现网系统信息架构笔记.md` | 2026-11-15 逐页一手实测（未登录 + 登录账号 hw_******_01） | 高（一手） |
 | E2 | `/Users/godw/GodwGarage/sandbox/wt-user/research/04-华为人才生态业务背景.md` | 官网抓取（redirectConfig.js 路由反解）+ 公开资料检索 | 高（一手+二手） |
 | E3 | WebFetch `https://r-h2.huaweistatic.com/s/hwtalent/lst/redirectConfig.js`（2026-11-15） | 路由配置一手反解 | 高（一手） |
 | E4 | WebFetch `https://elearning.huawei.com/cn/homepage`（2026-11-15） | 静态抓取 | 中（仅得 SEO 标题，正文动态加载） |

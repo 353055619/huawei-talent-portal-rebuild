@@ -129,7 +129,7 @@
       "app": "/cn/talent/usercenter/（登录后；'我的证书''我的考试'实际跳 talent/#/personal/* 另一子应用）",
       "path": "https://e.huawei.com/cn/talent/usercenter/#/home",
       "desc": "登录后个人中心，左侧菜单 8 子模块：我的课程/我的班级/我的大赛/我的券包/我的证书/我的考试/我的消息/个人信息。已知硬伤：首页主区空白；左侧菜单仅在 #/home 渲染，进入子页后菜单消失；证书企业关联跳 myspace 第三系统。",
-      "evidence": "research/00 §登录后体验记录（账号 hw_353055619_qq.com_01，2026-11-15 实测）；redirectConfig.js 一手反解 12 条 usercenter 路由（pageCode PACF0EC4FC2CD9B 等）",
+      "evidence": "research/00 §登录后体验记录（账号 hw_******_01，2026-11-15 实测）；redirectConfig.js 一手反解 12 条 usercenter 路由（pageCode PACF0EC4FC2CD9B 等）",
       "submodules": [
         { "id": "uc-home", "name": "首页（框架）", "path": "#/home" },
         { "id": "uc-course", "name": "我的课程", "path": "#/home/mycourse" },

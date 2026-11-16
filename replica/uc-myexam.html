@@ -54,21 +54,23 @@ body{background:var(--page-bg)}
 .t-crumbs{width:1200px;max-width:94vw;margin:0 auto;padding:14px 0 0;font-size:13px;color:#666}
 .t-crumbs .sep{margin:0 9px;color:#a6a6a6}
 .exam-strip{width:1200px;max-width:94vw;margin:10px auto 0;background:#fff;padding:12px 25px 0}
-.exam-main{width:1200px;max-width:94vw;margin:3px auto 0;background:#fff;min-height:687px;padding:0 25px}
-.exam-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e8e8e8}
+.exam-main{width:1200px;max-width:94vw;margin:3px auto 0;background:#fff;padding:0 25px}
+.exam-header{display:flex;justify-content:space-between;align-items:center;padding:0 24px 0 50px}
 .exam-tabs{display:flex;gap:36px}
 .exam-tabs .tabTitle{font-size:16px;color:#333;padding:12px 0 10px;cursor:pointer}
 .exam-tabs .tabTitle.isSelected{color:var(--hw-red);position:relative}
-.exam-tabs .tabTitle.isSelected:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--hw-red)}
-.exam-search{display:flex;align-items:center;gap:10px;padding:9px 0}
+.exam-tabs .tabTitle.isSelected:after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:98px;bottom:-1px;height:3px;background:var(--hw-red)}
+.exam-search{display:flex;align-items:center;gap:24px;padding:9px 0}
+.search-group{display:flex;align-items:center;gap:24px;border-bottom:1px solid #e4e4e4}
 .exam-searchTitle{font-size:13px;color:#606266}
 .exam-searchTitle i{color:var(--hw-red);font-style:normal;margin-right:2px}
 .exam-select{width:110px;height:30px}
 .exam-searchInput{width:190px;height:30px;border:1px solid #dcdfe6;border-radius:2px;outline:none;font-size:13px;color:#606266;padding:0 10px}
 .exam-searchInput::placeholder{color:#bfbfbf}
-.goBtn{display:inline-flex;gap:10px;margin-right:12px}
-.exam-content .noData{text-align:center;color:#999;font-size:14px;padding:30px 0 0}
-.exam-footer{padding:20px 0 26px}
+.goBtn{display:inline-flex;gap:24px;margin-right:12px}
+.exam-content{height:337px}
+.exam-content .noData{text-align:center;color:#999;font-size:14px;padding:50px 0 0}
+.exam-footer{padding:20px 0 272px}
 
 </style>
 </head>
@@ -96,7 +98,7 @@ body{background:var(--page-bg)}
         <button class="cur">中</button>
         <button>EN</button>
       </span>
-      <span class="tool uc-account"><span>Uniportal账号 : </span><span>hw_353055619_qq.com_01</span></span>
+      <span class="tool uc-account"><span>Uniportal账号 : </span><span>hw_******_01</span></span>
     </div>
   </div>
 </div>
@@ -124,7 +126,7 @@ body{background:var(--page-bg)}
     </div>
   </div>
 </header>
-<div class="uc-main" style="min-height:774px">
+<div class="uc-main">
   <div class="t-crumbs"><a>首页</a><span class="sep">&gt;</span><a>用户中心</a><span class="sep">&gt;</span><span>我的考试</span><span class="sep">&gt;</span></div>
   <div class="exam-strip">
     <div class="exam-header">
@@ -133,13 +135,15 @@ body{background:var(--page-bg)}
         <p class="tabTitle">其他考试</p>
       </div>
       <div class="exam-search">
-        <span class="goBtn">
-          <button class="m-btn">VUE考试记录</button>
-          <button class="m-btn">VUE考试收据</button>
+        <span class="search-group">
+          <span class="goBtn">
+            <button class="m-btn">VUE考试记录</button>
+            <button class="m-btn">VUE考试收据</button>
+          </span>
+          <span class="exam-searchTitle isRequired"><i style="color:var(--hw-red)">*</i>是否在线预约</span>
+          <div class="m-input exam-select"><input readonly placeholder="请选择" /><span class="caret"></span></div>
+          <input class="exam-searchInput" placeholder="请输入考试预约号/名称/代码" />
         </span>
-        <span class="exam-searchTitle isRequired"><i style="color:var(--hw-red)">*</i>是否在线预约</span>
-        <div class="m-input exam-select"><input readonly placeholder="请选择" /><span class="caret"></span></div>
-        <input class="exam-searchInput" placeholder="请输入考试预约号/名称/代码" />
         <button class="m-btn exambtn-query">查询</button>
       </div>
     </div>
@@ -159,7 +163,7 @@ body{background:var(--page-bg)}
     </div>
   </div>
 </div>
-<!-- REPLICA-NOTE: 截图底部重复壳为抓屏伪影未复刻；共0条 分页器截图内不可见（DOM 存在），按 DOM 渲染在卡片底部 -->
+<!-- REPLICA-NOTE: 截图底部重复壳为抓屏伪影未复刻；共0条 分页器在截图 y627-657 处可见（卡片中部、暂无数据下方约 300px），已按实测位置复刻（exam-content 高 337 + footer 底 padding 272）；tab 红杠为文字居中 98px 宽 -->
 <!-- 页脚 -->
 <footer class="com-footer-wrapper">
   <div class="container">

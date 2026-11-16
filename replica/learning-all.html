@@ -3,23 +3,146 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>全部课程-华为人才在线（复刻）</title>
+<title>全部课程-学习-华为人才在线（复刻）</title>
 <link rel="stylesheet" href="shell.css">
 <style>
 /* ============================================================
- * 学习频道 · 全部课程视图（#/all-course）· 复刻
- * 现网实测（captures/learning-all）：该视图由 elogic-html 子应用渲染，
- * 无 JS 环境下输出空壳 —— 页面主体为空白，导航条下方紧接页脚。
- * 本页按截图原样复刻该"缺陷"（SPEC 规则 7）。
+ * 学习频道首页（专业课程目录视图）· 复刻
+ * 依据 captures/learning 截图与 dom.html 实测：
+ * 大卡 1556px 宽（x182-1738），与壳默认 1200 容器不同，此页覆盖。
  * ============================================================ */
 body { background: var(--page-bg); }
+.container, .topbar .container, .mainnav .container, .cookie-bar .container { width: 1556px; }
+.com-footer-wrapper .container, .footer-bottom .container { width: 1200px; }
 
-/* 页脚紧贴导航（现网 home-wrapper 仅 margin-top:157px 且内容为空） */
-.home-wrapper { margin-top: 157px; min-height: 0; }
-.com-footer-wrapper { margin-top: 0; }
-.com-footer-content { padding: 54px 0 40px; }
+/* ============ 面包屑条（页面底色上，位于大卡上方） ============ */
+.breadcrumb-bar { height: 74px; display: flex; align-items: center; justify-content: space-between; width: 1556px; margin: 0 auto; }
+.breadcrumb-bar .BreadcrumbItem-wrapper { font-size: 14px; color: var(--text); display: inline-flex; align-items: center; }
+.BreadcrumbItem-separator { margin: 0 10px; color: var(--faint); }
+.aui-button-default { border: 1px solid var(--hw-red); color: var(--hw-red); font-size: 14px; padding: 9px 18px; border-radius: 2px; background: #fff; }
 
-/* 版权条底色（现网实测 #e6e6e6） */
+/* ============ 专业课程目录大卡 ============ */
+.learning-container-top { width: 1556px; margin: 0 auto; background: #fff; position: relative; }
+.learning-tabs { display: flex; height: 60px; border-bottom: 1px solid #e9e9e9; }
+.learning-tab { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 17px; color: var(--ink); cursor: pointer; position: relative; }
+.learning-tab.selected { color: var(--hw-red); font-weight: 500; }
+.learning-tab.selected::after { content: ''; position: absolute; left: 20px; width: 505px; bottom: -1px; height: 2px; background: var(--hw-red); }
+
+/* 顶部 4 个专业标题条 */
+.background-box { display: flex; gap: 4px; margin: 16px 23px 0 173px; }
+.background-part { flex: 1; height: 99px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.bp1 { background: linear-gradient(rgba(228, 215, 250, 0.4), rgba(255, 255, 255, 0) 180px); }
+.bp2 { background: linear-gradient(rgba(253, 222, 190, 0.42), rgba(255, 255, 255, 0) 180px); }
+.bp3 { background: linear-gradient(rgba(185, 188, 251, 0.4), rgba(255, 255, 255, 0) 180px); }
+.bp4 { background: linear-gradient(rgba(252, 212, 240, 0.42), rgba(255, 255, 255, 0) 180px); }
+.background-image { width: 48px; height: 48px; }
+.background-text { font-size: 20px; font-weight: 600; color: #1a1a1a; }
+
+/* 中部：左标签列 + 4 列课程 chip + 公共课 */
+.professonal-content { display: flex; padding: 0 24px 0 23px; }
+.label-col { width: 146px; flex: none; display: flex; flex-direction: column; gap: 5px; margin-right: 7px; }
+.type-title { border: 1px solid #e5e5e5; display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff; }
+.type-title img { width: 20px; height: 20px; }
+.type-title-text { font-size: 16px; color: var(--ink); }
+.tt1 { height: 47px; } .tt2 { height: 369px; } .tt3 { height: 165px; }
+
+.content-box { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.singleBox { display: flex; gap: 12px; height: 255px; }
+.singleitem { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.singleitem .lower-item { flex: 1; }
+/* 实践课行：单行 4 个 */
+.practice-row { display: flex; gap: 12px; height: 47px; }
+.practice-row .lower-item { flex: 1; height: 47px; }
+
+.lower-item { border: 1px solid #e5e5e5; background: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 12px 0 16px; cursor: pointer; }
+.lower-item:hover { border-color: var(--hw-red); }
+.lower-item-name { font-size: 15px; color: #1a1a1a; display: inline-flex; align-items: center; gap: 4px; min-width: 0; }
+.lower-item-name > span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.new-flag { font-size: 10px; line-height: 1; color: var(--hw-red); border: 1px solid var(--hw-red); border-radius: 2px; padding: 2px 3px; flex: none; }
+.hammer-icon { width: 15px; height: 15px; flex: none; }
+.lower-item-icon { display: flex; align-items: center; gap: 4px; flex: none; }
+.lower-item-icon img { width: 13px; height: 13px; }
+.lower-item-icon-number { font-size: 13px; color: #999; }
+
+/* 公共课 commonBox：带边框分组容器 + 内部 3 列 */
+.commonBox { display: flex; flex-wrap: wrap; gap: 4px 5px; border: 1px solid #e5e5e5; padding: 4px; background: #fff; }
+.commonBox.core-common { margin-top: 0; }
+.commonBox.ts-common { margin-top: 4px; }
+.commonBox .lower-item { width: calc((100% - 10px) / 3); height: 47px; }
+.commonBox .lower-item.full { width: 100%; }
+
+/* 注释行 */
+.icon-tips { display: flex; align-items: center; gap: 6px; padding: 25px 0 33px 26px; font-size: 14px; color: var(--text); }
+.icon-tips img.hammer-icon { width: 16px; height: 16px; }
+.icon-tips .v2-fs14 { font-size: 14px; }
+.icon-tips .gap { width: 28px; }
+
+/* ============ 下方课程区 ============ */
+.course-wrapper { width: 1556px; margin: 0 auto; padding: 4px 0 40px; display: flex; gap: 11px; }
+/* 左侧筛选面板 */
+.side-search { width: 378px; flex: none; background: #fff; padding: 24px 24px 30px; box-shadow: 0 1px 4px rgba(0,0,0,.04); height: max-content; }
+.search-wrapper { border: 1px solid #d9d9d9; border-radius: 18px; height: 34px; display: flex; align-items: center; padding: 0 14px; gap: 8px; margin-bottom: 21px; }
+.search-wrapper svg { width: 14px; height: 14px; color: #999; flex: none; }
+.search-wrapper input { border: none; outline: none; flex: 1; font-size: 13px; }
+.search-wrapper input::placeholder { color: #bfbfbf; }
+.search-title-box { display: flex; align-items: center; justify-content: space-between; padding: 0 0 8px; }
+.search-title { font-size: 16px; font-weight: 600; color: var(--ink); }
+.search-title-box img { width: 18px; height: 18px; }
+.collapsible-header { display: flex; align-items: center; justify-content: space-between; height: 46px; cursor: pointer; }
+.collapsible-title { font-size: 15px; color: #262626; }
+.collapsible-icon { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #bfbfbf; }
+
+/* 右侧课程列表 */
+.course-list { flex: 1; min-width: 0; display: block; }
+.course-title { display: flex; align-items: center; justify-content: space-between; height: 48px; }
+.option-item { font-size: 20px; font-weight: 600; color: var(--hw-red); position: relative; padding-left: 2px; }
+.option-item::after { content: ''; position: absolute; left: 2px; bottom: -6px; width: 80px; height: 2px; background: var(--hw-red); }
+.my-learn-button { border: 1px solid var(--hw-red); background: var(--hw-red); color: #fff; font-size: 14px; padding: 8px 22px; border-radius: 2px; cursor: pointer; }
+.options-list-selector { display: flex; align-items: center; gap: 36px; padding: 4px 0 14px 6px; }
+.sort-selector { display: flex; align-items: center; gap: 4px; font-size: 14px; cursor: pointer; }
+.sort-selector .sort-title { color: #212121; }
+.sort-selector.muted .sort-title { color: #8c8c8c; }
+.arrow-line-container { display: inline-flex; flex-direction: column; gap: 1px; }
+.arrow-line-container i { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; }
+.arrow-up-dark { border-bottom: 5px solid #333; }
+.arrow-down-light { border-top: 5px solid #bfbfbf; }
+
+/* 课程卡 */
+.card-container { display: flex; flex-wrap: wrap; gap: 9px 8px; }
+.course-card { width: calc((100% - 16px) / 3); background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.05); cursor: pointer; }
+.course-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.10); }
+.course-image-box { position: relative; height: 211px; overflow: hidden; }
+.course-image { width: 100%; height: 100%; object-fit: cover; }
+.course-tip { position: absolute; top: 16px; right: 24px; background-color: rgb(254, 231, 232); color: rgb(199, 0, 11); font-weight: 400; border-radius: 4px; font-size: 13px; line-height: 1; padding: 6px 10px; }
+.course-description { padding: 23px 16px 40px; }
+.course-info { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.course-name { font-size: 18px; font-weight: 600; color: #262626; line-height: 26px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.share-icon { width: 18px; height: 18px; opacity: .45; flex: none; margin-top: 4px; }
+.course-intro { display: block; margin-top: 16px; font-size: 14px; line-height: 22px; color: #999; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.course-conditions { display: flex; align-items: flex-start; justify-content: space-between; margin-top: 36px; }
+.icon-box-sub { display: flex; align-items: center; gap: 4px; }
+.icon-box-sub .sub-icon { width: 13px; height: 13px; }
+.course-sub-text { font-size: 12px; color: #999; }
+.icon-box-buttom { display: flex; align-items: center; gap: 16px; margin-top: 12px; }
+.button-register { flex: none; border: 1px solid var(--hw-red); color: var(--hw-red); font-size: 13px; padding: 5px 14px; border-radius: 2px; background: #fff; cursor: pointer; margin-top: 33px; }
+.button-register:hover { background: var(--hw-red); color: #fff; }
+
+/* 分页 */
+.Pagination-box { display: flex; justify-content: flex-end; margin-top: 20px; }
+.m-pagination-wrapper { display: flex; align-items: center; gap: 12px; font-size: 13px; color: #595959; }
+.m-pagination-total { color: #595959; }
+.m-pagination-size { display: flex; align-items: center; border: 1px solid #d9d9d9; border-radius: 2px; height: 28px; padding: 0 10px; gap: 6px; background: #fff; cursor: pointer; }
+.m-pagination-size svg { width: 10px; height: 10px; color: #999; }
+.m-pagination-prev, .m-pagination-next { width: 28px; height: 28px; border: 1px solid #d9d9d9; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: #d9d9d9; }
+.m-pagination-next { color: #595959; }
+.m-pagination-pager { display: flex; align-items: center; gap: 4px; list-style: none; }
+.m-pagination-pager li { min-width: 28px; height: 28px; padding: 0 6px; display: flex; align-items: center; justify-content: center; color: #595959; cursor: pointer; }
+.m-pagination-pager li.selected { color: var(--hw-red); }
+.m-pagination-pager li.more::after { content: '···'; letter-spacing: 1px; }
+.m-pagination-jump { display: flex; align-items: center; gap: 6px; }
+.m-pagination-jump .m-input input { width: 44px; height: 28px; border: 1px solid #d9d9d9; border-radius: 2px; outline: none; text-align: center; font-size: 13px; }
+
+/* 页脚版权条底色（现网实测 #e6e6e6） */
 .footer-bottom { background: #e6e6e6; }
 </style>
 </head>
@@ -80,11 +203,556 @@ body { background: var(--page-bg); }
   </div>
 </header>
 
-<!-- 现网缺陷忠实复刻：#/all-course 视图为 elogic-html 子应用空壳，
-     主体内容不渲染（原 DOM 仅含 "We're sorry but elogic-html doesn't work
-     properly without JavaScript enabled." 的 noscript 与隐藏 loading 节点），
-     导航条下方直接出现页脚。 -->
-<div class="home-wrapper" aria-hidden="true"></div>
+<div class="m-content-wrapper">
+  <!-- 面包屑条 -->
+  <div class="breadcrumb-bar">
+    <div>
+      <a class="BreadcrumbItem-wrapper">首页<span class="BreadcrumbItem-separator">&gt;</span></a>
+      <a class="BreadcrumbItem-wrapper">学习<span class="BreadcrumbItem-separator">&gt;</span></a>
+    </div>
+    <button type="button" class="aui-button-default">课程目录</button>
+  </div>
+
+  <div class="learning-wrapper">
+    <div class="learning-container">
+      <!-- 顶部大卡：三视图 tab + 专业课程目录地图 -->
+      <div class="learning-container-top shadow">
+        <div class="learning-tabs">
+          <span class="learning-tab selected">专业课程目录</span>
+          <span class="learning-tab">岗位课程目录</span>
+          <span class="learning-tab">全部课程</span>
+        </div>
+        <div class="professional-container">
+          <!-- 4 个专业标题条 -->
+          <div class="background-box">
+            <div class="background-part bp1">
+              <img src="assets/learning/163281c46b.svg" alt="图片" class="background-image">
+              <span class="background-text">计算机科学与技术</span>
+            </div>
+            <div class="background-part bp2">
+              <img src="assets/learning/a0dedea592.svg" alt="图片" class="background-image">
+              <span class="background-text">人工智能</span>
+            </div>
+            <div class="background-part bp3">
+              <img src="assets/learning/cf9043c5b0.svg" alt="图片" class="background-image">
+              <span class="background-text">软件工程</span>
+            </div>
+            <div class="background-part bp4">
+              <img src="assets/learning/e18c3949f4.svg" alt="图片" class="background-image">
+              <span class="background-text">物联网工程</span>
+            </div>
+          </div>
+          <!-- 中部内容：左标签列 + 课程 chip -->
+          <div class="professonal-content">
+            <div class="label-col">
+              <div class="type-title tt1"><img src="assets/learning/62c745465a.svg" alt="图片"><span class="type-title-text">实践课</span></div>
+              <div class="type-title tt2"><img src="assets/learning/ca06e41576.svg" alt="图片"><span class="type-title-text">核心课</span></div>
+              <div class="type-title tt3"><img src="assets/learning/3ec1da1351.svg" alt="图片"><span class="type-title-text">通识课</span></div>
+            </div>
+            <div class="content-box">
+              <!-- 实践课行 -->
+              <div class="practice-row">
+                <div class="lower-item"><span class="lower-item-name"><span>专业综合实训</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">766</div></div></div><div class="lower-item"><span class="lower-item-name"><span>专业综合实训</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">4623</div></div></div><div class="lower-item"><span class="lower-item-name"><span>专业综合实训</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">382</div></div></div><div class="lower-item"><span class="lower-item-name"><span>专业综合实训</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">294</div></div></div>
+              </div>
+              <!-- 核心课：4 列 -->
+              <div class="singleBox">
+                <div class="singleitem"><div class="lower-item"><span class="lower-item-name"><span>算子开发与应用</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">10499</div></div></div><div class="lower-item"><span class="lower-item-name"><span>并行计算</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">890</div></div></div><div class="lower-item"><span class="lower-item-name"><span>编译原理</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">375</div></div></div><div class="lower-item"><span class="lower-item-name"><span>计算机组成原理与系统结构</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">580</div></div></div><div class="lower-item"><span class="lower-item-name"><span>数据结构与并行算法</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">1210</div></div></div></div>
+                <div class="singleitem"><div class="lower-item"><span class="lower-item-name"><span>智能计算系统</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">1080</div></div></div><div class="lower-item"><span class="lower-item-name"><span>计算机视觉与模式识别</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">1536</div></div></div><div class="lower-item"><span class="lower-item-name"><span>深度学习</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">12630</div></div></div><div class="lower-item"><span class="lower-item-name"><span>人工智能原理与应用</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">17978</div></div></div></div>
+                <div class="singleitem"><div class="lower-item isStay"><span class="lower-item-name"><span>软件工程</span><img src="assets/learning/580fe9834a.svg" class="hammer-icon" alt="锤子"></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">3320</div></div></div><div class="lower-item isStay"><span class="lower-item-name"><span>软件测试与质量</span><img src="assets/learning/580fe9834a.svg" class="hammer-icon" alt="锤子"></span></div><div class="lower-item"><span class="lower-item-name"><span>软件需求工程</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">859</div></div></div><div class="lower-item"><span class="lower-item-name"><span>移动应用开发</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">17730</div></div></div></div>
+                <div class="singleitem"><div class="lower-item"><span class="lower-item-name"><span>物联网通信技术</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">8934</div></div></div><div class="lower-item isStay"><span class="lower-item-name"><span>嵌入式系统设计</span><img src="assets/learning/580fe9834a.svg" class="hammer-icon" alt="锤子"></span></div><div class="lower-item"><span class="lower-item-name"><span>物联网应用开发</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">990</div></div></div></div>
+              </div>
+              <!-- 核心课公共课 -->
+              <div class="commonBox core-common"><div class="lower-item"><span class="lower-item-name"><span>操作系统</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">27442</div></div></div><div class="lower-item"><span class="lower-item-name"><span>计算机网络</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">126466</div></div></div><div class="lower-item"><span class="lower-item-name"><span>网络安全</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">38563</div></div></div><div class="lower-item"><span class="lower-item-name"><span>程序设计</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">18550</div></div></div><div class="lower-item"><span class="lower-item-name"><span>数据结构（仓颉版）</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">4137</div></div></div><div class="lower-item"><span class="lower-item-name"><span>数据库系统</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">30592</div></div></div></div>
+              <!-- 通识课公共课 -->
+              <div class="commonBox ts-common"><div class="lower-item"><span class="lower-item-name"><span>人工智能通识</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">59575</div></div></div><div class="lower-item"><span class="lower-item-name"><span>智能体与AI编程</span><span class="new-flag">NEW</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">2515</div></div></div><div class="lower-item"><span class="lower-item-name"><span>计算机系统通识</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">135050</div></div></div><div class="lower-item"><span class="lower-item-name"><span>云技术基础</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">49362</div></div></div><div class="lower-item"><span class="lower-item-name"><span>探索智能世界</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">34534</div></div></div><div class="lower-item"><span class="lower-item-name"><span>ICT综合素养</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">7602</div></div></div><div class="lower-item full"><span class="lower-item-name"><span>ICT基础设施</span></span><div class="lower-item-icon"><img src="assets/learning/b7f1e92406.svg" alt="图片"><div class="lower-item-icon-number">12631</div></div></div></div>
+            </div>
+          </div>
+          <!-- 注释行 -->
+          <div class="icon-tips">
+            <span>注:</span>
+            <img src="assets/learning/580fe9834a.svg" alt="图片" class="hammer-icon">
+            <span class="v2-fs14">表示建设中</span>
+            <span class="gap"></span>
+            <span class="new-flag">NEW</span>
+            <span class="v2-fs14">表示新增或更新</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 课程区：左筛选 + 右列表 -->
+      <div class="course-wrapper">
+        <div class="side-search">
+          <div class="search-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.8 21.6 18 16.8c1.3-1.6 2.1-3.6 2.1-5.7 0-5-4-9-9-9s-9 4-9 9 4 9 9 9c2.2 0 4.2-.8 5.7-2.1l4.8 4.8c.2.2.4.2.6.2s.4-.1.6-.2c.3-.4.3-.9 0-1.2z" fill="currentColor"/></svg>
+            <input type="text" placeholder="请输入课程名称">
+          </div>
+          <div class="search-title-box">
+            <div class="search-title">筛选</div>
+          </div>
+          <div class="collapsible"><div class="collapsible-header"><span class="collapsible-title">专业</span><span class="collapsible-icon"></span></div></div>
+          <div class="collapsible"><div class="collapsible-header"><span class="collapsible-title">岗位</span><span class="collapsible-icon"></span></div></div>
+          <div class="collapsible"><div class="collapsible-header"><span class="collapsible-title">技术方向</span><span class="collapsible-icon"></span></div></div>
+          <div class="collapsible"><div class="collapsible-header"><span class="collapsible-title">课程类型</span><span class="collapsible-icon"></span></div></div>
+          <div class="collapsible"><div class="collapsible-header"><span class="collapsible-title">难度级别</span><span class="collapsible-icon"></span></div></div>
+        </div>
+
+        <div class="course-list">
+          <div class="course-title">
+            <div class="title-option">
+              <div class="option-item selected">全部课程</div>
+            </div>
+            <div class="lerning-message">
+              <div class="my-learn">
+                <div class="button-message my-learn-button">我的学习</div>
+              </div>
+            </div>
+          </div>
+          <div class="options-list-selector">
+            <div class="sort-selector">
+              <p class="sort-title">学习量</p>
+              <div class="sort-box-arrow-group">
+                <div class="arrow-line-container"><i class="arrow-up-dark"></i><i class="arrow-down-light"></i></div>
+              </div>
+            </div>
+            <div class="sort-selector muted">
+              <p class="sort-title">发布时间</p>
+              <div class="sort-box-arrow-group">
+                <div class="arrow-line-container"><i class="arrow-down-light"></i><i class="arrow-down-light"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-container">
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/3b2f16c9e9.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">Ascend C异构并行程序设计 V2.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程系统讲解从异构计算、昇腾 AI 处理器与 CANN 软件栈，到 Ascend C 的 SIMD / SIMT 编程、编译运行、功能调试、性能优化和工程集成。课程以算子开发全生命周期为主线，规划通过典型案例串联 计算特征解析 → 基础版本实现 → 性能剖析 → 瓶颈定位 → 优化方案设计 → 效果验证，并进一步延伸至混合编程、AI 框架集成、通信编程、大模型辅助开发、扩展库与 Python 生态。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">216人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">32h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">高级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/52d14afc9e.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">并行计算：基于鲲鹏与昇腾的实践V1.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程是紧跟 “通算与智算融合” 产业发展趋势的新工科专业课程。课程突破传统并行计算课程偏重理论的局限，以鲲鹏（TaiShan）通用算力与华为昇腾（Ascend）智算算力为软硬件底座，内容覆盖底层硬件架构、NEON SIMD 向量化编程、Pthreads 多线程、OpenMP 共享内存并行、昇腾算子开发以及深度学习模型异构部署。课程旨在引导学生掌握通用 CPU 与 AI 芯片异构并行的开发方法，培养具备软硬件协同设计、底层代码性能调优能力的系统型复合型工程人才。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">703人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">48h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">中级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/ab2109e4fe.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">人工智能开源通识V1.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程是国内领先的、以“基础平台生态软件”为核心主题的开源课程。课程深度融入昇腾CANN作为贯穿始终的标杆案例，系统讲授从技术内核到生态增益的全链条构建方法。区别于传统课程仅教授工具使用，本课程聚焦于培养学生如何参与构建和治理一个成功的开源生态，特别是像CANN这样的自主创新AI基础软件平台。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">1515人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">32h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">初级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/6916771553.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">计算机组成原理与系统结构V1.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程是计算机类专业一门理论性、工程性、技术性和实践性都很强的核心专业基础课程，在计算机学科系列课程中处于承上启下的作用。课程以计算机内部总体结构为主线，涵盖数据表示表示、运算器、控制器、存储器、输入/输出系统等主要内容。详细讨论计算机组织结构、各主要功能部件的工作原理、设计与实现方法。课程着力加深学生对计算机软、硬件系统的整体化理解，建立硬件/软件协同、通用计算与智能计算相融合的计算机系统思维与设计能力。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">517人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">64h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">中级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/f9aa8c2d8d.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">基于昇腾CANN的智能嵌入式技术V1.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程以昇腾芯片为核心平台，面向新工科开设的全栈开发课程，聚焦嵌入式系统与人工智能融合，构建从硬件、操作系统、深度学习到部署落地的完整知识体系。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">566人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">64h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">中级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/efaf5e90dc.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">数据结构与算法设计V1.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">创建“通算主线+智算主线”双线叙事教学模式，以《数据结构及其算法》核心知识点为基础，同步映射CANN/ Ascend C算子工程能力，实现“数组分块↔Tiling切分、队列/生产者-消费者↔流水线双缓冲、树型结构↔规约算子、图遍历↔多核并行切分”等的一一对应，打破传统通算与智算的教学壁垒，达到了“抽象结构-高性能实现-工程化落地”的能力闭环。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">658人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">32h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">中级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/a2b062a5c4.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">机器学习系统V1.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程面向大模型训练与推理中的系统工程问题，以昇腾软硬件技术栈为实践载体，贯通机器学习系统基础、算力架构、全栈开发与性能优化、模型训练和部署四条主线。课程从算法、框架、编译、运行时到硬件与服务建立整体认知，结合典型工程场景，引导学生理解计算、存储、通信与调度之间的协同关系，形成从问题分析到工程验证的系统化方法。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">489人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">48h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">中级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/07e264dd88.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">并行编程原理与实践V1.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">“并行编程原理与实践（基于国产平台）”是一门理论与实践相结合的高度实用课程，主要探讨并行编程的基本概念、原理和方法。主要内容包括：并行编程原理、并行编程模型和语言、异构系统并行编程、并行应用开发与部署五个部分。整个课程将围绕昇腾体系架构、CANN计算架构、昇腾编程语言与算子开发、基于CANN的应用开发与部署系列展开，并将配套科学计算和AI智算等实践内容。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">335人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">32h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">高级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/0135344a25.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">编译原理V1.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程旨在系统性地揭开高级编程语言转换为机器代码的神秘面纱，带领学生构建一个完整的编译器原型。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">327人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">64h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">高级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/fad8aec0ea.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">面向高性能计算的数据结构V1.0</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程在经典数据结构基础上，深度融入华为昇腾架构原理、CANN 异构计算框架特性及 NPU 硬件访存规律，同步企业真实工程场景与技术标准。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">506人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">56h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">中级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/2dd9ad3ac8.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">探索智能世界：2035智能变革远景</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程以前瞻视野系统勾勒未来十年智能技术演进蓝图，是华为面向AI时代的思想领导力标杆之作。
+课程核心特色鲜明：十大技术跃迁贯穿全篇——从AGI走向物理世界、AI智能体跃升为决策伙伴，到具身智能、新型算力、智能体互联网等前沿方向，深度解析技术变革的内在逻辑；八大场景落地——覆盖医疗、教育、出行、制造、金融、电力、物流与城市，展现"设计即制造""制造即服务"的智能化转型路径；人文价值引领——不仅聚焦技术跃迁，更强调AI普惠与伦理安全，推动技术向善发展。
+课程由产业视角出发，将宏观趋势与微观应用深度融合，帮助学习者把握智能时代核心机遇，理解技术跃迁对社会、经济与生活的深远影响，是面向未来决策者与从业者的高价值认知升级课。
+</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">2913人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">4h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">初级</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+<div class="course-card">
+  <div class="course-image-box">
+    <img src="assets/learning/098697e689.png" alt="图片" class="course-image">
+    <div class="course-tip"> 院校课程 </div>
+  </div>
+  <div class="course-description">
+    <div class="course-info">
+      <span class="course-name">AI Coding入门与实践</span>
+      <div class="share-icon-box"><img src="assets/learning/220bfb9132.svg" alt="分享" class="share-icon"></div>
+    </div>
+    <span class="course-intro">本课程是华为云码道（CodeArts）代码智能体的体系化课程，围绕AI Coding全流程展开，涵盖从编程进化到AI大脑的入门认知、Code Agent核心概念及工具箱、AI Coding思维转变、规范驱动开发（SDD）、云端部署上线、团队协作资产化六大理论模块，并配套五个递进式实操实验，帮助学员从零基础到独立完成AI驱动的全流程软件开发与云上部署。</span>
+    <div class="course-conditions">
+      <div class="icon-box">
+        <div class="icon-box-sub">
+          <img src="assets/learning/b7f1e92406.svg" alt="图标" class="sub-icon">
+          <span class="course-sub-text">2575人学过</span>
+        </div>
+        <div class="icon-box-buttom">
+          <div class="icon-box-sub">
+            <img src="assets/learning/946ad68ceb.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">24h</span>
+          </div>
+          <div class="icon-box-sub">
+            <img src="assets/learning/e43e2623c0.svg" alt="图标" class="sub-icon">
+            <span class="course-sub-text">初级</span>
+          </div>
+          <div class="icon-box-sub"><img src="assets/learning/de5dc169e1.svg" alt="图标" class="sub-icon"><span class="course-sub-text">5个实验</span></div>
+        </div>
+      </div>
+      <div class="button-register"> 报名 </div>
+    </div>
+  </div>
+</div>
+          </div>
+          <div class="Pagination-box">
+            <div class="m-pagination-wrapper">
+              <span class="m-pagination-total">总133条</span>
+              <div class="m-select__wrapper m-pagination-size able">
+                <span>12条/页</span>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 7c0 .2-.1.5-.2.6l-8 9.9c-.2.4-.5.5-.8.5-.3 0-.6-.1-.8-.4L3.3 7.7c-.4-.4-.3-1.1.2-1.4.4-.4 1.1-.3 1.4.2l7.2 8.9 7.2-8.9c.4-.4 1-.5 1.4-.2.2.1.3.4.3.7z" fill="currentColor"/></svg>
+              </div>
+              <button type="button" class="m-pagination-prev disable">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 7c0 .2-.1.5-.2.6l-8 9.9c-.2.4-.5.5-.8.5-.3 0-.6-.1-.8-.4L3.3 7.7c-.4-.4-.3-1.1.2-1.4.4-.4 1.1-.3 1.4.2l7.2 8.9 7.2-8.9c.4-.4 1-.5 1.4-.2.2.1.3.4.3.7z" fill="currentColor"/></svg>
+              </button>
+              <ul class="m-pagination-pager">
+                <li class="selected">1</li>
+                <li class="">2</li>
+                <li class="">3</li>
+                <li class="">4</li>
+                <li class="">5</li>
+                <li class="">6</li>
+                <li class="more"></li>
+                <li class="">12</li>
+              </ul>
+              <button type="button" class="m-pagination-next">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="transform:rotate(180deg)"><path d="M21 7c0 .2-.1.5-.2.6l-8 9.9c-.2.4-.5.5-.8.5-.3 0-.6-.1-.8-.4L3.3 7.7c-.4-.4-.3-1.1.2-1.4.4-.4 1.1-.3 1.4.2l7.2 8.9 7.2-8.9c.4-.4 1-.5 1.4-.2.2.1.3.4.3.7z" fill="currentColor"/></svg>
+              </button>
+              <span class="m-pagination-jump"> 前往 <div class="m-input"><input placeholder="请输入" type="number"></div> 页 </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- 页脚 -->
 <footer class="com-footer-wrapper">
@@ -159,15 +827,22 @@ body { background: var(--page-bg); }
 <a class="float-contact">联系我们</a>
 
 <script>
+// 表现层交互：tab 切换（仅样式演示）
+document.querySelectorAll('.learning-tab').forEach(function (t) {
+  t.addEventListener('click', function () {
+    document.querySelectorAll('.learning-tab').forEach(function (x) { x.classList.remove('selected'); });
+    t.classList.add('selected');
+  });
+});
 document.querySelector('.cookie-close').addEventListener('click', function () {
   document.querySelector('.cookie-bar').style.display = 'none';
 });
 </script>
 <!-- REPLICA-NOTE:
-  1. 现网 #/all-course 视图为 elogic-html 子应用，截图（1920x1080 视口）实测
-     主体空白：导航条下方直接渲染页脚 + 版权条，右侧悬浮"联系我们"。
-     本页忠实复刻该空壳状态（调研目的的缺陷复刻），无占位图片。
-  2. 顶部导航无红色选中态（截图实测）。
+  1. 现网此页顶部导航"学习"无红色选中态（截图实测无红字/下划线），故未加红。
+  2. 排序箭头用 CSS 三角示意（原为 base64 PNG 图标）。
+  3. NEW 徽标为红描边小标签 CSS 复刻（原为 SVG sprite #icon-newContent）。
+  4. 其余图片全部使用 assets/learning/ 本地原图。
 -->
 </body>
 </html>

@@ -8,18 +8,43 @@
 <style>
 
 /* ============ 认证频道页样式 ============ */
+.cert-banner { background: #edebee; height: 640px; }
 .cert-banner img { width: 100%; display: block; }
 
-.cert-tabs { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
-.tab-row { display: flex; gap: 56px; }
-.ctab { font-size: 16px; color: var(--text); padding: 16px 0 14px; border-bottom: 3px solid transparent; }
+.cert-tabs { background: var(--page-bg); position: sticky; top: 0; z-index: 20; }
+.tab-row { display: flex; width: 1180px; margin: 0 auto; }
+.ctab { flex: 1; text-align: center; font-size: 16px; color: var(--text); padding: 22px 0 14px; border-bottom: 2px solid transparent; }
 .ctab.on { color: var(--hw-red); font-weight: 600; border-bottom-color: var(--hw-red); }
 
-/* 全景图 */
-.panorama { background: var(--white); padding: 56px 0 60px; }
-.pan-live { width: 100%; display: block; margin-top: 26px; }
-.panorama h2 { text-align: center; font-size: 30px; font-weight: 700; color: var(--ink); }
-.pan-desc { text-align: center; font-size: 14px; color: var(--text-3); margin: 14px auto 34px; max-width: 860px; line-height: 1.8; }
+/* 全景图（概述） */
+.panorama { background: var(--page-bg); padding: 32px 0 62px; }
+.pan-inner { width: 1180px; margin: 0 auto; }
+.pan-live { width: 1180px; display: block; margin: 29px auto 0; }
+.panorama h2 { text-align: center; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 24px; }
+.pan-desc { text-align: center; font-size: 14px; color: var(--text-3); margin: 35px auto 0; line-height: 13px; }
+.route-link { display: block; text-align: center; color: var(--hw-red); font-size: 17px; line-height: 16px; margin: 33px auto 0; }
+.lv-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 22px; margin-top: 30px; }
+.lv-card { height: 107px; border: 1px solid #d9d9d9; background: var(--white); display: flex; flex-direction: column; align-items: center; }
+.lv-img { width: 67px; height: 38px; background: #d8d8d8; margin-top: 20px; }
+.lv-label { font-size: 15.5px; color: var(--text); line-height: 16px; margin-top: 11px; }
+
+/* 职业认证（了解认证） */
+.career-panel { background: var(--white); width: 1180px; margin: 0 auto; padding: 37px 10px 60px; }
+.career-tabs { display: flex; margin-top: 48px; }
+.career-tabs span { flex: 1; text-align: center; font-size: 14px; color: var(--text); line-height: 14px; padding-bottom: 11px; border-bottom: 3px solid transparent; }
+.career-tabs span.on { color: var(--hw-red); border-bottom-color: var(--hw-red); }
+.ci-row { display: flex; }
+.ci-row.r1 { margin-top: 36px; }
+.ci-row.r2 { margin-top: 69px; }
+.ci-row.r3 { margin-top: 66px; }
+.ci { width: 232px; display: flex; flex-direction: column; align-items: center; }
+.ci img, .ci svg { height: 58px; width: 58px; display: block; }
+.ci p { font-size: 13px; color: var(--text); line-height: 13px; margin-top: 5px; }
+.ci p.red { color: var(--hw-red); }
+.career-strip { background: var(--page-bg); margin-top: 16px; padding: 28px 0 1px 176px; display: flex; }
+.career-strip ul { width: 300px; list-style: none; }
+.cs-head { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 14px; margin-bottom: 26px; }
+.career-strip li { font-size: 13px; color: var(--text-2); line-height: 36px; }
 .pan-path { background: var(--gray-bg); border-radius: 8px; padding: 26px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
 .pan-path-head { flex: 1; min-width: 520px; }
 .pan-path-head h3 { font-size: 19px; font-weight: 600; color: var(--ink); }
@@ -51,39 +76,54 @@
 .infra-strip { margin-top: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .infra-label { font-size: 13px; font-weight: 600; color: var(--text-2); margin-right: 6px; }
 
+/* ===== 下方灰底区：白面板结构（参加考试 / 学习资源 / 认证资讯） ===== */
+.lower-zone { background: var(--page-bg); padding: 25px 0 30px; }
+.wpanel { background: var(--white); width: 1180px; margin: 0 auto; }
+.wpanel + .wpanel { margin-top: 24px; }
+.sec-title { text-align: center; font-size: 28px; font-weight: 700; color: var(--ink); line-height: 24px; }
+
 /* 参加考试 */
-.sec-title { text-align: center; font-size: 28px; font-weight: 700; color: var(--ink); margin-bottom: 30px; }
-.sec-title.left { text-align: left; margin-bottom: 0; }
-.exam-section { background: var(--gray-bg); padding: 56px 0 54px; }
-.exam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.exam-card { background: var(--white); border-radius: 8px; padding: 26px 26px 22px; position: relative; }
-.exam-card { border-top: 4px solid #2f6fb2; }
-.exam-card:nth-child(2) { border-top-color: #2f9b6b; }
-.exam-card:nth-child(3) { border-top-color: #d99a1f; }
-.exam-no { width: 30px; height: 30px; border-radius: 50%; background: var(--gray-bg); color: var(--ink); font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.exam-card h3 { font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
-.exam-card p { font-size: 13px; color: var(--text-2); line-height: 1.8; min-height: 92px; }
-.exam-links { display: flex; flex-wrap: wrap; gap: 8px 18px; border-top: 1px dashed var(--line); padding-top: 12px; }
-.exam-links a { font-size: 13px; color: var(--blue-link, #2f4e8f); }
-.exam-links a:hover { text-decoration: underline; }
+.exam-panel { padding: 38px 20px 26px; }
+.exam-panel .sec-title { margin-bottom: 40px; }
+.exam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+.exam-card { background: var(--white); border: 1px solid #d9d9d9; border-radius: 4px; display: flex; flex-direction: column; min-height: 422px; }
+.exam-head { height: 62px; display: flex; align-items: center; justify-content: center; gap: 11px; border-radius: 3px 3px 0 0; }
+.exam-head.h1 { background: linear-gradient(90deg, #00daf3, #1891ff); }
+.exam-head.h2 { background: linear-gradient(90deg, #46ccb9, #239f85); }
+.exam-head.h3 { background: linear-gradient(90deg, #f9d36c, #f4aa3c); }
+.exam-no { width: 26px; height: 26px; border-radius: 50%; background: #fff; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; flex: none; }
+.exam-head.h1 .exam-no { color: #1890ff; }
+.exam-head.h2 .exam-no { color: #239f85; }
+.exam-head.h3 .exam-no { color: #ee9f36; }
+.exam-ht { color: #fff; font-size: 18px; font-weight: 700; letter-spacing: 0; }
+.exam-ico { width: 52px; height: 52px; display: block; margin: 38px auto 0; }
+.exam-text { font-size: 13.5px; line-height: 20px; color: var(--text); text-align: center; margin: 29px 36px 0; }
+.exam-text a { color: var(--hw-red); }
+.exam-btn { margin: auto 36px 20px; height: 54px; border: 1px solid #d9d9d9; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #353535; position: relative; }
+.exam-btn:hover { cursor: pointer; }
+.exam-pop { display: none; }
 
 /* 学习资源 */
-.res-section { background: var(--white); padding: 54px 0 50px; }
-.res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.res-card { border: 1px solid var(--line); border-radius: 8px; padding: 28px 26px; text-align: center; }
-.res-card h3 { font-size: 18px; font-weight: 600; color: var(--ink); }
-.res-card p { font-size: 13.5px; color: var(--text-2); margin: 10px 0 18px; }
-.more-red { color: var(--hw-red); font-size: 13.5px; }
+.res-panel { padding: 30px 20px 28px; }
+.res-panel .sec-title { margin-bottom: 47px; }
+.res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+.res-card { border: 1px solid #d9d9d9; background: var(--white); height: 144px; display: flex; padding-left: 23px; }
+.res-left { padding: 31px 0 29px; }
+.res-title { font-size: 17px; font-weight: 700; color: var(--ink); line-height: 16px; }
+.res-sub { font-size: 13px; color: #7d7d7d; line-height: 13px; margin: 14px 0 21px; }
+.res-more { color: var(--hw-red); font-size: 12.5px; line-height: 12px; }
+.res-ico { width: 66px; height: 66px; margin: auto 28px auto auto; flex: none; }
 
 /* 认证资讯 */
-.cert-news { background: var(--white); padding: 10px 0 64px; }
-.sec-head-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
-.more-link { color: var(--hw-red); font-size: 14px; }
-.news-list li + li { border-top: 1px solid var(--gray-bg); }
-.news-item { display: flex; justify-content: space-between; gap: 24px; padding: 15px 4px; }
-.news-item .nt { font-size: 15px; color: var(--text); }
-.news-item:hover .nt { color: var(--hw-red); }
-.news-item .nd { font-size: 13px; color: var(--faint); flex: none; }
+.news-panel { padding: 32px 20px 26px; position: relative; }
+.news-more { position: absolute; right: 31px; top: 66px; color: var(--hw-red); font-size: 14px; }
+.news-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 13px 12px; margin-top: 49px; }
+.news-card { background: var(--page-bg); height: 149px; display: flex; padding: 16px 0 13px 15px; }
+.news-thumb { width: 215px; height: 120px; background: #d8d8d8; flex: none; }
+.news-body { margin-left: 10px; padding: 9px 15px 0 0; display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.news-t { display: block; font-size: 15.5px; color: var(--text); line-height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.news-card:hover .news-t { color: var(--hw-red); }
+.news-d { display: block; margin-top: auto; font-size: 13px; color: #757575; line-height: 13px; }
 
 </style>
 </head>
@@ -156,78 +196,180 @@
   </div>
 </nav>
 
-<!-- ============ 全景图 ============ -->
+<!-- ============ 全景图（概述） ============ -->
 <section class="panorama">
-  <div class="container">
+  <div class="pan-inner">
     <h2>华为职业认证全景图</h2>
     <p class="pan-desc">华为职业认证覆盖ICT全领域，致力于提供领先的人才培养体系和认证标准，培养数字化时代的新型ICT人才，构建良性的ICT人才生态。</p>
-    <img class="pan-live" src="assets/cert/panorama-live.jpg" alt="华为推荐职业认证进阶路线与认证方向矩阵" />
+    <img class="pan-live" src="assets/cert/431f8fdce9.jpg" alt="华为职业认证全景图矩阵" />
+    <h2 style="margin-top:35px">华为推荐职业认证进阶路线</h2>
+    <p class="pan-desc">根据ICT从业者的学习和进阶需求，华为职业认证分为工程师级别、高级工程师级别和专家级别三个认证等级。</p>
+    <a class="route-link">华为职业认证进阶路径 &gt;&gt;</a>
+    <div class="lv-cards">
+      <div class="lv-card"><span class="lv-img"></span><p class="lv-label">工程师级别</p></div>
+      <div class="lv-card"><span class="lv-img"></span><p class="lv-label">高级工程师级别</p></div>
+      <div class="lv-card"><span class="lv-img"></span><p class="lv-label">专家级别</p></div>
+    </div>
   </div>
 </section>
 
+<!-- ============ 职业认证（了解认证） ============ -->
+<section class="career-panel">
+  <h2 class="sec-title">职业认证</h2>
+  <div class="career-tabs">
+    <span class="on">ICT基础设施</span><span>基础软硬件</span><span>云平台及云服务</span><span>项目管理</span>
+  </div>
+  <div class="ci-row r1">
+    <div class="ci">
+      <svg viewBox="0 0 80 80" fill="none" stroke="#c7000b" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M40 8l24 14v28L40 64 16 50V22z"/><path d="M40 26v14M33 33h14M30 47h20"/></svg>
+      <p class="red">Computing</p>
+    </div>
+    <div class="ci"><img src="assets/cert/2434f679e8.svg" alt="Storage" /><p>Storage</p></div>
+    <div class="ci"><img src="assets/cert/e9ae57dde1.svg" alt="Collaboration" /><p>Collaboration</p></div>
+    <div class="ci"><img src="assets/cert/a76b457411.svg" alt="Intelligent Vision" /><p>Intelligent Vision</p></div>
+    <div class="ci">
+      <svg viewBox="0 0 80 80" fill="none" stroke="#999" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="18" y="18" width="44" height="44" rx="6"/><rect x="30" y="30" width="20" height="20"/><path d="M26 8v10M40 8v10M54 8v10M26 62v10M40 62v10M54 62v10M8 26h10M8 40h10M8 54h10M62 26h10M62 40h10M62 54h10"/><path d="M46 36l-8 12h8l-6 12"/></svg>
+      <p>Digital Power</p>
+    </div>
+  </div>
+  <div class="career-strip">
+    <ul>
+      <div class="cs-head">工程师 HCIA</div>
+      <li>HCIA-Kunpeng Application Developer</li>
+      <li>HCIA-Computing</li>
+    </ul>
+    <ul>
+      <div class="cs-head">高级工程师 HCIP</div>
+      <li>HCIP-Kunpeng Application Developer</li>
+      <li>HCIP-Computing Solution Architect</li>
+      <li>HCIP-Computing</li>
+    </ul>
+    <ul>
+      <div class="cs-head">专家 HCIE</div>
+      <li>HCIE-Computing</li>
+    </ul>
+  </div>
+  <div class="ci-row r2">
+    <div class="ci">
+      <svg viewBox="0 0 80 80" fill="none" stroke="#999" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M26 12h28l8 16-22 40L18 28z"/><path d="M18 28h44M30 12l-4 16 14 40M50 12l4 16-8 22"/></svg>
+      <p>MDC</p>
+    </div>
+    <div class="ci"><img src="assets/cert/f9521627d4.svg" alt="Datacom" /><p>Datacom</p></div>
+    <div class="ci"><img src="assets/cert/2e79e212d3.svg" alt="WLAN" /><p>WLAN</p></div>
+    <div class="ci"><img src="assets/cert/59e3d17b1d.svg" alt="Security" /><p>Security</p></div>
+    <div class="ci"><img src="assets/cert/a89b998261.svg" alt="Transmission" /><p>Transmission</p></div>
+  </div>
+  <div class="ci-row r3">
+    <div class="ci"><img src="assets/cert/514f196bbb.svg" alt="Access" /><p>Access</p></div>
+    <div class="ci"><img src="assets/cert/9de86a5aca.svg" alt="5G" /><p>5G</p></div>
+    <div class="ci"><img src="assets/cert/147c282b0b.svg" alt="LTE" /><p>LTE</p></div>
+  </div>
+</section>
+
+<!-- ============ 下方灰底区：白面板（参加考试 / 学习资源 / 认证资讯） ============ -->
+<div class="lower-zone">
+
 <!-- ============ 参加考试（3 步） ============ -->
-<section class="exam-section">
-  <div class="container">
-    <h2 class="sec-title">参加考试</h2>
-    <div class="exam-grid">
-      <div class="exam-card">
-        <div class="exam-no">1</div>
-        <h3>预约与参加考试</h3>
-        <p>华为认证笔试考试由Pearson VUE考试服务公司代理。华为认证不同级别、不同方向的认证考试具有不同的考试要求与流程。</p>
-        <div class="exam-links"><a>考试流程与规则</a><a>考试预约</a><a class="ext">Pearson VUE考试预约</a><a>HCIE实验预约</a></div>
-      </div>
-      <div class="exam-card">
-        <div class="exam-no">2</div>
-        <h3>获取与验证证书</h3>
-        <p>华为仅提供电子证书（HCIE认证除外）。通过华为认证的考生，如需下载华为电子证书，可在完成相关考试的一个工作日后访问华为官网下载电子证书。</p>
-        <div class="exam-links"><a>获取与验证证书</a><a>获取证书</a><a>验证证书</a></div>
-      </div>
-      <div class="exam-card">
-        <div class="exam-no">3</div>
-        <h3>重认证</h3>
-        <p>华为认证的内容将不定期进行更新和优化，重认证可确保认证人员的专业能力实时匹配ICT领域的最新趋势，以保证认证的有效性。</p>
-        <div class="exam-links"><a>重认证规则</a></div>
-      </div>
+<section class="exam-panel wpanel">
+  <h2 class="sec-title">参加考试</h2>
+  <div class="exam-grid">
+    <div class="exam-card">
+      <div class="exam-head h1"><span class="exam-no">1</span><span class="exam-ht">预约与参加考试</span></div>
+      <svg class="exam-ico" viewBox="0 0 52 52" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="26" cy="26" r="23"/>
+        <line x1="13" y1="20" x2="23" y2="20"/><line x1="13" y1="26" x2="23" y2="26"/><line x1="13" y1="32" x2="23" y2="32"/>
+        <circle cx="35" cy="22" r="4.5"/>
+        <path d="M29 34v-1a6 6 0 0 1 12 0v1"/>
+      </svg>
+      <p class="exam-text">华为认证笔试考试由Pearson VUE考试服务公司代理。华为认证不同级别、不同方向的认证考试具有不同的考试要求与流程。<a>考试流程与规则</a></p>
+      <div class="exam-btn"><span>考试预约</span><ul class="exam-pop"><li>Pearson VUE考试预约</li><li>HCIE实验预约</li></ul></div>
+    </div>
+    <div class="exam-card">
+      <div class="exam-head h2"><span class="exam-no">2</span><span class="exam-ht">获取与验证证书</span></div>
+      <svg class="exam-ico" viewBox="0 0 52 52" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M30 44H11q-3 0-3-3V10q0-3 3-3h30q3 0 3 3v20"/>
+        <line x1="15" y1="15" x2="38" y2="15"/><line x1="15" y1="21" x2="38" y2="21"/><line x1="15" y1="27" x2="38" y2="27"/><line x1="15" y1="33" x2="30" y2="33"/>
+        <path d="M35 42l6 6 10-12"/>
+      </svg>
+      <p class="exam-text">华为仅提供电子证书（HCIE认证除外）。通过华为认证的考生，如需下载华为电子证书，可在完成相关考试的一个工作日后访问华为官网下载电子证书。</p>
+      <div class="exam-btn"><span>获取与验证证书</span><ul class="exam-pop"><li>获取证书</li><li>验证证书</li></ul></div>
+    </div>
+    <div class="exam-card">
+      <div class="exam-head h3"><span class="exam-no">3</span><span class="exam-ht">重认证</span></div>
+      <svg class="exam-ico" viewBox="0 0 52 52" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="26" cy="21" r="14"/>
+        <path d="M20 21l4 4 8-9"/>
+        <path d="M18.5 32L11 45l6-2 3 5 5-11"/>
+        <path d="M33.5 32L41 45l-6-2-3 5-5-11"/>
+      </svg>
+      <p class="exam-text">华为认证的内容将不定期进行更新和优化，重认证可确保认证人员的专业能力实时匹配ICT领域的最新趋势，以保证认证的有效性。</p>
+      <div class="exam-btn"><span>重认证规则</span></div>
     </div>
   </div>
 </section>
 
 <!-- ============ 学习资源 ============ -->
-<section class="res-section">
-  <div class="container">
-    <h2 class="sec-title">学习资源</h2>
-    <div class="res-grid">
-      <div class="res-card">
-        <h3>查找培训</h3>
-        <p>授权培训机构查询</p>
-        <a class="more-red">了解更多&gt;&gt;</a>
+<section class="res-panel wpanel">
+  <h2 class="sec-title">学习资源</h2>
+  <div class="res-grid">
+    <div class="res-card">
+      <div class="res-left">
+        <p class="res-title">查找培训</p>
+        <p class="res-sub">授权培训机构查询</p>
+        <a class="res-more">了解更多&gt;&gt;</a>
       </div>
-      <div class="res-card">
-        <h3>推荐自学</h3>
-        <p>在线学习</p>
-        <a class="more-red">了解更多&gt;&gt;</a>
+      <svg class="res-ico" viewBox="0 0 66 66" fill="none" stroke="#9e9e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="33" cy="33" r="27"/>
+        <line x1="17" y1="27" x2="29" y2="27"/><line x1="17" y1="33" x2="29" y2="33"/>
+        <circle cx="41" cy="30" r="5.5"/>
+        <path d="M31 42q5 4 10 1"/>
+      </svg>
+    </div>
+    <div class="res-card">
+      <div class="res-left">
+        <p class="res-title">推荐自学</p>
+        <p class="res-sub">在线学习</p>
+        <a class="res-more">了解更多&gt;&gt;</a>
       </div>
-      <div class="res-card">
-        <h3>参考书籍</h3>
-        <p>《华为ICT认证系列丛书》</p>
-        <a class="more-red">了解更多&gt;&gt;</a>
+      <svg class="res-ico" viewBox="0 0 66 66" fill="none" stroke="#9e9e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="33" cy="33" r="29"/>
+        <path d="M18 17l9-2 4 9-9 2z"/>
+        <path d="M39 42l9-2 4 9-9 2z"/>
+        <path d="M50 12l4 4-26 26-6 2 2-6z"/>
+        <path d="M22 40l4 4"/>
+      </svg>
+    </div>
+    <div class="res-card">
+      <div class="res-left">
+        <p class="res-title">参考书籍</p>
+        <p class="res-sub">《华为ICT认证系列丛书》</p>
+        <a class="res-more">了解更多&gt;&gt;</a>
       </div>
+      <svg class="res-ico" viewBox="0 0 66 66" fill="none" stroke="#9e9e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="33" cy="33" r="29"/>
+        <rect x="23" y="20" width="20" height="27" rx="2.5"/>
+        <path d="M35.5 20v8l3-2.5 3 2.5v-8"/>
+        <path d="M27 36h6"/><path d="M27 40.5h4"/>
+      </svg>
     </div>
   </div>
 </section>
 
 <!-- ============ 认证资讯 ============ -->
-<section class="cert-news">
-  <div class="container">
-    <div class="sec-head-row"><h2 class="sec-title left">认证资讯</h2><a class="more-link">查看更多 &gt;&gt;</a></div>
-    <ul class="news-list">
-      <li><a class="news-item"><span class="nt">关于HCIE-Datacom(实验) -NCE版本升级的通知</span><span class="nd">2026-01-20</span></a></li>
-      <li><a class="news-item"><span class="nt">华为职业认证架构刷新和重认证规则调整公告</span><span class="nd">2022-09-06</span></a></li>
-      <li><a class="news-item"><span class="nt">十年 HCIE 荣誉权益申报正式启幕｜华为认证诚邀您共铸技术信仰丰碑！</span><span class="nd">2026-11-11</span></a></li>
-      <li><a class="news-item"><span class="nt">“第十一届华为ICT大赛中国赛认证成长专项计划3折特惠激励活动”第九批(10.29~11.04)折扣券发放名单公示</span><span class="nd">2026-11-10</span></a></li>
-    </ul>
+<section class="news-panel wpanel">
+  <h2 class="sec-title">认证资讯</h2>
+  <a class="news-more">查看更多 &gt;&gt;</a>
+  <div class="news-grid">
+    <a class="news-card"><span class="news-thumb"></span><span class="news-body"><span class="news-t">关于HCIE-Datacom(实验) -NCE版本升级的通知</span><span class="news-d">2026-01-20</span></span></a>
+    <a class="news-card"><span class="news-thumb"></span><span class="news-body"><span class="news-t">华为职业认证架构刷新和重认证规则调整公告</span><span class="news-d">2022-09-06</span></span></a>
+    <a class="news-card"><span class="news-thumb"></span><span class="news-body"><span class="news-t">十年 HCIE 荣誉权益申报正式启幕｜华为认证诚邀您共铸技术信仰丰碑！</span><span class="news-d">2026-11-11</span></span></a>
+    <a class="news-card"><span class="news-thumb"></span><span class="news-body"><span class="news-t">“第十一届华为ICT大赛中国赛认证成长专项计划3折特惠激励活动”第九批(10.29~11.04)折扣券发放名单公示</span><span class="news-d">2026-11-10</span></span></a>
   </div>
 </section>
+
+<!-- REPLICA-NOTE: 认证资讯四条缩略图为现网加载失败的占位灰块，以 #d8d8d8 纯色占位复刻；参加考试/学习资源卡内图标按截图以 inline SVG 线稿近似重绘。 -->
+
+</div>
 
 <!-- 页脚 -->
 <footer class="com-footer-wrapper">

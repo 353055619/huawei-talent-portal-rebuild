@@ -35,7 +35,7 @@ body{background:var(--page-bg)}
 .uc-crumbs{width:1200px;max-width:94vw;margin:0 auto;padding:17px 0 0;font-size:13px;color:#666;line-height:1.5}
 .uc-crumbs .crumb{color:#666}
 .uc-crumbs .sep{margin:0 10px;color:#a6a6a6}
-.uc-card{width:1200px;max-width:94vw;margin:12px auto 0;background:#fff;position:relative}
+.uc-card{width:1200px;max-width:94vw;margin:2px auto 0;background:#fff;position:relative}
 .uc-main{padding-bottom:10px}
 /* 空态 */
 .uc-nodata{text-align:center;padding:20px;margin-top:50px;color:#999;font-size:14px}
@@ -51,24 +51,28 @@ body{background:var(--page-bg)}
 .m-input .ph{color:#bfbfbf}
 .m-input .caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #b0b0b0;margin-left:6px}
 
+/* 账号头部蓝灰横带（实测 y197-307，110px，横向渐变 #dadfe9→#e4e9ef，通栏到卡片两缘） */
 .myinfo-card{min-height:507px;padding:0 12px}
-.headBtn_row{display:flex;justify-content:space-between;align-items:center;padding:24px 12px 20px;border-bottom:1px solid #f0f0f0}
-.row_box{display:flex;justify-content:space-between;align-items:center;width:100%}
-.headBtn_row .left{display:flex;align-items:center;gap:14px}
-.headBtn_row .left img{width:56px;height:56px}
-.headBtn_row .left .uname{font-size:15px;color:#333}
-.headBtn_row .right{display:flex;gap:12px}
-.personal-center{padding:26px 12px 8px}
-.personal-center b{display:block;font-size:15px;color:#333;margin-bottom:20px}
-.user-info-form{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 30px}
-.fi{display:flex;align-items:center}
-.fi label{width:100px;text-align:right;font-size:13px;color:#666;margin-right:8px;flex:none}
-.fi label i{color:var(--hw-red);font-style:normal;margin-left:2px}
-.fi .infoText{font-size:13px;color:#333}
-.uipe-button-box{display:flex;flex-direction:column;gap:18px}
-.uipe-btns{display:flex;gap:15px}
-.uipe-btns .m-btn{height:32px;min-width:104px}
-.noneRoleTips{font-size:13px;color:#666;line-height:22px}
+.headBtn_row{position:relative;height:110px;margin:3px -12px 0;background:linear-gradient(90deg,#dadfe9,#e4e9ef)}
+.row_box{position:absolute;inset:0}
+.headBtn_row .left{position:absolute;left:51px;top:28px;display:flex;align-items:flex-start}
+.headBtn_row .left img{width:52px;height:52px;display:block}
+.headBtn_row .left .uname{font-size:12px;color:#000;line-height:1;margin:23px 0 0 20px;white-space:nowrap}
+.headBtn_row .right{position:absolute;right:18px;top:50%;transform:translateY(-50%);display:flex;gap:12px}
+.headBtn_row .right .m-btn{min-width:80px;padding:0 7px}
+.headBtn_row .right .m-btn.primary{min-width:auto;padding:0 10px}
+.personal-center{padding:36px 12px 0}
+.personal-center b{display:block;font-size:14px;font-weight:bold;color:#262626;line-height:18px;margin-bottom:8px}
+/* 表单：标签在上、值在下，三列起点 x544/893/1241（卡内缩进 160px） */
+.user-info-form{display:grid;grid-template-columns:repeat(3,325px);column-gap:24px;row-gap:13px;margin-left:160px}
+.fi{display:block}
+.fi label{display:block;font-size:14px;color:#595959;line-height:31px;text-align:left;width:auto}
+.fi label i{color:#e13938;font-style:normal;margin-right:2px}
+.fi .infoText{display:block;font-size:14px;color:#262626;line-height:31px}
+.uipe-button-box{margin-left:88px}
+.uipe-btns{display:flex;gap:12px;margin-top:24px}
+.uipe-btns .m-btn{height:30px;padding:0 13px;font-size:14px}
+.noneRoleTips{font-size:14px;color:#e13938;line-height:20px;margin-top:29px}
 
 </style>
 </head>
@@ -96,7 +100,7 @@ body{background:var(--page-bg)}
         <button class="cur">中</button>
         <button>EN</button>
       </span>
-      <span class="tool uc-account"><span>Uniportal账号 : </span><span>hw_353055619_qq.com_01</span></span>
+      <span class="tool uc-account"><span>Uniportal账号 : </span><span>hw_******_01</span></span>
     </div>
   </div>
 </div>
@@ -130,8 +134,8 @@ body{background:var(--page-bg)}
     <div class="headBtn_row">
       <div class="row_box">
         <div class="left">
-          <img src="assets/usercenter/icon-person.png" alt=""/>
-          <div class="uname"> hw_353055619_qq.com_01 </div>
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cdefs%3E%3CclipPath id='c'%3E%3Ccircle cx='26' cy='26' r='26'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg clip-path='url(%23c)'%3E%3Crect width='52' height='52' fill='%23aac6ed'/%3E%3Ccircle cx='33' cy='15' r='7.5' fill='%23438df6'/%3E%3Cpath d='M19 43c0-9 7-14 14-14s14 5 14 14v9H19z' fill='%23438df6'/%3E%3C/g%3E%3C/svg%3E" alt=""/>
+          <div class="uname">hw_******_01</div>
         </div>
         <div class="right">
           <button class="m-btn">实名认证</button>
@@ -144,30 +148,28 @@ body{background:var(--page-bg)}
       <div class="contest">
         <b>个人信息</b>
         <div class="user-info-form">
-          <div class="fi"><label>姓<i>*</i></label><span class="infoText">hw_353055619_qq.com_01</span></div>
-          <div class="fi"><label>名<i>*</i></label><span class="infoText"></span></div>
-          <div class="fi"><label>姓名</label><span class="infoText"> hw_353055619_qq.com_01</span></div>
+          <div class="fi"><label><i>*</i>姓</label><span class="infoText">hw_******_01</span></div>
+          <div class="fi"><label><i>*</i>名</label><span class="infoText"></span></div>
+          <div class="fi"><label>姓名</label><span class="infoText">hw_******_01</span></div>
           <div class="fi"><label>性别:</label><span class="infoText"></span></div>
-          <div class="fi"><label>邮箱<i>*</i></label><span class="infoText">3***619@qq.com</span></div>
-          <div class="fi"><label>手机</label><span class="infoText" style="display:flex;gap:8px"><span>+86</span><span>187***3007</span></span></div>
+          <div class="fi"><label><i>*</i>邮箱</label><span class="infoText">3***619@qq.com</span></div>
+          <div class="fi"><label>手机</label><span class="infoText">+86187***3007</span></div>
         </div>
       </div>
-      <div class="contest" style="margin-top:34px">
+      <div class="contest" style="margin-top:26px">
         <b>角色信息</b>
         <div class="uipe-button-box">
           <div class="uipe-btns">
             <button class="m-btn primary">关联-讲师</button>
             <button class="m-btn primary associateStudenBtn">关联-学生</button>
           </div>
-          <div>
-            <p class="noneRoleTips"> 如果您是ICT学院/HALP讲师，或HALP教学管理员，请点击【关联-讲师】进行权限申请; <br> 如果您是ICT学院学生，请点击【关联-学生】按钮进行权限申请; </p>
-          </div>
+          <p class="noneRoleTips"> 如果您是ICT学院/HALP讲师，或HALP教学管理员，请点击【关联-讲师】进行权限申请; <br> 如果您是ICT学院学生，请点击【关联-学生】按钮进行权限申请; </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- REPLICA-NOTE: “姓=hw_353055619_qq.com_01、名为空”为现网数据缺陷，逐字如实复刻；头像用个人信息卡片同款图标(dom 内嵌 base64)；隐藏弹窗(邮箱换绑提示)不渲染 -->
+<!-- REPLICA-NOTE: “姓=hw_******_01、名为空”为现网数据缺陷，逐字如实复刻；账号头部蓝灰渐变横带与蓝色半圆头像为实测像素复刻(dom 内嵌 base64 灰图标经现网 CSS 着色后呈蓝色)；隐藏弹窗(邮箱换绑提示)不渲染 -->
 <!-- 页脚 -->
 <footer class="com-footer-wrapper">
   <div class="container">
