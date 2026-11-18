@@ -8,7 +8,7 @@
 |---|---|
 | [replica/](replica/) | **全站像素级复刻（24 页）**：9 个公开频道页 + 课程详情（跨 SPA）+ 查找ICT学院 + 搜索结果 + uniportal 登录页 + 用户中心 11 页（登录态一手复刻，含现网缺陷的忠实呈现）。像素依据在 [replica/captures/](replica/captures/)（27 组现网整页截图+DOM），并排对比图在 [replica/compare/](replica/compare/) |
 | [原型/华为人才在线功能模块图.html](原型/华为人才在线功能模块图.html) | 功能模块图网站：2 平台 / 20 模块 / 124 功能 / 7 条用户旅程，**每条旅程下嵌入实拍演示视频**（videos/J1–J7.mp4） |
-| [replica/journey/](replica/journey/) | 旅程演示导演引擎（iframe 承载复刻页 + 模拟光标点击 + 步骤字幕 + 外链/线下插卡），`player.html?j=J1..J7` |
+| [replica/journey/](replica/journey/) | 旅程演示导演引擎 v1（iframe 承载复刻页 + 模拟光标，`player.html?j=J1..J7`）；**v2 真实操作录制**见 tools/real-record.mjs（Playwright 真实点击/表单/后端 + 注入光标字幕插卡，1080p·30fps 恒定帧率），时间线在 [tools/rj/](tools/rj/)（每旅程一文件 J1-J12） |
 | [research/](research/) | 调研报告 00–07：现网信息架构一手笔记、国内大厂/海外平台/GitHub 开源调研、业务背景、重构总报告、demo 验收对比报告、登录态补验笔记 |
 | [survey/](survey/) | 三域并行勘察归一化数据：modules-combined.json（20 模块/124 功能）+ journeys.json（7 条全量用户旅程） |
 | [platform/](platform/) | 重构全栈 demo（Vue3 + Express + PostgreSQL，tracker 统一状态机），详见 [platform/README](platform/) 与 research/06 验收报告 |

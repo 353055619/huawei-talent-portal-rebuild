@@ -1,79 +1,496 @@
 {
   "generatedAt": "2026-11-15",
-  "note": "全量用户旅程（6 条主旅程 + 1 条跨系统旅程），阶段映射到 modules-combined.json 的模块 id。证据：research/00 登录前后实测、research/05 §2.2 旅程 A-F、research/07 登录态补验。",
+  "note": "全量用户旅程（11 条主旅程 + 1 条跨系统旅程，2026-11-18 扩至 12 条覆盖 17/20 模块），阶段映射到 modules-combined.json 的模块 id。证据：research/00 登录前后实测、research/05 §2.2 旅程 A-F、research/07 登录态补验、replica/ 复刻基线。",
   "journeys": [
     {
-      "id": "J1", "name": "学校入驻（院系管理员）", "persona": "二级学院管理员",
+      "id": "J1",
+      "name": "学校入驻（院系管理员）",
+      "persona": "二级学院管理员",
       "steps": [
-        { "n": 1, "title": "发现入口", "detail": "ICT学院首页「立即注册」", "module": "icta-home", "note": "新开标签跳 partner.huawei.com" },
-        { "n": 2, "title": "华为账号注册/登录", "detail": "uniportal 统一账号", "module": "acct-portal", "note": "跨系统" },
-        { "n": 3, "title": "下载授权函盖章", "detail": "《伙伴管理员授权函》盖二级学院公章（线下）", "module": "icta-join", "note": "纯线下" },
-        { "n": 4, "title": "填报上传", "detail": "metaEcpri 填注册信息传扫描件", "module": "icta-join" },
-        { "n": 5, "title": "邮件等审批", "detail": "无站内进度", "module": "icta-join", "note": "断点：邮件等待" },
-        { "n": 6, "title": "在线签校企合作协议", "detail": "metaEcpri 在线签署", "module": "icta-join" },
-        { "n": 7, "title": "认证分级与挂牌", "detail": "认证级/优选级/领先级评审；authenApply 查进度", "module": "icta-join" },
-        { "n": 8, "title": "入驻后管理", "detail": "回人才在线用户中心管理（与入驻系统分离）", "module": "uc-home", "note": "断点：跨系统回切" }
+        {
+          "n": 1,
+          "title": "发现入口",
+          "detail": "ICT学院首页「立即注册」",
+          "module": "icta-home",
+          "note": "新开标签跳 partner.huawei.com"
+        },
+        {
+          "n": 2,
+          "title": "华为账号注册/登录",
+          "detail": "uniportal 统一账号",
+          "module": "acct-portal",
+          "note": "跨系统"
+        },
+        {
+          "n": 3,
+          "title": "下载授权函盖章",
+          "detail": "《伙伴管理员授权函》盖二级学院公章（线下）",
+          "module": "icta-join",
+          "note": "纯线下"
+        },
+        {
+          "n": 4,
+          "title": "填报上传",
+          "detail": "metaEcpri 填注册信息传扫描件",
+          "module": "icta-join"
+        },
+        {
+          "n": 5,
+          "title": "邮件等审批",
+          "detail": "无站内进度",
+          "module": "icta-join",
+          "note": "断点：邮件等待"
+        },
+        {
+          "n": 6,
+          "title": "在线签校企合作协议",
+          "detail": "metaEcpri 在线签署",
+          "module": "icta-join"
+        },
+        {
+          "n": 7,
+          "title": "认证分级与挂牌",
+          "detail": "认证级/优选级/领先级评审；authenApply 查进度",
+          "module": "icta-join"
+        },
+        {
+          "n": 8,
+          "title": "入驻后管理",
+          "detail": "回人才在线用户中心管理（与入驻系统分离）",
+          "module": "uc-home",
+          "note": "断点：跨系统回切"
+        }
       ]
     },
     {
-      "id": "J2", "name": "教师开班", "persona": "ICT学院教师",
+      "id": "J2",
+      "name": "教师开班",
+      "persona": "ICT学院教师",
       "steps": [
-        { "n": 1, "title": "注册关联讲师身份", "detail": "个人信息 →「关联-讲师」自填向导（国家/学院/专业/学历/班级/学号/备注）", "module": "uc-myinfo", "note": "无学校可信认证，靠审批；姓名确定后不可改" },
-        { "n": 2, "title": "学院审批", "detail": "等学院/平台确认", "module": "uc-myinfo", "note": "approval-details 路由" },
-        { "n": 3, "title": "选课找开班入口", "detail": "课程详情页「我是老师-我要开班」按钮", "module": "lc-course-detail", "note": "断点：入口藏在课程页非工作台" },
-        { "n": 4, "title": "创建班级", "detail": "生成邀请码", "module": "lc-course-detail" },
-        { "n": 5, "title": "线下发码", "detail": "把邀请码发给学生", "module": "lc-course-detail", "note": "断点：无班级组织自动化" },
-        { "n": 6, "title": "学生进班", "detail": "学生凭码加入；教师无学员进度视图", "module": "uc-myclass", "note": "断点：无成绩册" }
+        {
+          "n": 1,
+          "title": "注册关联讲师身份",
+          "detail": "个人信息 →「关联-讲师」自填向导（国家/学院/专业/学历/班级/学号/备注）",
+          "module": "uc-myinfo",
+          "note": "无学校可信认证，靠审批；姓名确定后不可改"
+        },
+        {
+          "n": 2,
+          "title": "学院审批",
+          "detail": "等学院/平台确认",
+          "module": "uc-myinfo",
+          "note": "approval-details 路由"
+        },
+        {
+          "n": 3,
+          "title": "选课找开班入口",
+          "detail": "课程详情页「我是老师-我要开班」按钮",
+          "module": "lc-course-detail",
+          "note": "断点：入口藏在课程页非工作台"
+        },
+        {
+          "n": 4,
+          "title": "创建班级",
+          "detail": "生成邀请码",
+          "module": "lc-course-detail"
+        },
+        {
+          "n": 5,
+          "title": "线下发码",
+          "detail": "把邀请码发给学生",
+          "module": "lc-course-detail",
+          "note": "断点：无班级组织自动化"
+        },
+        {
+          "n": 6,
+          "title": "学生进班",
+          "detail": "学生凭码加入；教师无学员进度视图",
+          "module": "uc-myclass",
+          "note": "断点：无成绩册"
+        }
       ]
     },
     {
-      "id": "J3", "name": "学生学习", "persona": "学生",
+      "id": "J3",
+      "name": "学生学习",
+      "persona": "学生",
       "steps": [
-        { "n": 1, "title": "发现课程", "detail": "首页热门课程 / 学习频道三视图+筛选", "module": "portal-home" },
-        { "n": 2, "title": "查看详情", "detail": "课程详情：目录树/能力目标/团队", "module": "lc-course-detail" },
-        { "n": 3, "title": "报名", "detail": "「报名」按钮（未登录零反馈）", "module": "lc-catalog", "note": "断点：未登录零反馈" },
-        { "n": 4, "title": "去学习", "detail": "「去学习」新开标签 → outPage/sxz 学习器", "module": "lc-player", "note": "断点：第 3 跳 + 第 6 套子系统" },
-        { "n": 5, "title": "学习与课件", "detail": "目录进度/课件下载（backplatform）/电子书（GitCode 外链）", "module": "lc-player" },
-        { "n": 6, "title": "记录 continuity", "detail": "「我的课程」公告：平台升级建议重新学习", "module": "uc-mycourse", "note": "断点：记录断档" }
+        {
+          "n": 1,
+          "title": "发现课程",
+          "detail": "首页热门课程 / 学习频道三视图+筛选",
+          "module": "portal-home"
+        },
+        {
+          "n": 2,
+          "title": "查看详情",
+          "detail": "课程详情：目录树/能力目标/团队",
+          "module": "lc-course-detail"
+        },
+        {
+          "n": 3,
+          "title": "报名",
+          "detail": "「报名」按钮（未登录零反馈）",
+          "module": "lc-catalog",
+          "note": "断点：未登录零反馈"
+        },
+        {
+          "n": 4,
+          "title": "去学习",
+          "detail": "「去学习」新开标签 → outPage/sxz 学习器",
+          "module": "lc-player",
+          "note": "断点：第 3 跳 + 第 6 套子系统"
+        },
+        {
+          "n": 5,
+          "title": "学习与课件",
+          "detail": "目录进度/课件下载（backplatform）/电子书（GitCode 外链）",
+          "module": "lc-player"
+        },
+        {
+          "n": 6,
+          "title": "记录 continuity",
+          "detail": "「我的课程」公告：平台升级建议重新学习",
+          "module": "uc-mycourse",
+          "note": "断点：记录断档"
+        }
       ]
     },
     {
-      "id": "J4", "name": "学生认证考试", "persona": "学生",
+      "id": "J4",
+      "name": "学生认证考试",
+      "persona": "学生",
       "steps": [
-        { "n": 1, "title": "了解认证", "detail": "认证频道 HCIA/IP/IE 全景与方向", "module": "lc-cert-panorama" },
-        { "n": 2, "title": "实名认证", "detail": "个人信息 → 实名认证（点击仅改 URL）", "module": "uc-myinfo", "note": "断点：渲染异常" },
-        { "n": 3, "title": "获得考券", "detail": "学校/IASC 发放 → 我的券包（暗码/数字考券 + 24h/HCIE7 天规则）", "module": "uc-coupons" },
-        { "n": 4, "title": "申请考券（可选）", "detail": "考券申请页 voucher/application", "module": "uc-coupons", "note": "断点：空白页" },
-        { "n": 5, "title": "预约考试", "detail": "跳 Pearson VUE 外部系统", "module": "lc-cert-exam", "note": "断点：外链" },
-        { "n": 6, "title": "查证书", "detail": "talent/#/personal/mycert（另一子应用布局）", "module": "uc-mycert", "note": "断点：第三布局" },
-        { "n": 7, "title": "企业关联（可选）", "detail": "证书企业关联跳 mypace 第三系统；变更间隔 12 个月", "module": "uc-mycert", "note": "断点：再跨系统" }
+        {
+          "n": 1,
+          "title": "了解认证",
+          "detail": "认证频道 HCIA/IP/IE 全景与方向",
+          "module": "lc-cert-panorama"
+        },
+        {
+          "n": 2,
+          "title": "实名认证",
+          "detail": "个人信息 → 实名认证（点击仅改 URL）",
+          "module": "uc-myinfo",
+          "note": "断点：渲染异常"
+        },
+        {
+          "n": 3,
+          "title": "获得考券",
+          "detail": "学校/IASC 发放 → 我的券包（暗码/数字考券 + 24h/HCIE7 天规则）",
+          "module": "uc-coupons"
+        },
+        {
+          "n": 4,
+          "title": "申请考券（可选）",
+          "detail": "考券申请页 voucher/application",
+          "module": "uc-coupons",
+          "note": "断点：空白页"
+        },
+        {
+          "n": 5,
+          "title": "预约考试",
+          "detail": "跳 Pearson VUE 外部系统",
+          "module": "lc-cert-exam",
+          "note": "断点：外链"
+        },
+        {
+          "n": 6,
+          "title": "查证书",
+          "detail": "talent/#/personal/mycert（另一子应用布局）",
+          "module": "uc-mycert",
+          "note": "断点：第三布局"
+        },
+        {
+          "n": 7,
+          "title": "企业关联（可选）",
+          "detail": "证书企业关联跳 mypace 第三系统；变更间隔 12 个月",
+          "module": "uc-mycert",
+          "note": "断点：再跨系统"
+        }
       ]
     },
     {
-      "id": "J5", "name": "学生参赛（ICT 大赛）", "persona": "学生/教师",
+      "id": "J5",
+      "name": "学生参赛（ICT 大赛）",
+      "persona": "学生/教师",
       "steps": [
-        { "n": 1, "title": "了解赛道", "detail": "大赛频道 7 条赛道 + 分区（中国区/海外）", "module": "contest" },
-        { "n": 2, "title": "下载手册", "detail": "大赛手册/路演胶片为 PDF 附件", "module": "contest", "note": "断点：资料非结构化" },
-        { "n": 3, "title": "报名", "detail": "线上报名（截止后仅显示已结束）", "module": "contest" },
-        { "n": 4, "title": "省资格赛", "detail": "链接跳 shixizhi.huawei.com/iexam 外域", "module": "contest", "note": "断点：第 7 套系统" },
-        { "n": 5, "title": "问卷/活动", "detail": "survey.huaweicloud.com / edu.huaweicloud.com 外域", "module": "contest", "note": "断点：再跨两域" },
-        { "n": 6, "title": "看进度", "detail": "「我的大赛」空页面", "module": "uc-mycomp", "note": "断点：无晋级看板" }
+        {
+          "n": 1,
+          "title": "了解赛道",
+          "detail": "大赛频道 7 条赛道 + 分区（中国区/海外）",
+          "module": "contest"
+        },
+        {
+          "n": 2,
+          "title": "下载手册",
+          "detail": "大赛手册/路演胶片为 PDF 附件",
+          "module": "contest",
+          "note": "断点：资料非结构化"
+        },
+        {
+          "n": 3,
+          "title": "报名",
+          "detail": "线上报名（截止后仅显示已结束）",
+          "module": "contest"
+        },
+        {
+          "n": 4,
+          "title": "省资格赛",
+          "detail": "链接跳 shixizhi.huawei.com/iexam 外域",
+          "module": "contest",
+          "note": "断点：第 7 套系统"
+        },
+        {
+          "n": 5,
+          "title": "问卷/活动",
+          "detail": "survey.huaweicloud.com / edu.huaweicloud.com 外域",
+          "module": "contest",
+          "note": "断点：再跨两域"
+        },
+        {
+          "n": 6,
+          "title": "看进度",
+          "detail": "「我的大赛」空页面",
+          "module": "uc-mycomp",
+          "note": "断点：无晋级看板"
+        }
       ]
     },
     {
-      "id": "J6", "name": "就业双选（断头路）", "persona": "学生",
+      "id": "J6",
+      "name": "就业双选（断头路）",
+      "persona": "学生",
       "steps": [
-        { "n": 1, "title": "被宣传触达", "detail": "ICT学院页文案：每年数十场双选会、1000+企业、近千岗位", "module": "icta-career" },
-        { "n": 2, "title": "找入口", "detail": "全站搜索双选会/岗位/投递功能", "module": "portal-shell", "note": "断点：无任何线上功能入口" },
-        { "n": 3, "title": "（无下一步）", "detail": "生态价值链最后一公里在线上是断的", "module": "icta-career", "note": "旅程终止" }
+        {
+          "n": 1,
+          "title": "被宣传触达",
+          "detail": "ICT学院页文案：每年数十场双选会、1000+企业、近千岗位",
+          "module": "icta-career"
+        },
+        {
+          "n": 2,
+          "title": "找入口",
+          "detail": "全站搜索双选会/岗位/投递功能",
+          "module": "portal-shell",
+          "note": "断点：无任何线上功能入口"
+        },
+        {
+          "n": 3,
+          "title": "（无下一步）",
+          "detail": "生态价值链最后一公里在线上是断的",
+          "module": "icta-career",
+          "note": "旅程终止"
+        }
       ]
     },
     {
-      "id": "J7", "name": "商城购课/代金券（跨系统）", "persona": "个人学习者",
+      "id": "J7",
+      "name": "商城购课/代金券（跨系统）",
+      "persona": "个人学习者",
       "steps": [
-        { "n": 1, "title": "导航点商城", "detail": "新开标签到 elearning.huawei.com", "module": "mall-external", "note": "断点：外链第 2 系统" },
-        { "n": 2, "title": "浏览认证官网/商城", "detail": "华为认证官网（购课/代金券/考试券）", "module": "mall-external" },
-        { "n": 3, "title": "回到人才在线", "detail": "上下文与登录态反复中断", "module": "portal-shell", "note": "7+ 系统碎片化全景的一环" }
+        {
+          "n": 1,
+          "title": "导航点商城",
+          "detail": "新开标签到 elearning.huawei.com",
+          "module": "mall-external",
+          "note": "断点：外链第 2 系统"
+        },
+        {
+          "n": 2,
+          "title": "浏览认证官网/商城",
+          "detail": "华为认证官网（购课/代金券/考试券）",
+          "module": "mall-external"
+        },
+        {
+          "n": 3,
+          "title": "回到人才在线",
+          "detail": "上下文与登录态反复中断",
+          "module": "portal-shell",
+          "note": "7+ 系统碎片化全景的一环"
+        }
+      ]
+    },
+    {
+      "id": "J8",
+      "name": "培训伙伴入驻 HALP",
+      "persona": "商业培训伙伴 / HCSI 讲师",
+      "steps": [
+        {
+          "n": 1,
+          "title": "了解 HALP 计划",
+          "detail": "HALP 频道：三入口条（入驻/讲师专区/教学管理）+ 计划介绍区",
+          "module": "tal-halp"
+        },
+        {
+          "n": 2,
+          "title": "入驻申请",
+          "detail": "「成为华为授权培训服务伙伴」注册/认证/续认证——新开标签跳 partner.huawei.com",
+          "module": "tal-halp",
+          "note": "断点：外链第 2 系统"
+        },
+        {
+          "n": 3,
+          "title": "资质审批",
+          "detail": "渠道体系线下流转：结果靠邮件与伙伴经理对接，站内无审批状态页",
+          "module": "tal-halp",
+          "note": "断点：无站内进度"
+        },
+        {
+          "n": 4,
+          "title": "找 HALP 伙伴与资讯",
+          "detail": "查找HALP伙伴按钮 + 资讯公告区（公告停在 2023，更新停滞）",
+          "module": "tal-halp",
+          "note": "断点：公告停更"
+        },
+        {
+          "n": 5,
+          "title": "找 HALP 班级管理",
+          "detail": "登录用户中心翻遍功能卡：无 HALP/教学管理视图",
+          "module": "tal-halp",
+          "note": "断点：HALP 班级管理无站内入口"
+        }
+      ]
+    },
+    {
+      "id": "J9",
+      "name": "企业培训对接",
+      "persona": "企业培训负责人",
+      "steps": [
+        {
+          "n": 1,
+          "title": "导航点「企业培训」",
+          "detail": "本站零反应——现网为「新开标签外域」忠实死点",
+          "module": "tal-corporate",
+          "note": "断点：导航死点"
+        },
+        {
+          "n": 2,
+          "title": "落点 elearning",
+          "detail": "真实落点 elearning.huawei.com（与 HALP 落地同 URL）；corporate 路由存活但被外链替代",
+          "module": "tal-corporate"
+        },
+        {
+          "n": 3,
+          "title": "登录查企业侧记录",
+          "detail": "登录人才在线：用户中心功能卡翻找企业培训相关视图",
+          "module": "usercenter"
+        },
+        {
+          "n": 4,
+          "title": "确认企业端零实体",
+          "detail": "无任何企业培训/采购/员工管理卡片",
+          "module": "tal-corporate",
+          "note": "断点：企业端零功能实体"
+        }
+      ]
+    },
+    {
+      "id": "J10",
+      "name": "查找ICT学院",
+      "persona": "学生 / 院校合作者",
+      "steps": [
+        {
+          "n": 1,
+          "title": "进 ICT 学院频道",
+          "detail": "频道首页：角色入口/快捷卡/3500+ 学院数据条",
+          "module": "icta-home"
+        },
+        {
+          "n": 2,
+          "title": "导航下拉「查找ICT学院」",
+          "detail": "hover 华为ICT学院 → 下拉项 → 新开标签检索页（talent 主站第 8+ 套界面）",
+          "module": "icta-find",
+          "note": "断点：跨界面"
+        },
+        {
+          "n": 3,
+          "title": "填查询表单",
+          "detail": "伙伴类型（默认 ICT 学院）+ 伙伴层级下拉 + 名称模糊检索——须至少一个条件",
+          "module": "icta-find"
+        },
+        {
+          "n": 4,
+          "title": "看查询结果",
+          "detail": "结果区一片空白——现网未渲染缺陷，学院信息卡（地址/层级/授权产品）不出现",
+          "module": "icta-find",
+          "note": "断点：结果空白"
+        },
+        {
+          "n": 5,
+          "title": "资质无从校验",
+          "detail": "想核实一所「华为ICT学院」真伪：无地图/地区筛选、不支持全量浏览",
+          "module": "icta-find",
+          "note": "断点：资质无从校验"
+        }
+      ]
+    },
+    {
+      "id": "J11",
+      "name": "IASC 支持与讲师成长",
+      "persona": "ICT 学院教师",
+      "steps": [
+        {
+          "n": 1,
+          "title": "教师登录·点「关联-讲师」",
+          "detail": "个人信息 →「关联-讲师」——现网缺陷：点击零渲染",
+          "module": "icta-teacher",
+          "note": "断点：零渲染"
+        },
+        {
+          "n": 2,
+          "title": "看 IASC 四类支持",
+          "detail": "ICT 学院频道「我需要IASC的支持」区：教师赋能/拓展支持/运营管理/活动支持",
+          "module": "icta-iasc"
+        },
+        {
+          "n": 3,
+          "title": "HCAI 认证与 TTT 报名",
+          "detail": "课前测试→HCIA→HCAI 学习考试→拿证绑定院校；TTT 产双证——报名入口在站外认证平台",
+          "module": "icta-teacher",
+          "note": "断点：报名外跳"
+        },
+        {
+          "n": 4,
+          "title": "查讲师认证进度",
+          "detail": "用户中心翻遍功能卡：无讲师认证/HCAI 进度视图",
+          "module": "icta-iasc",
+          "note": "断点：进度无处查"
+        }
+      ]
+    },
+    {
+      "id": "J12",
+      "name": "产学合作·众智",
+      "persona": "高校科研团队",
+      "steps": [
+        {
+          "n": 1,
+          "title": "逛产学合作区",
+          "detail": "ICT 学院频道：产学合作快捷卡（协同育人/案例展示）→ 成功案例区",
+          "module": "icta-industry"
+        },
+        {
+          "n": 2,
+          "title": "众智平台/火花奖申报",
+          "detail": "鲲鹏/昇腾众智（框架协议+课题子协议、揭榜挂帅）与 MindSpore 火花奖——申报与课题管理全在 edu.huaweicloud.com 外域",
+          "module": "icta-industry",
+          "note": "断点：外域申报"
+        },
+        {
+          "n": 3,
+          "title": "找申报记录入口",
+          "detail": "登录用户中心：无产学合作/众智课题/火花奖任何视图",
+          "module": "icta-industry",
+          "note": "断点：无申报记录"
+        },
+        {
+          "n": 4,
+          "title": "回频道页确认",
+          "detail": "产学合作止于案例展示——协同育人/产业学院/众智三项全外链无回写",
+          "module": "icta-industry",
+          "note": "断点：合作无回写"
+        }
       ]
     }
   ]
